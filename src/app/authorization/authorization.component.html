@@ -1,0 +1,43 @@
+<h4 class="title" [attr.data-type]="attr.title">{{this.resources.authorizationTitle}}</h4>
+
+<app-error [errorText]="errorMessage" *ngIf="error"></app-error>
+
+<form action="" [formGroup]="LogIn" (ngSubmit)="LogInFunction()" #ngForm="ngForm" class="form" *ngIf="!forgotPassword" [attr.data-type]="attr.form">
+    <div class="form-style">
+        <div class="input-wrapper" [attr.data-type]="attr.usernameDiv">
+            <label class="input-name" [attr.data-type]="attr.usernameLabel">{{this.resources.authorisationUsername}}</label>
+            <input type="text" formControlName="username" class="input" placeholder="Insert {{this.resources.authorisationUsername}}" [attr.data-type]="attr.usernameInput">
+            <span *ngIf="ngForm.submitted && LogIn.get('username')!.invalid" [attr.data-type]="attr.usernameError" class="invalid">{{this.resources.authorizationInsertValue}}</span>
+        </div><br>
+        <div class="input-wrapper" [attr.data-type]="attr.passwordDiv">
+            <label class="input-name" [attr.data-type]="attr.passwordLabel">{{this.resources.authorisationPassword}}</label>
+            <input type="password" formControlName="password" [attr.data-type]="attr.passwordInput" class="input" placeholder="Insert {{this.resources.authorisationPassword}}">
+            <span *ngIf="ngForm.submitted && LogIn.get('password')!.invalid" [attr.data-type]="attr.passwordError" class="invalid">{{this.resources.authorizationInsertValue}}</span>
+        </div><br>
+    </div>
+    <div class="buttons" [attr.data-type]="attr.buttons">
+        <button type="button" class="forgot-password"  [attr.data-type]="attr.registration" routerLink="../{{this.resources.registrationURL}}">{{this.resources.registrationTitle}}</button><br>
+        <button type="button" class="forgot-password"  [attr.data-type]="attr.forgotPassword" (click)="forgotPassword = true">{{this.resources.authorizationForgotPasswordBtn}}</button><br>
+        <input type="submit" class="edit-button" value="Log In" [attr.data-type]="attr.logIn">
+    </div>
+</form>
+
+<app-error [errorText]="errorMessageForgot" *ngIf="errorForgot"></app-error>
+<form action="" [formGroup]="ForgotPassword" #ngForm="ngForm"  [attr.data-type]="attr.form" (ngSubmit)="forgotPasswordFunction()" class="form" *ngIf="forgotPassword">
+    <div class="form-style" >
+        <div class="input-wrapper" [attr.data-type]="attr.usernameDiv">
+            <label class="input-name" [attr.data-type]="attr.usernameLabel">{{this.resources.authorisationUsername}}</label>
+            <input type="text" formControlName="username" [attr.data-type]="attr.usernameInput"  class="input" placeholder="Insert {{this.resources.authorisationUsername}}">
+             <span *ngIf="ngForm.submitted && ForgotPassword.get('username')!.invalid" [attr.data-type]="attr.usernameError"  class="invalid">{{this.resources.authorizationInsertValue}}</span>
+        </div>
+    </div>
+    <div class="buttons" [attr.data-type]="attr.buttons">
+        <input type="submit" class="edit-button" value="Show {{this.resources.authorisationPassword}}" [attr.data-type]="attr.showPassword">
+        <button type="button" class="forgot-password"
+            routerLink="../{{this.resources.registrationURL}}" [attr.data-type]="attr.registration">{{this.resources.registrationTitle}}</button><br>
+        <button type="button" class="forgot-password" [attr.data-type]="attr.logIn" (click)="forgotPassword = false">{{this.resources.authorizationLogInBtn}}?</button>
+    </div>
+</form>
+<div class="alighn" *ngIf=" this.password != ''">
+    <h5  [attr.data-type]="attr.passwordRevealed">{{this.resources.authorizationShowPassword}} {{this.password}}</h5>
+</div>

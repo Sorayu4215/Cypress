@@ -1,0 +1,151 @@
+<div class="user-profile-wrapper">
+    <div class="wrapper">
+        <form action="" [formGroup]="address" #ngForm="ngForm" class="form split" (ngSubmit)="addNewItem()">
+            <div class="items">
+                <fieldset class="input-wrapper" [attr.data-type]="attr.emailDiv" >
+                    <label class="input-name" [attr.data-type]="attr.emailLabel">{{this.resources.addressEmail}}</label>
+                    <input type="text" formControlName="email" class="input" 
+                        placeholder="Insert {{this.resources.addressEmail}}" [attr.data-type]="attr.emailInput">
+                    <span [attr.data-type]="attr.emailError"
+                        *ngIf="address.get('email')!.touched && address.get('email')!.invalid || ngForm.submitted && address.get('email')!.invalid"
+                        class="invalid">Insert value!</span>
+                </fieldset><br>
+                <fieldset class="input-wrapper" [attr.data-type]="attr.nameDiv" >
+                    <label class="input-name"
+                        [attr.data-type]="attr.nameLabel">{{this.resources.addressFullName}}</label>
+                    <input type="text" formControlName="name" class="input"
+                        placeholder="Insert {{this.resources.addressFullName}}" [attr.data-type]="attr.nameInput">
+                    <span [attr.data-type]="attr.nameError"
+                        *ngIf="address.get('name')!.touched && address.get('name')!.invalid || ngForm.submitted && address.get('name')!.invalid"
+                        class="invalid">Insert value!</span>
+                </fieldset><br>
+                <fieldset class="input-wrapper" [attr.data-type]="attr.addressDiv" >
+                    <label class="input-name"
+                        [attr.data-type]="attr.addressLabel">{{this.resources.addressAddress}}</label>
+                    <input type="text" formControlName="address" class="input"
+                        placeholder="Insert {{this.resources.addressAddress}}" [attr.data-type]="attr.addressInput">
+                    <span [attr.data-type]="attr.addressError"
+                        *ngIf="address.get('address')!.touched && address.get('address')!.invalid || ngForm.submitted && address.get('address')!.invalid"
+                        class="invalid">Insert value!</span>
+                </fieldset><br>
+                <fieldset class="input-wrapper" [attr.data-type]="attr.cityDiv" >
+                    <label class="input-name" [attr.data-type]="attr.cityLabel">{{this.resources.addressCity}}</label>
+                    <input type="text" formControlName="city" class="input"
+                        placeholder="Insert {{this.resources.addressCity}}" [attr.data-type]="attr.cityInput">
+                    <span [attr.data-type]="attr.cityError"
+                        *ngIf="address.get('city')!.touched && address.get('city')!.invalid || ngForm.submitted && address.get('city')!.invalid"
+                        class="invalid">Insert value!</span>
+                </fieldset><br>
+                <fieldset class="input-wrapper" [attr.data-type]="attr.postCodeDiv" >
+                    <label class="input-name"
+                        [attr.data-type]="attr.postCodeLabel">{{this.resources.addressPostCode}}</label>
+                    <input type="number" formControlName="postCode" class="input"
+                        placeholder="Insert {{this.resources.addressPostCode}}" [attr.data-type]="attr.postCodeInput">
+                    <span [attr.data-type]="attr.postCodeError"
+                        *ngIf="address.get('postCode')!.touched && address.get('postCode')!.invalid || ngForm.submitted && address.get('postCode')!.invalid"
+                        class="invalid">Insert value!</span>
+                </fieldset><br>
+                <fieldset class="input-wrapper" [attr.data-type]="attr.phoneNumberDiv" >
+                    <label class="input-name"
+                        [attr.data-type]="attr.phoneNumberLabel">{{this.resources.addressPhoneNumber}}</label>
+                    <input type="number" formControlName="phoneNumber" class="input"
+                        placeholder="Insert {{this.resources.addressPhoneNumber}}"
+                        [attr.data-type]="attr.phoneNumberInput">
+                    <span [attr.data-type]="attr.phoneNumberError"
+                        *ngIf="address.get('phoneNumber')!.touched && address.get('phoneNumber')!.invalid || ngForm.submitted && address.get('phoneNumber')!.invalid"
+                        class="invalid">Insert value!</span>
+                </fieldset><br>
+                <fieldset  class="input-checkbox" [attr.data-type]="attr.newsletterDiv">
+                    <label class="switch">
+                        <input type="checkbox" formControlName="newsletter" id="newsletter"
+                            [attr.data-type]="attr.newsletterInput">
+                        <span class="slider round"></span>
+                    </label>
+                    <label class="input-checkbox-name" for="newsletter" [attr.data-type]="attr.newsletterLabel">
+                        {{this.resources.addressNwssletter}}</label>
+                </fieldset><br>
+                <fieldset  class="input-checkbox" [attr.data-type]="attr.termsAndConditionsDiv">
+                    <label class="switch">
+                        <input type="checkbox" 
+                            [attr.data-type]="attr.termsAndConditionsInput" id="terms-and-condition"
+                            formControlName="termsAndConditions">
+                        <span class="slider round"></span>
+                    </label>
+                    <label class="input-checkbox-name" for="terms-and-condition"
+                        [attr.data-type]="attr.termsAndConditionsLabel"> {{this.resources.addressTermsAndCondition}}</label><br>
+                        <span *ngIf="ngForm.submitted && address.get('termsAndConditions')!.invalid " class="invalid" [attr.data-type]="attr.termsAndConditionsError">This
+                            field is mandatory</span>
+                </fieldset><br>
+                <fieldset  class="input-checkbox" [attr.data-type]="attr.businessAccountDiv">
+                    <label class="switch">
+                        <input type="checkbox" (change)="this.companyUser = !this.companyUser"
+                            [attr.data-type]="attr.newsletterInput" id="business-account"
+                            formControlName="billingBusiness">
+                        <span class="slider round"></span>
+                    </label>
+                    <label class="input-checkbox-name" for="business-account"
+                        [attr.data-type]="attr.businessAccountLabel"> {{this.resources.addressBusinessAccount}}</label>
+                </fieldset><br>
+
+                <div class="user-accout-buttons">
+                    <!-- <input type="submit" class="edit-button button" (click)="changeValues()" *ngIf="editButton"
+                        [attr.data-type]="attr.changeValuesBtn" value="Change Values"> -->
+                    <input type="submit" class="edit-button button" value="{{this.submitBtnName}}"
+                        [attr.data-type]="attr.saveValuesBtn">
+                </div>
+            </div>
+
+            <div class="line-vertical" *ngIf="this.companyUser"></div>
+            <div *ngIf="this.companyUser" class="items">
+                <fieldset  class="input-wrapper margin-top"
+                    [attr.data-type]="attr.companyRegistrationNumberDiv">
+                    <label class="input-name"
+                        [attr.data-type]="attr.companyRegistrationNumberLabel">{{this.resources.addressCompanyRegistrationNumber}}</label>
+                    <input type="text" [attr.data-type]="attr.companyRegistrationNumberInput"
+                        formControlName="companyRegistrationNo" class="input"
+                        placeholder="Insert {{this.resources.addressCompanyRegistrationNumber}}" required>
+                    <span [attr.data-type]="attr.companyRegistrationNumberError"
+                        *ngIf="address.get('companyRegistrationNo')!.touched && address.get('companyRegistrationNo')!.invalid || ngForm.submitted && address.get('companyRegistrationNo')!.invalid"
+                        class="invalid">{{this.resources.addressErrorMessage}}</span>
+                </fieldset><br>
+                <fieldset  class="input-wrapper" [attr.data-type]="attr.VATDiv">
+                    <label class="input-name"
+                        [attr.data-type]="attr.VATLabel">{{this.resources.addressVATNumber}}</label>
+                    <input type="text" [attr.data-type]="attr.VATInput" formControlName="VAT" class="input" required
+                        placeholder="Insert {{this.resources.addressVATNumber}}">
+                    <span [attr.data-type]="attr.VATError"
+                        *ngIf="address.get('VAT')!.touched && address.get('VAT')!.invalid || ngForm.submitted && address.get('VAT')!.invalid"
+                        class="invalid">{{this.resources.addressErrorMessage}}</span>
+                </fieldset><br>
+                <fieldset  class="input-wrapper" [attr.data-type]="attr.BICDiv">
+                    <label class="input-name" [attr.data-type]="attr.BICLabel">{{this.resources.addressBIC}}</label>
+                    <input type="text" [attr.data-type]="attr.BICInput" formControlName="BIC" class="input" required
+                        placeholder="Insert {{this.resources.addressBIC}}">
+                    <span [attr.data-type]="attr.BICError"
+                        *ngIf="address.get('BIC')!.touched && address.get('BIC')!.invalid || ngForm.submitted && address.get('BIC')!.invalid"
+                        class="invalid">{{this.resources.addressErrorMessage}}</span>
+                </fieldset><br>
+                <fieldset  class="input-wrapper" [attr.data-type]="attr.IBANDiv">
+                    <label class="input-name" [attr.data-type]="attr.IBANLabel">{{this.resources.addressIBAN}}</label>
+                    <input type="text" [attr.data-type]="attr.IBANInput" formControlName="IBAN" class="input" required
+                        pattern="[A-Za-z]{2}\d+" required placeholder="Insert {{this.resources.addressIBAN}}">
+                    <span [attr.data-type]="attr.IBANError"
+                        *ngIf="address.get('IBAN')!.touched && address.get('IBAN')!.invalid || ngForm.submitted && address.get('IBAN')!.invalid"
+                        class="invalid">{{this.resources.addressErrorMessage}}</span>
+                </fieldset><br>
+                <fieldset  class="input-wrapper" [attr.data-type]="attr.nameOfBankAccountDiv">
+                    <label class="input-name"
+                        [attr.data-type]="attr.nameOfBankAccountLabel">{{this.resources.addressNameOfBank}}</label>
+                    <input type="text" [attr.data-type]="attr.nameOfBankAccountInput"
+                        formControlName="bankAccountHolder" required class="input"
+                        placeholder="Insert {{this.resources.addressNameOfBank}}">
+                    <span [attr.data-type]="attr.nameOfBankAccountError"
+                        *ngIf="address.get('bankAccountHolder')!.touched && address.get('bankAccountHolder')!.invalid || ngForm.submitted && address.get('bankAccountHolder')!.invalid"
+                        class="invalid">{{this.resources.addressErrorMessage}}</span>
+                </fieldset><br>
+            </div>
+        </form>
+
+    </div>
+
+</div>

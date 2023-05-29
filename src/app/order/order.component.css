@@ -1,0 +1,38 @@
+.icon{
+    display: inline-block;
+    padding: 5rem;
+    border-radius:50%;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+.success{
+    background-color: green;
+}
+.problem{
+    background-color: #ff5349;
+}
+.success-chacked{
+    font-size: 5rem;
+    color: white;
+    font-size: 3rem;
+}
+.order-wrapper{
+    display: block;
+    text-align: center;
+}
+.order-text{
+    display: block;
+    font-size: 120%;
+    letter-spacing: 1px;
+    padding: 0.2rem;
+}
+.navigation-btn{
+    margin-top: 0.5rem;
+    width: 35%;
+    cursor: pointer;
+    border-radius: 15px;
+    font-weight: 300;
+    font-size: 120%;
+    background-color: transparent;
+    border: none;
+}

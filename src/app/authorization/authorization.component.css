@@ -1,0 +1,56 @@
+@import '../shared/variables.css';
+.form{
+    max-width: 1300px;
+    width: 50%;
+    margin: 3rem auto;
+}
+.form-style{
+    display: block;
+    margin-left: 30%;
+}
+.input-box{
+    border: 1px solid var(--price-list-dark-color);
+    display: block;
+    padding: 0.5rem;
+    border-radius: 5px;
+    grid-area: header;
+}
+
+
+input:focus {
+    outline: none;
+}
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched{
+    background-color: rgba(255,0,0, 0.8);
+}
+
+.btn-submit{
+    grid-area: button;
+    width: 98%;
+    outline: 1px solid var(--primary-primary1-color);
+    outline-offset: 10px;
+    border-radius:5px ;
+    margin-bottom: 1rem;
+    
+}
+.buttons{
+    /* margin-top: 2rem; */
+    margin-bottom: 5rem;
+    text-align: center;
+}
+.forgot-password{
+    background-color: transparent;
+    border: none;
+    color: var(--lighter-primary2-color);
+    cursor: pointer;
+}
+.forgot-password:hover{
+    text-decoration: underline;
+}
+
+@media screen and (max-width:600px){
+    .form{
+        width: 85%;
+    }
+}

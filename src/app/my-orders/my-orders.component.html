@@ -1,0 +1,37 @@
+<h4 class="my-orders-title" [attr.data-type]="attr.myOrdersTopTitle">{{this.resources.myOrdersTitle}}</h4>
+
+<app-error [errorText]="errorMessage" *ngIf="error"></app-error>
+
+<div class="cart-wrapper">
+    <div style="margin: 1rem;"  [attr.data-type]="attr.myOrdersItemDiv">
+        <div class="my-order-hadline" (click)="showDetails($event)" [attr.data-type]="attr.myOrdersItemHeadline">
+            <p class="my-order-text" [attr.data-type]="attr.myOrdersID">{{this.resources.myOrderID}}65865486</p>
+            <p class="my-order-text" [attr.data-type]="attr.myOrdersTitle">{{this.resources.myOrderTime}}14.5.2023</p>
+            <button class="my-order-buton" [attr.data-type]="attr.myOrdersArrow">
+                <fa-icon [icon]="this.resources.arrowDown"></fa-icon>
+            </button>
+        </div>
+        <div class="cart-single-element hide" [attr.data-type]="attr.myOrdersSingleItem">
+            <!-- treba sem pridat k data-type cislo iteracie, teda index i  -->
+            <div class="cart-info">
+                <img src="assets/Dress1.jpg" alt="" class="cart-image" [attr.data-type]="attr.myOrdersImage">
+                <h5 class="cart-title" [attr.data-type]="attr.myOrdersTitle">Dress</h5>
+                <h5 class="cart-price" [attr.data-type]="attr.myOrdersCount">20 €</h5>
+                <h4 class="cart-single-total-price" [attr.data-type]="attr.myOrdersPriceWithAccesories">50 €</h4>
+            </div>
+            <div class="cart-additional" [attr.data-type]="attr.myOrdersWarrantyDiv">
+                <p class="cart-additional-label" [attr.data-type]="attr.myOrdersWarrantyTitle">
+                    {{this.resources.cartWarranty}}
+                </p>
+                <h5 class="cart-additional-price" [attr.data-type]="attr.myOrdersWarrantyPrice">20 €</h5>
+            </div>
+            <div class="cart-additional" [attr.data-type]="attr.myOrdersReturnOptionDiv">
+                <p class="cart-additional-label" [attr.data-type]="attr.myOrdersReturnOptionTitle">
+                    {{this.resources.cartReturnOption}}</p>
+                <h5 class="cart-additional-price" [attr.data-type]="attr.myOrdersReturnOptionPrice">10 €</h5>
+            </div>
+        </div>        
+    </div>
+    
+
+</div>

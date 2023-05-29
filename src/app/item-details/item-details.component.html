@@ -1,0 +1,25 @@
+
+<app-error [errorText]="errorMessage" *ngIf="error"></app-error>
+<app-loader *ngIf="!this.error && this.item == undefined"></app-loader>
+
+<div class="details-wraper" *ngIf="!this.error && this.item !== undefined">
+    <img src="{{this.item[0].image}}" alt="" class="details-image" [attr.data-type]="attr.detailsImage">
+    <div class="details-info">
+        <h4 class="details-title" [attr.data-type]="attr.detailsTitle">{{this.item[0].title}}</h4>
+        <p class="details-description" [attr.data-type]="attr.detailsDescription">{{this.item[0].description}}</p>
+        <div>
+            <input type="checkbox" value="Extended Warranty + 1 Year" id="Warranty"  class="details-warranty-checkbox" [attr.data-type]="attr.detailsWarranty">
+            <label for="Warranty"> {{this.resources.detailsExtendedWarranty}}</label>
+        </div>
+        <div>
+            <input type="checkbox" value="60-Day Return Option" id="return_option" [attr.data-type]="attr.detailsReturnOption">
+            <label for="return_option"> {{this.resources.detailReturnOption}}</label>
+        </div>
+        <button class="details-add-to-cart" [attr.data-type]="attr.detailsAddToCartBtn" (click)="warantyAndReturnOption()" (click)="this.common.addToCart($event, this.item[0],this.waranty, this.returnOption)">
+            <fa-icon [icon]="this.resources.cart" style="font-size: 1.2rem;"></fa-icon>
+            <p class="details-btn">{{this.resources.detailsAddToCartButton}}</p>
+        </button>
+        <h5 class="details-price" [attr.data-type]="attr.detailsPrice">{{this.item[0].price}}€</h5>
+    </div>
+</div>
+<app-added-to-cart></app-added-to-cart>

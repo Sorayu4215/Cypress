@@ -1,0 +1,8 @@
+<div class="modal-wrapper" *ngIf="show">
+    <div class="modal" [attr.data-type]="attr.modal">
+        <button class="close-button" (click)="this.show = false"><fa-icon [icon]="this.resources.close" [attr.data-type]="attr.closeButton"></fa-icon></button>
+        <h4 class="title" [attr.data-type]="attr.sucesfullMessage">{{this.resources.addedToCartMessage}}</h4>
+        <button class="button" [routerLink]="'../'+this.resources.cartURL" (click)="this.show = false" [attr.data-type]="attr.navigateToCart">{{this.resources.addedToCartNavigateToCart}}</button>
+        <button class="button" [routerLink]="'../'+this.resources.mainPageURL" (click)="this.show = false" [attr.data-type]="attr.navigateShoping">{{this.resources.addedToCartNavigateShoping}}</button>
+    </div>
+</div>

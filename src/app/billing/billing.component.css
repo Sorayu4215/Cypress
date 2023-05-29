@@ -1,0 +1,71 @@
+ .billing-title{
+    margin: 1rem;
+    text-align: center;
+
+ }
+ .billing-table{
+
+ }
+ table{
+    border-collapse: collapse;
+ }
+ .billing-form{
+    box-shadow: 0 0 5px;
+    padding: 0.5rem;
+    margin: 0 auto;
+    width: 60%;
+    text-align: center;
+    border-radius: 10px;
+ }
+td{
+    padding: 0.5rem;
+        border-bottom: 1px solid #d2d2d2 ;
+}
+.billing-payment{
+    margin-top: 3rem;
+}
+
+.cart-navigation{
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 3rem;
+}
+.cart-navidation-btn{
+    font-size: 1.2rem;
+    padding: 0.2rem 0.5rem;
+    background-color: var(--primary-primary1-color);
+    border-radius: 5px;
+    border: 1px solid var(--darker-primary1-color);
+    cursor: pointer;
+    color: var(--white-color);
+}
+
+.cart-navidation-btn:hover{
+    color: var(--darker-primary2-color);
+    transition: 0.1s linear;
+}
+.billing-error-message{
+    color: red;
+    text-align: center;
+    display: block;
+    margin: 1rem;
+}
+
+.billing-error{
+    color: red;
+}
+tr:hover{
+    background-color: #d2d2d2;
+}
+
+@media screen  and (max-width:550px){
+    .total{
+        margin: 1rem 0.5rem;
+    }
+    .cart-navigation{
+        margin: 2rem 0.5rem;
+    }
+     .billing-form{
+        width: 90%;
+     }
+}

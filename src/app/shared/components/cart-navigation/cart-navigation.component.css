@@ -1,0 +1,30 @@
+.cart-navigation{
+    margin: 2rem 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.cart-navigation-page{
+    background-color: var(--lighter-primary1-color) ;
+    padding: 0.5rem 0.7rem;
+    border-radius: 20px;
+    color: white;
+    opacity: 0.5;
+}
+.cart-navigation-icon{
+margin: 0.5rem;
+}
+
+.active{
+    opacity: 1;
+}
+
+@media screen and (max-width:450px) {
+.cart-navigation-icon{
+    margin: 1rem;
+}
+    h5{
+        font-size: 80%;
+    }
+}

@@ -1,0 +1,60 @@
+<app-cart-navigation></app-cart-navigation>
+<app-error *ngIf="this.items.length == 0" [errorText]="'Your cart is empty!'"></app-error>
+
+<div class="cart-wrapper" *ngIf="this.items.length !== 0">
+
+    <div class="cart-single-element" [attr.data-type]="attr.cartSingleItem" *ngFor="let item of this.items" > <!-- treba sem pridat k data-type cislo iteracie, teda index i  -->
+        <div class="cart-info">
+            <img src="{{item.image}}" alt="" class="cart-image" [attr.data-type]="attr.cartImage">
+            <h5 class="cart-title" [attr.data-type]="attr.cartTitle">{{item.title}}</h5>
+            <h5 class="cart-price" [attr.data-type]="attr.cartPrice">{{item.price}}€</h5>
+            <input type="number" value="{{item.amount}}" class="cart-count" [attr.data-type]="attr.cartCount" (change)="amountChange(item.idItems, $event)">
+            <h4 class="cart-single-total-price" [attr.data-type]="attr.cartPriceWithAccesories">{{totalItemPrice(item.price, item.waranty, item.returnOption, item.amount)}} €</h4>
+            <button class="close close-mobile" [attr.data-type]="attr.cartDeleteItem" (click)="deleteItem(item.idItems)">
+                <fa-icon [icon]="this.resources.close" class="close-icon close-icon-mobile"></fa-icon>
+            </button>
+        </div>
+        <div class="cart-additional" *ngIf="item.waranty">
+            <p class="cart-additional-label" [attr.data-type]="attr.cartWarrantyTitle">{{this.resources.cartWarranty}}</p>
+            <h5 class="cart-additional-price" [attr.data-type]="attr.cartWarrantyPrice">20 €</h5>
+            <button class="close" [attr.data-type]="attr.cartWarrantyDelete" (click)="deleteWaranty(item.idItems)">
+                <fa-icon [icon]="this.resources.close" class="close-icon"></fa-icon>
+            </button>
+        </div>
+        <div class="cart-additional" *ngIf="item.returnOption">
+            <p class="cart-additional-label" [attr.data-type]="attr.cartReturnOptionTitle">{{this.resources.cartReturnOption}}</p>
+            <h5 class="cart-additional-price" [attr.data-type]="attr.cartReturnOptionPrice">10 €</h5>
+            <button class="close" [attr.data-type]="attr.cartReturnOptionDelete" (click)="deleteReturnOption(item.idItems)">
+                <fa-icon [icon]="this.resources.close" class="close-icon"></fa-icon>
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<div class="cart-wrapper total-wrapper"  *ngIf="this.items.length !== 0">
+    <div class="total">
+        <h5 [attr.data-type]="attr.cartPriceWithoutDPHTitle">{{this.resources.cartPriceWithoutDPH}}</h5>
+        <p class="cart-total-price" [attr.data-type]="attr.cartPriceWithoutDPHPrice">{{this.allItemPrice}} €</p>
+    </div>
+    <div class="total">
+        <h5 [attr.data-type]="attr.cartDPHTitle">{{this.resources.cartDPH}}</h5>
+        <p class="cart-total-price" [attr.data-type]="attr.cartDPHPrice">+ 20 %</p>
+
+    </div>
+    <div class="total">
+        <h4 [attr.data-type]="attr.cartTotalPriceTitle">{{this.resources.cartTotalPrice}}</h4>
+        <h4 class="cart-total-price" [attr.data-type]="attr.cartTotalPricePrice">{{this.allItemPriceWithDPH}} €</h4>
+    </div>
+</div>
+
+<div class="cart-wrapper cart-navigation"  *ngIf="this.items.length !== 0">
+    <button class="cart-navidation-btn" [routerLink]="'/'+this.resources.mainPageTitle" [attr.data-type]="attr.cartBackToShopNavigation">
+        <fa-icon [icon]="this.resources.arrowLeft" class="cart-navidation-icon"></fa-icon>
+        {{this.resources.cartBactToShopingNavigation}}
+    </button>
+    <button class="cart-navidation-btn" [attr.data-type]="attr.cartBillingNavigation" [routerLink]="'/'+this.resources.billingPageTitle">
+        {{this.resources.cartBillingNavigation}}
+        <fa-icon [icon]="this.resources.arrowRight" class="cart-navidation-icon"></fa-icon>
+    </button>
+</div>

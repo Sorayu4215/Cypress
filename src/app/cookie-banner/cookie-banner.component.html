@@ -1,0 +1,54 @@
+     <div class="modal" *ngIf="accpetedCookie" [attr.data-type]="attr.cookieBanner">
+        <div class="top-section" [attr.data-type]="attr.header">
+            <button [attr.data-type]="attr.headerApprovalBtn" (click)=" sectionActivation(this.resources.cookieBannerApprovalTopSection)" class="button active"  id="btnSection"><h5>{{this.resources.cookieBannerApprovalTopSection}}</h5></button>
+            <button [attr.data-type]="attr.headerDetailsBtn" (click)="sectionActivation(this.resources.cookieBannerDetailsTopSection)" class="button"  id="btnSection"><h5>{{this.resources.cookieBannerDetailsTopSection}}</h5></button>
+            <button [attr.data-type]="attr.headerAboutCookies" (click)="sectionActivation(this.resources.cookieBannerAboutTopSection)" class="button" id="btnSection" ><h5>{{this.resources.cookieBannerAboutTopSection}}</h5></button>
+        </div>
+        <div class="line"></div>
+        <div class="middle-section" [attr.data-type]="attr.middle">
+            <div *ngIf="section == this.resources.cookieBannerApprovalTopSection" [attr.data-type]="attr.middleDiv">
+                <h5 class="details-title" [attr.data-type]="attr.middleUseCookieTitle">{{this.resources.cookieBannerUsagesOfCookiesTitle}}</h5>
+                <p class="details-paragraph" [attr.data-type]="attr.middleUseCookieDescription">{{this.resources.cookieBannerUsagesOfCookiesDescription}}</p>
+            </div>
+            <div *ngIf="section == this.resources.cookieBannerDetailsTopSection" [attr.data-type]="attr.middleDiv">
+                <section class="align-checkbox" [attr.data-type]="attr.detailsNeededDiv">
+                    <div>
+                        <h5 class="details-title" [attr.data-type]="attr.detailsNeededTitle">{{this.resources.cookieBannerNeededTitle}}</h5>
+                        <p class="details-paragraph" [attr.data-type]="attr.detailsNeededDescription">{{this.resources.cookieBannerNeededDescription}}</p>
+                    </div>
+                    <label class="switch"  (click)="disable()" >
+                        <input type="checkbox"  [attr.data-type]="attr.detailsNeededInput" [id]="this.resources.cookieBannerNeededTitle" #needed [checked]="neededCookies" disabled>
+                        <span class="slider round"></span>
+                    </label>
+                </section>
+                <section  class="align-checkbox" [attr.data-type]="attr.detailsPreferenciesDiv">
+                    <div>
+                        <h5 class="details-title" [attr.data-type]="attr.detailsPreferenciesTitle">{{this.resources.cookieBannerPreferenciesTitle}}</h5>
+                        <p class="details-paragraph" [attr.data-type]="attr.detailsPreferenciesDesciption">{{this.resources.cookieBannerPreferenciesDescription}}</p>
+                    </div>
+                    <label class="switch" >
+                        <input type="checkbox" [attr.data-type]="attr.detailsPreferenciesInput" id="{{this.resources.cookieBannerPreferenciesTitle}}" checked (click)="preferenciesAction()">
+                        <span class="slider round"></span>
+                    </label>
+                </section>
+                <section  class="align-checkbox" [attr.data-type]="attr.detailsStatsDiv">
+                    <div>
+                        <h5 class="details-title" [attr.data-type]="attr.detailsStatsTitle">{{this.resources.cookieBannerStatsTitle}}</h5>
+                        <p class="details-paragraph" [attr.data-type]="attr.detailsStatsDescription">{{this.resources.cookieBannerStatsDescription}}</p>
+                    </div>
+                    <label class="switch" >
+                        <input type="checkbox" [attr.data-type]="attr.detailsStatsInput" id="{{this.resources.cookieBannerStatsTitle}}" checked (click)="statsAction()">
+                        <span class="slider round"></span>
+                    </label>
+                </section>
+            </div>
+            <div *ngIf="section == this.resources.cookieBannerAboutTopSection" [attr.data-type]="attr.middleDiv">
+                <p class="details-paragraph"  [attr.data-type]="attr.about" [innerHTML]="this.resources.cookieBannerAbout"></p>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="bottom-section" [attr.data-type]="attr.bottom">
+            <button class="button bottom" [attr.data-type]="attr.adjust" (click)="sectionActivation(this.resources.cookieBannerDetailsTopSection)"><h5>{{this.resources.cookieBannerAdjust}}</h5></button>
+            <button class="button bottom" [attr.data-type]="attr.allow" (click)="confirm()"><h5>{{this.resources.cookieBannerAllow}}</h5></button>
+        </div>
+    </div>

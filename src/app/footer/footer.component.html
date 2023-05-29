@@ -1,0 +1,43 @@
+<footer class="footer" [attr.data-type]="attr.footer">
+    <div class="footer-links" [attr.data-type]="attr.links">
+        <a [href]="this.resources.kontaktLinkFacebook" class="SN-links" [attr.data-type]="attr.firstLink">
+            <fa-icon [icon]="this.resources.facebook" class="icon-white"></fa-icon>
+        </a>
+        <a [href]="this.resources.kontaktLinkInstagram" class="SN-links" [attr.data-type]="attr.secondLink">
+            <fa-icon [icon]="this.resources.instagram" class="icon-white"></fa-icon>
+        </a>
+    </div>
+    <div class="footer-wrepper" [attr.data-type]="attr.footerContent">
+        <div class="footer-info-text">
+            <div class="icon-footer" [attr.data-type]="attr.mainIcon">
+                <img src="{{envAssets}}assets/{{iconSource}}" alt="" class="icon">
+            </div>
+        </div>
+        <div class="footer-sections">
+                <h6 class="footer-title" [attr.data-type]="attr.sections">Sections</h6>
+                <div *ngFor="let sekcia of this.resources.Sections; let i = index">
+                    <a [routerLink]="sekcia.section" class="block" [attr.data-type]="attr.links + i"> {{sekcia.title}}</a>
+
+                </div>
+        </div>
+        <div class="footer-contact-us">
+            <h6 class="footer-title" [attr.data-type]="attr.contacts">Contact</h6>
+            <div>
+                <fa-icon [icon]="this.resources.location" class="icons"></fa-icon> 
+                <p class="footer-kontakt" [attr.data-type]="attr.contactAddress">{{this.resources.kontaktStreet}}, {{this.resources.kontaktTown}}</p>
+            </div>
+            <div>
+                <fa-icon [icon]="this.resources.phone" class="icons"></fa-icon>
+                <p class="footer-kontakt" [attr.data-type]="attr.contactPhone">{{this.resources.kontaktPhone}}</p>
+            </div>
+            <div>
+                <fa-icon [icon]="this.resources.email" class="icons"></fa-icon>
+                <p class="footer-kontakt" [attr.data-type]="attr.contactEmail">{{this.resources.kontaktEmail}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="copyright" [attr.data-type]="attr.copyright">
+        <p class="copyright-text" [attr.data-type]="attr.rights">Copyright &copy; <span>{{date}}</span> <span> {{this.resources.nameOfOrganization}}.</span> All Rights Reserved</p>
+        <p class="copyright-text" [attr.data-type]="attr.founder">Created by Martin O.</p>
+    </div>
+</footer>

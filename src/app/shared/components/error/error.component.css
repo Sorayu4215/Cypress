@@ -1,0 +1,22 @@
+.error-wrapper{
+    display: block;
+    margin: 2rem auto;
+    text-align: center;
+}
+.error-box{
+    display: inline-block;
+    padding: 1rem 3rem;
+    background-color: #d2d2d2;
+    border-radius: 2px;
+    border: 2px solid var(--error-background-color);
+}
+.error-icon{
+    font-size: 150%;
+    color: var(--error-background-color);
+    margin-right: 1.5rem;
+}
+.error-text{
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 125%;
+}

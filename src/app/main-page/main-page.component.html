@@ -1,0 +1,24 @@
+<app-error [errorText]="errorMessage" *ngIf="error"></app-error>
+<app-loader *ngIf="!this.error && this.items == undefined"></app-loader>
+<app-added-to-cart></app-added-to-cart>
+
+<div class="main-wrapper" *ngIf="!this.error && this.items !== undefined">
+    <app-filters [items]="this.items" (filteredData)="filterApplied($event)"></app-filters>
+    <div class="post-wrapper">
+            <div class="single-product" *ngFor="let item of items" [attr.data-type]="attr.productSingleProduct" (click)="this.router.navigate([item.idItems])">
+                <img src="{{item.image}}" alt="Product image" class="product-image"[attr.data-type]="attr.productImage">
+                <h5 class="product-title" [attr.data-type]="attr.productTitle">{{item.title}}</h5>
+                <p class="product-description" [attr.data-type]="attr.productDescription">{{item.description}}</p>
+                <h4 class="product-price" [attr.data-type]="attr.productPrice">{{item.price}}€</h4>
+                <div class="product-icons">
+                    <div class="product-icon" [attr.data-type]="attr.productInfoBtn" (click)="this.router.navigate([item.idItems])">
+                        <fa-icon [icon]="this.resources.info" [attr.data-type]="attr.productInfoIcon"></fa-icon>
+                    </div>
+                    <div  class="product-icon" [attr.data-type]="attr.productCartBtn" (click)="this.common.addToCart($event, item)">
+                        <fa-icon [icon]="this.resources.cart" [attr.data-type]="attr.productCartIcon"></fa-icon>
+                    </div>
+                </div>
+            </div>
+    
+    </div>
+</div>

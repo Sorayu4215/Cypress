@@ -1,0 +1,41 @@
+<app-cart-navigation></app-cart-navigation>
+
+<div class="billing-wrapper">
+    <h3 class="billing-shipping-method billing-title" [attr.data-type]="attr.deliveryMethod">{{this.resources.billingMainDescription}}</h3>
+    <div class="billing-table">
+        <table class="billing-form" [ngClass]="!this.shippingfee && this.showErrorMessage ? 'billing-error': '' " [attr.data-type]="attr.deliveryTable">
+            <tr *ngFor="let shipping of this.resources.billingShiping; let i = index" [attr.data-type]="shipping.TRData" >
+                <td><input type="radio" name="pick_up" id="{{shipping.title}}" (change)="this.shippingFunction(shipping.title)" [checked]="shipping.title == this.shippingfee" [attr.data-type]="shipping.inputData"></td>
+                <td><label for='{{shipping.title}}' [attr.data-type]="shipping.optionData">{{shipping.title}}</label></td>
+                <td><label for="{{shipping.title}}" [attr.data-type]="shipping.feeData">{{shipping.fee}}</label></td>
+                <td><label for="{{shipping.title}}" [attr.data-type]="shipping.deliveryData">{{shipping.delivery}}</label></td>
+            </tr>
+        </table>
+        <p *ngIf="!this.shippingfee && this.showErrorMessage" class="billing-error-message" >{{this.resources.billingErrorMessage}}</p>
+    </div>
+    <h3 class="billing-payment  billing-title" [attr.data-type]="attr.paymentMethod">{{this.resources.billintChoosePaymentType}}</h3>
+    <div class="billing-table">
+        <table class="billing-form" [ngClass]="!this.paymentMethodfee && this.showErrorMessage ? 'billing-error': '' " [attr.data-type]="attr.paymentTable">
+            <tr *ngFor="let payment of this.resources.billingPaymentMethod; let i2 = index" [attr.data-type]="payment.TRData">
+                <td><input type="radio" name="payment" id="{{payment.title}}" (change)="this.paymentMethodFunction(payment.title)" [checked]="payment.title == this.paymentMethodfee" [attr.data-type]="payment.inputData"></td>
+                <td><label for="{{payment.title}}" [attr.data-type]="payment.optionData">{{payment.title}}</label></td>
+                <td><label for="{{payment.title}}" [attr.data-type]="payment.feeData">{{payment.fee}}</label></td>
+            </tr>
+        </table>
+        <p *ngIf="!this.paymentMethodfee && this.showErrorMessage"  class="billing-error-message">{{this.resources.billingErrorMessage}}</p>
+    </div>
+</div>
+
+
+<div class="cart-wrapper cart-navigation">
+    <button class="cart-navidation-btn" [routerLink]="'/'+this.resources.cartTitle"
+        [attr.data-type]="attr.backToCartNavigation">
+        <fa-icon [icon]="this.resources.arrowLeft" class="cart-navidation-icon"></fa-icon>
+        Back to {{this.resources.cartTitle}}
+    </button>
+    <button class="cart-navidation-btn" [attr.data-type]="attr.addressNavigation" (click)="navigateTo()">
+        {{this.resources.adresstitle}}
+        <fa-icon [icon]="this.resources.arrowRight" class="cart-navidation-icon"></fa-icon>
+    </button>
+</div>
+

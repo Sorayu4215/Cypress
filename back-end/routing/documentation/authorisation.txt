@@ -1,0 +1,26 @@
+Documentation of authorisation 
+
+=================
+Endpoint: /api/v1/login
+Method: POST 
+Header: none
+Authorisation: none
+Body: 
+{
+!"username" : "<data>", 
+!"password":"<data>"
+}
+
+RESPONSE: 
+{
+"token":"data",
+"username":"<data>",
+"email":"<data>"
+}
+
+Fail:
+ 401 - when password not prodiveded
+ 401 - when username not prodiveded
+ 401 - when wrong credentials
+
+===================

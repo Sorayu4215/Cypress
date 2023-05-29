@@ -1,0 +1,35 @@
+@import './shared/variables.css';
+html {
+  height: 100%;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.footer{
+    margin-top: auto;
+}
+.intro{
+    display: block;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: var(--lighter-primary2-color);
+    z-index: 25;
+    transition: linear 0,2s;
+}
+
+.middle{
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.content{
+  width: 100%;
+  max-width: 1200px; 
+  margin: 0 auto;
+
+}

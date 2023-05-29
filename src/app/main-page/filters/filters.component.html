@@ -1,0 +1,33 @@
+<div class="filter-wrapper shadow" [attr.data-type]="attr.filter">
+    <h5 class="filter-title" [attr.data-type]="attr.filterTitle">{{this.resources.filterTitle}}</h5>
+    <div class="line-horizontal"></div>
+    <div class="section">
+        <h6 class="subfilter-title" [attr.data-type]="attr.filterCategoryTitle">{{this.resources.feitlerSearch}}</h6>
+        <input type="text" name="" id="" placeholder="Type item to find..." class="input-search" (input)="applyFilter()" #searchInput>
+    </div>
+    <div class="line-horizontal"></div>
+    <div class="section" [attr.data-type]="attr.filterCategorySection">
+        <h6 class="subfilter-title" [attr.data-type]="attr.filterCategoryTitle">{{this.resources.filtersCategory}}</h6>
+        <button class="subfilter-button"  [ngClass]="this.activeCategory == this.resources.filtersCategoryAll ? 'active' : ''" [attr.data-type]="attr.filterCategoryButton" (click)="applyFilter('All')">{{this.resources.filtersCategoryAll}}</button>
+        <button class="subfilter-button"  [ngClass]="this.activeCategory == option ? 'active' : ''" [attr.data-type]="attr.filterCategoryButton + i" *ngFor="let option of this.filterOptions; let i = index" (click)="applyFilter(option)">{{option}}</button>
+    </div>
+    <div class="line-horizontal"></div>
+    <div class="section" [attr.data-type]="attr.filterPriceSection">
+        <h6 class="subfilter-title" [attr.data-type]="attr.filterPriceTitle">{{this.resources.filterPrice}}</h6>
+        <input type="range" min="1" max="{{this.maximumNumber}}" value="{{this.maximumNumber}}" class="" id="myRange" 
+        [attr.data-type]="attr.filterPriceInput" (input)="applyFilter()" #priceInput>
+        <div class="slier-values">
+            <label for="">0</label>
+            <label for="" *ngIf="this.currentValue !== this.maximumNumber">{{this.currentValue}}</label>
+            <label for="">{{this.maximumNumber}}</label>
+        </div>
+    </div>
+    <div class="line-horizontal"></div>
+    <div class="section" [attr.data-type]="attr.filterOrderSection">
+        <h6 class="subfilter-title" [attr.data-type]="attr.filterOrderTitle">{{this.resources.filterOrder}}</h6>
+        <button class="subfilter-button" [ngClass]="this.activeOrder == this.resources.filterCheapers ? 'active' : ''" [attr.data-type]="attr.filterOrderCheapest" (click)="orderChapest()">{{this.resources.filterCheapers}}</button>
+        <button class="subfilter-button" [ngClass]="this.activeOrder == this.resources.filterExpensie ? 'active' : ''" [attr.data-type]="attr.filterOrderExpensive" (click)="orderExpensive()">{{this.resources.filterExpensie}}</button>
+        <button class="subfilter-button" [ngClass]="this.activeOrder == this.resources.filterAlphabetOrder ? 'active' : ''" [attr.data-type]="attr.filterOrderAlphabet" (click)="orderAlphabet()">{{this.resources.filterAlphabetOrder}}</button>
+        <button class="subfilter-button" [ngClass]="this.activeOrder == this.resources.filterReverseAlphabetOrder ? 'active' : ''" [attr.data-type]="attr.filterOrderReverseAplhabet" (click)="orderAlphabetReverse()">{{this.resources.filterReverseAlphabetOrder}}</button>
+    </div>
+</div>

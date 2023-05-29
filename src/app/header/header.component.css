@@ -1,0 +1,221 @@
+
+header{
+    height: 3rem;
+    /* box-shadow: 0px 0px 5px rgb(0 0 0 / 0.6); */
+    width: 100%;
+    opacity: 100%;
+}
+.header-btn{
+    position: relative;
+    font-size: 1rem;
+}
+
+.header-btn:hover{
+    text-decoration: underline;
+}
+
+.header-icon{
+    height: 3rem;
+    max-width: 8rem;
+    object-fit: contain;
+    opacity: 100%;
+}
+
+.content-box{
+    margin: 0 auto;
+    max-width: 1700px;
+    padding: 0.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 3rem;
+}
+
+ .fa-3x{
+    margin: auto 0 ;
+    opacity: 100%;        
+    top: 5px;
+    right: 1rem;
+    color: var(--dark-orange-color);
+    }
+
+.dropdown-button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.dropdown{
+    text-decoration: none;
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    width: 100%;
+    box-shadow: 0px 0px 5px rgb(0 0 0 / 0.6);
+    z-index: 5;
+}
+
+
+ .dropdown-selector{
+    display: block;
+    text-decoration: none;
+    margin: 0.5rem auto;
+    border-bottom: 1px solid;
+    border-bottom-color: silver;
+
+ }
+  .dropdown-selector:hover{
+    border-bottom: 2px solid;
+    border-bottom-color: var(--primary-orange-color);
+       transition: all 0.2s linear;
+  }
+  .dropdown-button-cover, .dropdown-auth-button-cover{
+    position: absolute;
+    height: 2.5rem;
+    width: 2.5rem;
+    opacity: 0;
+    transform: translateX(-100%);
+    cursor: pointer; 
+  }
+
+.dropdown-select-section{
+    /* position: absolute; */
+    display: block;
+    position: relative;
+}
+.dropdown-select-section::before{
+    position: absolute;
+    content: '';
+    right: 3.5rem;
+    top: -0.75rem;
+     width: 0;
+    height: 0;
+    border-left: 7.5px solid transparent;
+    border-right: 7.5px solid transparent;
+    border-bottom: 15px solid ;
+    border-bottom-color: var(--white-color) ;
+}
+
+li{
+    list-style-type: none;
+}
+.sections{
+    display: flex;
+    position: relative;
+}
+.subsection-wrapper{
+    position: absolute;
+    /* left: 65px; */
+    transform: translateX(10px);
+}
+.subsection-wrapper-logIn{
+    position: absolute;
+    /* left: 65px; */
+    transform: translateX(-65px);
+}
+
+
+.subsections{
+    background-color: rgba(255,255,255,0.85);
+    margin-top: 1.5rem;
+    padding: 0.5rem;
+    /* padding-left: 2rem;
+    padding-right: 2rem; */
+    position: relative; 
+    border-radius: 5px;
+    width: 10rem;
+    /* border: 5px solid var(--primary-orange-color); */
+    box-shadow: 0px 3px 3px;
+
+}
+.subsections::before{
+    position: absolute;
+    content: '';
+    right: 4rem;
+    top: -1.2rem;
+     width: 0;
+    height: 0;
+    border-left: 7.5px solid transparent;
+    border-right: 7.5px solid transparent;
+    border-bottom: 15px solid ;
+    border-bottom-color: var(--white-color) ;
+    /* border: 1px solid var(--primary-orange-color); */
+}
+.arrow-down{
+    position: relative; 
+}
+.arrow-down::before{
+    position: absolute;
+    content: '';
+     right: -1rem;
+    bottom: 0.8rem;  
+     width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid ;
+    border-bottom-color: var(--primary-orange-color) ;
+}
+
+.username{
+    display: block;
+    margin: 0.5rem auto;
+    border-bottom-color: silver;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.badge{
+    position: absolute; 
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--primary-primary1-color);
+    border-radius: 50px;
+    top: -5px;
+    right: -5px;
+    font-size: 0.8rem;
+}
+
+
+@media screen and (min-width:970px) {
+    .fa-3x{
+        display: none;
+    }
+     .dropdown{
+        display: none;
+    }
+    .space{
+        display: none;
+    }
+    .header-cart{
+        font-size: 0.7rem;
+    }
+    .header-cart-icon{
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width:970px) {
+    .sections{
+        display: none;
+    }
+    .fa-3x{
+        font-size: 2rem;
+    }
+}
+
+.header-icon{
+    background-color: transparent;
+    border: none;
+    box-shadow: 0px 0px 5px var(--lighter-black-color);
+}
+.space{
+    margin-left: 0.5rem;
+    background: var(--lighter-black-color);
+    width: 2.5rem;
+    border-radius: 50px;
+}
+.space2{
+    margin-left: 0.5rem;
+    background: var(--lighter-black-color);
+    width: 2.5rem;
+    border-radius: 50px;
+}
