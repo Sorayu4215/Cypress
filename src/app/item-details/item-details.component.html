@@ -15,7 +15,7 @@
             <input type="checkbox" value="60-Day Return Option" id="return_option" [attr.data-type]="attr.detailsReturnOption">
             <label for="return_option"> {{this.resources.detailReturnOption}}</label>
         </div>
-        <button class="details-add-to-cart" [attr.data-type]="attr.detailsAddToCartBtn" (click)="warantyAndReturnOption()" (click)="this.common.addToCart($event, this.item[0],this.waranty, this.returnOption)">
+        <button class="details-add-to-cart" [attr.data-type]="attr.detailsAddToCartBtn" (click)="warantyAndReturnOption()" (click)="this.common.addToCart($event, this.item[0].idItems,this.waranty, this.returnOption)">
             <fa-icon [icon]="this.resources.cart" style="font-size: 1.2rem;"></fa-icon>
             <p class="details-btn">{{this.resources.detailsAddToCartButton}}</p>
         </button>

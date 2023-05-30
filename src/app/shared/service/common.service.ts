@@ -12,33 +12,34 @@ export class CommonService {
   addedToCart = new Subject<any>()
 
 
-  addToCart(event: Event, item: any,waranty?:boolean , returnOption?:boolean) {
+  addToCart(event: Event, itemId: number, waranty?:boolean , returnOption?:boolean) {
     event.stopPropagation()
-    
+    let singleItems: any = { idItems: itemId }
+
     if(waranty){
-      item.waranty = true
+      singleItems.waranty = true
     }
     if(returnOption){
-      item.returnOption = true      
+      singleItems.returnOption = true      
     }
 
     if (localStorage.getItem('Items') == null) {
-      item.amount = 1
-      localStorage.setItem('Items', JSON.stringify([item]))
+      singleItems.amount = 1
+      localStorage.setItem('Items', JSON.stringify([singleItems]))
     } else {
-      let items: any = JSON.parse(localStorage.getItem('Items')!)
-      item.amount = 1
+      const items = JSON.parse(localStorage.getItem('Items')!)
+      singleItems.amount = 1
 
       //if there is element not duplic him but only add amount
       let isPresent: boolean = false
       items.forEach((element: any) => {
-        if (element.idItems == item.idItems) { isPresent = true }
+        if (element.idItems == itemId) { isPresent = true }
       });
 
       if (isPresent) {
         items.map((element: any) => {
 
-          if (element.idItems == item.idItems) { 
+          if (element.idItems == itemId) { 
             if (waranty) {
               element.waranty = true
             }
@@ -46,11 +47,12 @@ export class CommonService {
               element.returnOption = true
             }
             
-            element.amount++ }
+            element.amount++ 
+          }
           return element
         })
       } else {
-        items.push(item)
+        items.push(singleItems)
       }
 
       localStorage.setItem('Items', JSON.stringify(items))

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { resourcesService } from '../resources.service';
+import { map } from 'rxjs';
 
 
 @Injectable({
@@ -19,6 +20,61 @@ export class DataService {
     return this.http.get(`${this.resources.apiURL}/api/v1/items/${id}`)
   }
 
+  getItemsAttributes(arrayOfIds: { idItems: number, amount?: number, waranty?: boolean, returnOption ?:boolean}[] ){
+    return this.getItems().pipe(map((data:any)=>{
+
+       const updatedItems:any = [];
+
+       data.forEach((item:any) => {
+        const option = arrayOfIds.find(opt => opt.idItems === item.idItems);
+
+        if (option) {
+          const updatedItem = {
+            ...item,
+            amount: option.amount,
+            waranty: option.waranty,
+            returnOption: option.returnOption
+          };
+          updatedItems.push(updatedItem);
+          }
+        });
+      return updatedItems
+    }))
+  }
+
+  totalItemPrice(itemPrice: number, warranty: boolean, returnOption: boolean, amount: number) {
+    let totalPrice = itemPrice * amount
+    if (warranty) {
+      totalPrice = totalPrice + 20
+    }
+    if (returnOption) {
+      totalPrice = totalPrice + 10
+    }
+
+    return totalPrice.toFixed(2)
+  }
+
+
+  allItemsPrice(items: any) {
+    let price: number = 0
+
+    items.forEach((element: any) => {
+      price = price + element.amount * element.price
+
+      if (element.waranty == true) {
+        price = price + 20
+      }
+      if (element.returnOption == true) {
+        price = price + 10
+      }
+    });
+
+    return price.toFixed(2)
+  }
+
+  amountWithDPH(amount: any) {
+    return (amount * 1.2).toFixed(2)
+  }
 
 
 

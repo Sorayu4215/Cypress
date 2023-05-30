@@ -14,7 +14,7 @@
                     <div class="product-icon" [attr.data-type]="attr.productInfoBtn" (click)="this.router.navigate([item.idItems])">
                         <fa-icon [icon]="this.resources.info" [attr.data-type]="attr.productInfoIcon"></fa-icon>
                     </div>
-                    <div  class="product-icon" [attr.data-type]="attr.productCartBtn" (click)="this.common.addToCart($event, item)">
+                    <div  class="product-icon" [attr.data-type]="attr.productCartBtn" (click)="this.common.addToCart($event, item.idItems)">
                         <fa-icon [icon]="this.resources.cart" [attr.data-type]="attr.productCartIcon"></fa-icon>
                     </div>
                 </div>

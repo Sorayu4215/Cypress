@@ -9,7 +9,7 @@
             <h5 class="cart-title" [attr.data-type]="attr.cartTitle">{{item.title}}</h5>
             <h5 class="cart-price" [attr.data-type]="attr.cartPrice">{{item.price}}€</h5>
             <input type="number" value="{{item.amount}}" class="cart-count" [attr.data-type]="attr.cartCount" (change)="amountChange(item.idItems, $event)">
-            <h4 class="cart-single-total-price" [attr.data-type]="attr.cartPriceWithAccesories">{{totalItemPrice(item.price, item.waranty, item.returnOption, item.amount)}} €</h4>
+            <h4 class="cart-single-total-price" [attr.data-type]="attr.cartPriceWithAccesories">{{this.data.totalItemPrice(item.price, item.waranty, item.returnOption, item.amount)}} €</h4>
             <button class="close close-mobile" [attr.data-type]="attr.cartDeleteItem" (click)="deleteItem(item.idItems)">
                 <fa-icon [icon]="this.resources.close" class="close-icon close-icon-mobile"></fa-icon>
             </button>
@@ -35,7 +35,7 @@
 <div class="cart-wrapper total-wrapper"  *ngIf="this.items.length !== 0">
     <div class="total">
         <h5 [attr.data-type]="attr.cartPriceWithoutDPHTitle">{{this.resources.cartPriceWithoutDPH}}</h5>
-        <p class="cart-total-price" [attr.data-type]="attr.cartPriceWithoutDPHPrice">{{this.allItemPrice}} €</p>
+        <p class="cart-total-price" [attr.data-type]="attr.cartPriceWithoutDPHPrice">{{this.data.allItemsPrice(this.items)}} €</p>
     </div>
     <div class="total">
         <h5 [attr.data-type]="attr.cartDPHTitle">{{this.resources.cartDPH}}</h5>
@@ -44,7 +44,7 @@
     </div>
     <div class="total">
         <h4 [attr.data-type]="attr.cartTotalPriceTitle">{{this.resources.cartTotalPrice}}</h4>
-        <h4 class="cart-total-price" [attr.data-type]="attr.cartTotalPricePrice">{{this.allItemPriceWithDPH}} €</h4>
+        <h4 class="cart-total-price" [attr.data-type]="attr.cartTotalPricePrice">{{this.data.amountWithDPH(this.data.allItemsPrice(this.items))}} €</h4>
     </div>
 </div>
 
