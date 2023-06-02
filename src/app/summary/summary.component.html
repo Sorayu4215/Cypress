@@ -72,7 +72,7 @@
             <h5 class="cart-title" [attr.data-type]="attr.summaryTitle+i">{{item.title}}</h5>
             <h5 class="cart-price" [attr.data-type]="attr.summaryCount+i">{{this.item.price}} €</h5>
             <h5 class="cart-price" [attr.data-type]="attr.summaryAmount+i">{{this.item.amount}}</h5>
-            <h4 class="cart-single-total-price" [attr.data-type]="attr.summaryPriceWithAccesories">{{this.data.totalItemPrice(item.price,item.waranty,item.returnOption,item.amount) }} €</h4>
+            <h4 class="cart-single-total-price" [attr.data-type]="attr.summaryPriceWithAccesories">{{this.common.totalItemPrice(item.price,item.waranty,item.returnOption,item.amount) }} €</h4>
         </div>
         <div class="cart-additional" [attr.data-type]="attr.summaryWarrantyDiv +i" *ngIf="item.waranty">
             <p class="cart-additional-label"[attr.data-type]="attr.summaryWarrantyTitle+i">{{this.resources.cartWarranty}}
@@ -91,7 +91,7 @@
 <div class="cart-wrapper total-wrapper">
     <div class="total" [attr.data-type]="attr.summaryTotalPriceDiv">
         <h4 [attr.data-type]="attr.summaryTotalPriceTitle">{{this.resources.cartTotalPrice}}</h4>
-        <h4 class="cart-total-price" [attr.data-type]="attr.summaryTotalPricePrice">{{this.data.amountWithDPH(this.data.allItemsPrice(this.items))}} €</h4>
+        <h4 class="cart-total-price" [attr.data-type]="attr.summaryTotalPricePrice">{{this.common.amountWithDPH(this.common.allItemsPrice(this.items))}} €</h4>
     </div>
 </div>
 

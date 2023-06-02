@@ -91,6 +91,7 @@ export class resourcesService {
   addressEmail = 'Email'
   addressFullName = 'Full Name'
   addressAddress = 'Address'
+  addressCountry = 'Country'
   addressCity = 'City'
   addressPostCode = 'Postcode'
   addressPhoneNumber = 'Phone Number'
@@ -116,7 +117,7 @@ export class resourcesService {
   cartReturnOption = 'Return option'
   cartDPH = 'Tax'
   cartPriceWithoutDPH = 'Price without Tax'
-  cartTotalPrice = 'Total Price'
+  cartTotalPrice = 'Total Price with TAX'
   cartBillingNavigation = this.billingPageTitle
   cartBactToShopingNavigation = `Back to ${this.mainPageTitle}`
 

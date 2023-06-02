@@ -187,10 +187,15 @@ li{
     }
     .header-cart{
         font-size: 0.7rem;
+        position: relative;
     }
     .header-cart-icon{
         font-size: 1.5rem;
     }
+
+}
+.badge-mobile{
+    display: none;
 }
 
 @media screen and (max-width:970px) {
@@ -199,6 +204,17 @@ li{
     }
     .fa-3x{
         font-size: 2rem;
+    }
+    .badge-mobile{
+    display: block;
+    position: absolute; 
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--primary-primary1-color);
+    border-radius: 50px;
+    top: 7.5px;
+    right: 50px;
+    font-size: 0.8rem;
     }
 }
 

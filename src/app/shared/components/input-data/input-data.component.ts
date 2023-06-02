@@ -2,6 +2,7 @@ import { Component, Output , EventEmitter,Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { resourcesService } from '../../resources.service';
 import { inputData } from './input-data-enum';
+import { countries } from '../../data/country';
 
 @Component({
   selector: 'app-input-data',
@@ -11,7 +12,8 @@ import { inputData } from './input-data-enum';
 export class InputDataComponent implements OnInit {
 
 
-  constructor(public resources: resourcesService) { }
+  constructor(public resources: resourcesService) { 
+  }
 
 
   @Input() submitBtnName:string 
@@ -20,7 +22,7 @@ export class InputDataComponent implements OnInit {
   //  undefined | {
   //   email: string, name: string, address: string, city: string, postCode: number | undefined, phoneNumber: number |undefined, newsletter: boolean, termsAndCondition: boolean, companyRegistrationNo?: string, VAT?: string, BIC?: string, IBAN?: string, bankAccountHolder?: string}
   //   = { email: '', name: '', address: '', city: '', postCode: undefined, phoneNumber: undefined, newsletter: false, termsAndCondition: false, companyRegistrationNo: '', VAT: '', BIC: '', IBAN: '', bankAccountHolder: '' }
-
+  countries = countries
   companyUser: boolean = false
   editButton: boolean = true
   isDisabledCredentials: boolean = true
@@ -30,6 +32,7 @@ export class InputDataComponent implements OnInit {
     email: new FormControl( '' , [Validators.required, Validators.email]),
     name: new FormControl('', [Validators.required]),
     address: new FormControl('', Validators.required),
+    country: new FormControl('', Validators.required),
     city: new FormControl('', Validators.required),
     postCode: new FormControl('', Validators.required),
     phoneNumber: new FormControl('', [Validators.required, Validators.minLength(9)]),
@@ -44,13 +47,13 @@ export class InputDataComponent implements OnInit {
   })
   @Output() formData = new EventEmitter()
 
-
   addNewItem() {
     this.formData.emit(this.address);
   }
 
   ngOnInit(): void {
     if(this.userData){
+      console.log();
       this.address.setValue(this.userData)    
     }
   }

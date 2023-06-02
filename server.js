@@ -8,6 +8,7 @@ const errorHandlerMiddleware = require('./back-end/middleware/error/errorHandler
 const basicRouter = require('./back-end/routing/basicRouter')
 const authorisationRouter = require('./back-end/routing/authorisationRouter')
 const getItemsRouter = require('./back-end/routing/getItemsRouter')
+const getOrderRouter = require('./back-end/routing/orderRouting')
 
 const app = express()
 
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 app.use(fileUpload());
 
 
+app.use('/api/v1/', getOrderRouter)
 app.use('/api/v1/', getItemsRouter)
 app.use('/api/v1/', authorisationRouter)
 app.use('', basicRouter)

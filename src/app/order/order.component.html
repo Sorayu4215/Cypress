@@ -1,13 +1,17 @@
 <div class="loader" *ngIf="showLoader" [attr.data-type]="attr.loading"></div>
 
-<div class="order-wrapper">
+
+<app-loader *ngIf="this.error == undefined && this.orderDone == undefined"></app-loader>
+<app-error *ngIf="this.error" [errorText]="this.errorMessage"></app-error>
+
+<div class="order-wrapper" *ngIf="this.orderDone == true">
     <div class="order-successfull" *ngIf="showSuccess">
         <div class="icon success" [attr.data-type]="attr.succesfullIcon">
             <fa-icon [icon]="this.resources.success" class="success-chacked"></fa-icon>
         </div>
         <p class="order-text" [attr.data-type]="attr.succesfullThankLbl">{{this.resources.orderSuccessfulThank}}</p>
         <p class="order-text" [attr.data-type]="attr.succesfullOrderLbl">{{this.resources.orderSuccessful}}</p>
-        <p class="order-text" [attr.data-type]="attr.successfulID">ID of your order: </p>
+        <p class="order-text" [attr.data-type]="attr.successfulID">ID of your order: {{this.id}}</p>
         <button class="navigation-btn" [routerLink]="'/'+this.resources.mainPageTitle" [attr.data-type]="attr.backButton">
             <fa-icon [icon]="this.resources.arrowLeft" class=""></fa-icon>
             Return to 

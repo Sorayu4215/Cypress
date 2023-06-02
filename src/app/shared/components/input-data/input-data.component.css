@@ -45,6 +45,9 @@
   width: 70%;
   margin-left: 30%;
 }
+.items-right{
+    margin-left: 0%;
+}
 
 .split{
     display: grid;
@@ -56,6 +59,7 @@
 .input-checkbox{
     border: none;
 }
+.ng-invalid { color: gray; }
 .user-account-title{
     text-align: center;
     margin: 2rem;

@@ -11,7 +11,10 @@ import { authorization } from './authorization-enum';
 })
 export class AuthorizationComponent implements OnInit {
 
-  constructor(public resources: resourcesService, private http: HttpClient) { }
+  constructor(public resources: resourcesService, private http: HttpClient) { 
+    console.log('data');
+    
+  }
 
   forgotPassword:boolean = false
   password:string = ''
@@ -35,7 +38,9 @@ export class AuthorizationComponent implements OnInit {
   LogInFunction() {
     if (this.LogIn.valid){
       const { username, password } = this.LogIn.value
-      // this.auth.LogIn(username, password)
+      this.http.post(`${this.resources.apiURL}/api/v1/login`,{username:username, password:password}).subscribe((data:any)=>{        
+        localStorage.setItem('User', JSON.stringify({ token: data.token, username: data.username}))
+      })
     }
   }
   

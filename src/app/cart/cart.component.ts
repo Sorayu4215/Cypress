@@ -13,21 +13,24 @@ import { DataService } from '../shared/data/data.service';
 export class CartComponent implements OnInit {
 
 
-  constructor(public resources:resourcesService, private common:CommonService, public data:DataService){
+  constructor(public resources:resourcesService, public common:CommonService, public data:DataService){
     this.originalData = JSON.parse(localStorage.getItem('Items')!)    
-    this.data.getItemsAttributes(this.originalData).subscribe((item:any)=>{
+    this.data.getItemsAttributes(this.originalData).subscribe((item:any)=>{     
+      this.loader = false
       this.items = item
-      
-
-      this.allItemPrice =   this.data.allItemsPrice(item)
+      this.allItemPrice =   this.common.allItemsPrice(item)
+    },err=>{
+      this.loader = false
+      this.error = true
     })
-    if(this.items == null) this.items = []
 
   }
+  loader = true
+  error: boolean
   originalData : any
   allItemPrice:any = 0
   allItemPriceWithDPH:number = 0
-  items:any =[]
+  items:any = undefined
   readonly attr = cart
 
 
@@ -84,11 +87,13 @@ export class CartComponent implements OnInit {
   amountChange(id:number, event:Event){
     const value = +(event.target as HTMLInputElement).value   
     
+    
     this.changevalue(this.originalData,id,value)
     this.changevalue(this.items,id,value)
-
+    
     localStorage.setItem('Items', JSON.stringify(this.originalData))
-
+    
+    console.log(this.items);
     this.common.badge.next('')
     
   }

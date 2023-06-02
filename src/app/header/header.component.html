@@ -8,8 +8,10 @@
                 <fa-icon [icon]="bars" class="fa-3x" [attr.data-type]="attr.headerDropdownIcon"></fa-icon>
                 <button class="dropdown-button-cover"></button>
             </button> 
-            <button class="header-cart btn" [attr.data-type]="attr.shopingCartBtn" [routerLink]="this.resources.cartTitle">
+            <button class="header-cart btn relative" [attr.data-type]="attr.shopingCartBtn" [routerLink]="this.resources.cartTitle">
                 <fa-icon [icon]="this.shopingCart" class="fa-3x" [attr.data-type]="attr.shopingCartIcon"></fa-icon>
+                <div *ngIf="this.amountItems !== 0" class="badge-mobile" [attr.data-type]="attr.headerBadge">
+                    {{this.amountItems}}</div>
             </button>
 
             <!-- <button class="header-icon space dropdown-button" *ngIf="auth.loggedIn" (click)="dropdownAuthorizatedShow = !dropdownAuthorizatedShow">

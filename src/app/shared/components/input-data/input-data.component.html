@@ -28,6 +28,17 @@
                         *ngIf="address.get('address')!.touched && address.get('address')!.invalid || ngForm.submitted && address.get('address')!.invalid"
                         class="invalid">Insert value!</span>
                 </fieldset><br>
+                <fieldset class="input-wrapper" [attr.data-type]="attr.countryDiv" >
+                    <label class="input-name" [attr.data-type]="attr.countryLabel">{{this.resources.addressCountry}}</label>
+
+                    <select class="form-select" id="country" name="country"  formControlName="country" class="input" placehol>
+                        <option value="" selected disabled>Select {{this.resources.addressCountry}}</option>
+                        <option  placehol value="{{country.name}}" id="{{country.id}}" *ngFor="let country of this.countries">{{country.name}}</option>
+                    </select>
+                    <span [attr.data-type]="attr.countryError" 
+                        *ngIf="address.get('city')!.touched && address.get('country')!.invalid || ngForm.submitted && address.get('country')!.invalid"
+                        class="invalid">Insert value!</span>
+                </fieldset><br>
                 <fieldset class="input-wrapper" [attr.data-type]="attr.cityDiv" >
                     <label class="input-name" [attr.data-type]="attr.cityLabel">{{this.resources.addressCity}}</label>
                     <input type="text" formControlName="city" class="input"
@@ -96,13 +107,13 @@
             </div>
 
             <div class="line-vertical" *ngIf="this.companyUser"></div>
-            <div *ngIf="this.companyUser" class="items">
+            <div *ngIf="this.companyUser" class="items items-right">
                 <fieldset  class="input-wrapper margin-top"
                     [attr.data-type]="attr.companyRegistrationNumberDiv">
                     <label class="input-name"
                         [attr.data-type]="attr.companyRegistrationNumberLabel">{{this.resources.addressCompanyRegistrationNumber}}</label>
                     <input type="text" [attr.data-type]="attr.companyRegistrationNumberInput"
-                        formControlName="companyRegistrationNo" class="input"
+                        formControlName="companyRegistrationNo" class="input inpt-width"
                         placeholder="Insert {{this.resources.addressCompanyRegistrationNumber}}" required>
                     <span [attr.data-type]="attr.companyRegistrationNumberError"
                         *ngIf="address.get('companyRegistrationNo')!.touched && address.get('companyRegistrationNo')!.invalid || ngForm.submitted && address.get('companyRegistrationNo')!.invalid"

@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "NODE_ENV=production node server.js",
     "start_dev": "NODE_ENV=development node server.js",
+    "server_start": "NODE_ENV=production nodemon server.js",
+    "server_start.form-style_development": "NODE_ENV=development nodemon server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

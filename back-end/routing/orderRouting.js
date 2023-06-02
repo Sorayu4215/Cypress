@@ -1,9 +1,9 @@
 let express = require("express");
 let getOrderRouter = express.Router();
 
-// const { getItems, getItem } = require('../functions/getItem')
+const { createPost } = require('../functions/order')
 
-getOrderRouter.route('/order').get(getItems)
-// getItemsRouter.route('/items/:id').get(getItem)
+getOrderRouter.route('/order').post(createPost)
+
 
 module.exports = getOrderRouter;

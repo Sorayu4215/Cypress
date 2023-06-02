@@ -1,7 +1,9 @@
 <app-cart-navigation></app-cart-navigation>
-<app-error *ngIf="this.items.length == 0" [errorText]="'Your cart is empty!'"></app-error>
+<app-loader *ngIf="this.loader"></app-loader>
+<app-error *ngIf="!this.loader && this.items.length == 0" [errorText]="'Your cart is empty!'"></app-error>
+<app-error *ngIf="this.error == true" [errorText]="'Something whet wrong!'"></app-error>
 
-<div class="cart-wrapper" *ngIf="this.items.length !== 0">
+<div class="cart-wrapper" *ngIf="this.items !== undefined && this.error !== true">
 
     <div class="cart-single-element" [attr.data-type]="attr.cartSingleItem" *ngFor="let item of this.items" > <!-- treba sem pridat k data-type cislo iteracie, teda index i  -->
         <div class="cart-info">
@@ -9,7 +11,7 @@
             <h5 class="cart-title" [attr.data-type]="attr.cartTitle">{{item.title}}</h5>
             <h5 class="cart-price" [attr.data-type]="attr.cartPrice">{{item.price}}€</h5>
             <input type="number" value="{{item.amount}}" class="cart-count" [attr.data-type]="attr.cartCount" (change)="amountChange(item.idItems, $event)">
-            <h4 class="cart-single-total-price" [attr.data-type]="attr.cartPriceWithAccesories">{{this.data.totalItemPrice(item.price, item.waranty, item.returnOption, item.amount)}} €</h4>
+            <h4 class="cart-single-total-price" [attr.data-type]="attr.cartPriceWithAccesories">{{this.common.totalItemPrice(item.price, item.waranty, item.returnOption, item.amount)}} €</h4>
             <button class="close close-mobile" [attr.data-type]="attr.cartDeleteItem" (click)="deleteItem(item.idItems)">
                 <fa-icon [icon]="this.resources.close" class="close-icon close-icon-mobile"></fa-icon>
             </button>
@@ -32,10 +34,10 @@
 
 </div>
 
-<div class="cart-wrapper total-wrapper"  *ngIf="this.items.length !== 0">
+<div class="cart-wrapper total-wrapper"  *ngIf="this.items !== undefined && this.error !== true">
     <div class="total">
         <h5 [attr.data-type]="attr.cartPriceWithoutDPHTitle">{{this.resources.cartPriceWithoutDPH}}</h5>
-        <p class="cart-total-price" [attr.data-type]="attr.cartPriceWithoutDPHPrice">{{this.data.allItemsPrice(this.items)}} €</p>
+        <p class="cart-total-price" [attr.data-type]="attr.cartPriceWithoutDPHPrice">{{this.common.allItemsPrice(this.items)}} €</p>
     </div>
     <div class="total">
         <h5 [attr.data-type]="attr.cartDPHTitle">{{this.resources.cartDPH}}</h5>
@@ -44,11 +46,11 @@
     </div>
     <div class="total">
         <h4 [attr.data-type]="attr.cartTotalPriceTitle">{{this.resources.cartTotalPrice}}</h4>
-        <h4 class="cart-total-price" [attr.data-type]="attr.cartTotalPricePrice">{{this.data.amountWithDPH(this.data.allItemsPrice(this.items))}} €</h4>
+        <h4 class="cart-total-price" [attr.data-type]="attr.cartTotalPricePrice">{{this.common.amountWithDPH(this.common.allItemsPrice(this.items))}} €</h4>
     </div>
 </div>
 
-<div class="cart-wrapper cart-navigation"  *ngIf="this.items.length !== 0">
+<div class="cart-wrapper cart-navigation"  *ngIf="this.items !== undefined && this.error !== true">
     <button class="cart-navidation-btn" [routerLink]="'/'+this.resources.mainPageTitle" [attr.data-type]="attr.cartBackToShopNavigation">
         <fa-icon [icon]="this.resources.arrowLeft" class="cart-navidation-icon"></fa-icon>
         {{this.resources.cartBactToShopingNavigation}}

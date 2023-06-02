@@ -12,7 +12,7 @@ import { DataService } from '../shared/data/data.service';
 })
 export class SummaryComponent implements OnInit{
   
-  constructor(public resources: resourcesService, private router: Router, private common: CommonService, public data: DataService){
+  constructor(public resources: resourcesService, private router: Router, public common: CommonService, public data: DataService){
     this.originalData = JSON.parse(localStorage.getItem('Items')!)
     this.data.getItemsAttributes(this.originalData).subscribe((item: any) => {
       this.items = item

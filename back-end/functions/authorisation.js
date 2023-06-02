@@ -2,6 +2,7 @@ require('dotenv').config();
 const { CustomAPIError } = require('../middleware/error/customError')
 let database = require('../database/mysql')
 const jwt = require('jsonwebtoken');
+const { log } = require('console');
 
 const logIn = async (request, response,next) => {
     let userFound = false
@@ -37,7 +38,9 @@ const logIn = async (request, response,next) => {
 }
 
 const user =  (request, response, next) => {
+    console.log('test')
     const token = request.headers.authorization.split(' ')[1]
+    console.log(request.headers)
     const user = jwt.decode(token, process.env.JWT_SECRET)
 
     let query = `SELECT * FROM Users WHERE idUsers = '${user.idUsers}'`

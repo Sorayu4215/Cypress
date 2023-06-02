@@ -23,21 +23,21 @@ export class UserProfileComponent {
   errorMessageCredentials:string
   readonly attr = userProfile
   @ViewChild('addressForm') addressForm: NgForm;
-  address = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    name: new FormControl( '', [Validators.required]),
-    address: new FormControl('', Validators.required),
-    city: new FormControl('', Validators.required),
-    postCode: new FormControl('', Validators.required),
-    phoneNumber: new FormControl( '', [Validators.required, Validators.minLength(9)]),
-    newsletter: new FormControl(false),
-    billingBusiness: new FormControl(false),
-    companyRegistrationNo: new FormControl(''),
-    VAT: new FormControl(''),
-    BIC: new FormControl(''),
-    IBAN: new FormControl(''),
-    bankAccountHolder: new FormControl(''),
-  })
+  // address = new FormGroup({
+  //   email: new FormControl('', [Validators.required, Validators.email]),
+  //   name: new FormControl( '', [Validators.required]),
+  //   address: new FormControl('', Validators.required),
+  //   city: new FormControl('', Validators.required),
+  //   postCode: new FormControl('', Validators.required),
+  //   phoneNumber: new FormControl( '', [Validators.required, Validators.minLength(9)]),
+  //   newsletter: new FormControl(false),
+  //   billingBusiness: new FormControl(false),
+  //   companyRegistrationNo: new FormControl(''),
+  //   VAT: new FormControl(''),
+  //   BIC: new FormControl(''),
+  //   IBAN: new FormControl(''),
+  //   bankAccountHolder: new FormControl(''),
+  // })
   credentials = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -49,13 +49,12 @@ export class UserProfileComponent {
     this.editButton = false
   }
 
-  saveValues(){
-    if(this.address.valid){
-      console.log(this.address.value);
-      console.log(this.address.valid);
-    }
-    
-  }
+  // saveValues(){
+  //   if(this.address.valid){
+  //     console.log(this.address.value);
+  //     console.log(this.address.valid);
+  //   }
+  // }
 
   getFormData(data:any){
     console.log(data);

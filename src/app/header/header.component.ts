@@ -5,6 +5,7 @@ import { headerTransition } from '../animations/animations';
 import { environment } from 'src/environments/environment';
 import { header } from './header-enum';
 import { CommonService } from '../shared/service/common.service';
+import { DataService } from '../shared/data/data.service';
 
 @Component({
   selector: 'app-header',
@@ -15,8 +16,8 @@ import { CommonService } from '../shared/service/common.service';
   ]
 })
 export class HeaderComponent implements OnInit {
-  constructor(public resources: resourcesService, private common:CommonService) {  
-    
+  constructor(public resources: resourcesService, private common:CommonService, private data:DataService) {  
+  
   }
 
   //pouzite v hmtl
@@ -28,6 +29,7 @@ export class HeaderComponent implements OnInit {
   dropdownAuthorizatedShow:boolean = false
   shopingCart = this.resources.cart
   amountItems: number = 0
+  authorized:boolean = false
 
   readonly attr = header 
 

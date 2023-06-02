@@ -324,13 +324,16 @@ h6{
 }
 
 .input{
-    width: 65%;
+    /* width: 65%; */
     max-width: 500px;
     padding: 0.5rem 0.5rem 0.5rem 0.2rem;
     border: 1.2px solid var(--darker-primary1-color);
     border-radius: 3px;
     /* padding-bottom: 0.5rem;
     padding-right: 0.5rem; */
+}
+.input-width{
+    width: 65%;
 }
 
 @media screen and (max-width:950px) {

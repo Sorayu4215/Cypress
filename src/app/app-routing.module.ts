@@ -15,6 +15,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ShippingGuardService } from './shared/service/shipping-guard.service';
 import { AddressGuardService } from './shared/service/address-guard.service';
 import { OrderGuardService } from './shared/service/order-guard.service';
+import { UserGuardService } from './shared/service/user-guard.service';
 
 const resources = new resourcesService
 
@@ -27,8 +28,8 @@ const routes: Routes = [
   { path: resources.adressURL, component: AddressComponent, canActivate: [AddressGuardService]},
   { path: resources.summarryPageURL, component: SummaryComponent },
   { path: resources.orderURL, component: OrderComponent, canActivate: [OrderGuardService]},
-  { path: resources.myOrdersURL, component: MyOrderComponent},
-  { path: resources.userProfileURL, component: UserProfileComponent},
+  { path: resources.myOrdersURL, component: MyOrderComponent, canActivate: [UserGuardService] },
+  { path: resources.userProfileURL, component: UserProfileComponent, canActivate: [UserGuardService] },
   { path: resources.registrationURL, component: RegistrationComponent },
   { path: ':id', component: ItemDetailsComponent},
 

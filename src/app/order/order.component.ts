@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { resourcesService } from '../shared/resources.service';
 import { order } from './order-enum';
+import { DataService } from '../shared/data/data.service';
 
 @Component({
   selector: 'app-order',
@@ -9,7 +10,41 @@ import { order } from './order-enum';
 })
 export class OrderComponent {
   
-  constructor(public resources:resourcesService){}
+  constructor(public resources:resourcesService, private data: DataService){
+    const shipping = JSON.parse(localStorage.getItem('Shipping')!)
+    const items = JSON.parse(localStorage.getItem('Items')!)
+    const address = JSON.parse(localStorage.getItem('Address')!)
+    this.id = this.generateUniqueId()
+    
+    this.data.makeOrder(this.id,items,address,shipping).subscribe(data=>{
+      this.orderDone = true
+      this.deleteItems()
+    },err=>{
+      this.error = true
+      this.errorMessage = 'Something went wrong'     
+    })
+
+  }
+  id:number
+  error:boolean | undefined
+  errorMessage: string 
+  orderDone: boolean | undefined
+
+generateUniqueId() {
+  const currentTime = new Date().getTime();
+
+  const randomNumbers = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+
+  const uniqueId = Number(`${currentTime}${randomNumbers}`);
+  return uniqueId;
+}
+
+  deleteItems(){
+    localStorage.removeItem('Shipping')
+    localStorage.removeItem('Items')
+    localStorage.removeItem('Address')
+    localStorage.removeItem('Confirmed')
+  }
 
   showLoader = false
   showSuccess = true

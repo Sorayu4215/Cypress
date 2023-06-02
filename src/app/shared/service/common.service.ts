@@ -60,4 +60,40 @@ export class CommonService {
     this.badge.next('')
     this.addedToCart.next('')
   }
+
+
+  totalItemPrice(itemPrice: number, warranty: boolean, returnOption: boolean, amount: number) {
+    let totalPrice = itemPrice * amount
+    if (warranty) {
+      totalPrice = totalPrice + 20
+    }
+    if (returnOption) {
+      totalPrice = totalPrice + 10
+    }
+
+    return totalPrice.toFixed(2)
+  }
+
+
+  allItemsPrice(items: any) {
+    let price: number = 0
+
+    items.forEach((element: any) => {
+      price = price + element.amount * element.price
+
+      if (element.waranty == true) {
+        price = price + 20
+      }
+      if (element.returnOption == true) {
+        price = price + 10
+      }
+    });
+
+    return price.toFixed(2)
+  }
+
+  amountWithDPH(amount: any) {
+    return (amount * 1.2).toFixed(2)
+  }
+
 }

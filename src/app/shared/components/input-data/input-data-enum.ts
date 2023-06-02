@@ -21,6 +21,11 @@ export enum inputData {
     cityLabel = 'city-label',
     cityError = 'city-error',
 
+    countryDiv = 'country-div',
+    countryInput = 'country-input',
+    countryLabel = 'country-label',
+    countryError = 'country-error',
+
     postCodeDiv = 'post-code-div',
     postCodeInput = 'post-code-input',
     postCodeLabel = 'post-code-label',
