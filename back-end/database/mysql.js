@@ -4,10 +4,10 @@ let connection;
 
 if (process.env.NODE_ENV == 'production'){
     connection = mysql.createConnection({
-        host: '',
-        database: '',
-        user: '',
-        password: ''
+        host: 'c8u4r7fp8i8qaniw.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
+        database: 'jn58grsf3pg8ipjh',
+        user: 'nmbo9azzsx5iwasg',
+        password: 'k6wok7dtn3w0f3kp'
     })
 } else if ((process.env.NODE_ENV == 'development'))
     connection = mysql.createConnection({

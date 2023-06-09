@@ -2,6 +2,7 @@ import { Injectable,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { resourcesService } from '../resources.service';
 import { map,Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -21,10 +22,10 @@ export class DataService {
   logedIn = new Subject<any>()
 
   getItems(){
-    return this.http.get(`${this.resources.apiURL}/api/v1/items`)
+    return this.http.get(`${environment.url}/api/v1/items`)
   }
   getItem(id:number | string){
-    return this.http.get(`${this.resources.apiURL}/api/v1/items/${id}`)
+    return this.http.get(`${environment.url}/api/v1/items/${id}`)
   }
 
   makeOrder(idProperty:number,itemProperty:any,addressProperty:any, shippinngProperty:any, date:string){
@@ -32,7 +33,7 @@ export class DataService {
     if(localStorage.getItem('User')){
       token = JSON.parse(localStorage.getItem('User')!).token
     }
-    return this.http.post(`${this.resources.apiURL}/api/v1/order`, { id: idProperty, item: itemProperty, address: addressProperty, shipping: shippinngProperty, date: date }, { headers: { Authorization: `Bearer ${token}` }})
+    return this.http.post(`${environment.url}/api/v1/order`, { id: idProperty, item: itemProperty, address: addressProperty, shipping: shippinngProperty, date: date }, { headers: { Authorization: `Bearer ${token}` }})
   }
 
   getItemsAttributes(arrayOfIds: { idItems: number, amount?: number, waranty?: boolean, returnOption ?:boolean}[] ){
@@ -59,11 +60,11 @@ export class DataService {
   }
 
   user(token: string) {
-    return this.http.get(`${this.resources.apiURL}/api/v1/user`, { headers: { Authorization: `Bearer ${token}` } })
+    return this.http.get(`${environment.url}/api/v1/user`, { headers: { Authorization: `Bearer ${token}` } })
   }
 
   registration(data: any) {
-    return this.http.post(`${this.resources.apiURL}/api/v1/registration`, data,)
+    return this.http.post(`${environment.url}/api/v1/registration`, data,)
   }
 
   getOrders(){
@@ -71,7 +72,7 @@ export class DataService {
     if (localStorage.getItem('User')) {
       token = JSON.parse(localStorage.getItem('User')!).token
     }
-    return this.http.get(`${this.resources.apiURL}/api/v1/order`, { headers: { Authorization: `Bearer ${token}` } })
+    return this.http.get(`${environment.url}/api/v1/order`, { headers: { Authorization: `Bearer ${token}` } })
   }
 
   changeUserData(data:any){
@@ -79,7 +80,7 @@ export class DataService {
     if (localStorage.getItem('User')) {
       token = JSON.parse(localStorage.getItem('User')!).token
     }
-    return this.http.post(`${this.resources.apiURL}/api/v1/change-user-data`, data, { headers: { Authorization: `Bearer ${token}` } } )
+    return this.http.post(`${environment.url}/api/v1/change-user-data`, data, { headers: { Authorization: `Bearer ${token}` } } )
   }
 
   changeUsername(data:any){
@@ -87,14 +88,14 @@ export class DataService {
     if (localStorage.getItem('User')) {
       token = JSON.parse(localStorage.getItem('User')!).token
     }
-    return this.http.post(`${this.resources.apiURL}/api/v1/change-username`, data, { headers: { Authorization: `Bearer ${token}` } })
+    return this.http.post(`${environment.url}/api/v1/change-username`, data, { headers: { Authorization: `Bearer ${token}` } })
   }
   changePassword(data:any){
     let token: undefined | string = undefined
     if (localStorage.getItem('User')) {
       token = JSON.parse(localStorage.getItem('User')!).token
     }
-    return this.http.post(`${this.resources.apiURL}/api/v1/change-password`, data, { headers: { Authorization: `Bearer ${token}` } })
+    return this.http.post(`${environment.url}/api/v1/change-password`, data, { headers: { Authorization: `Bearer ${token}` } })
   }
 
   initializeApp(): Promise<any> {

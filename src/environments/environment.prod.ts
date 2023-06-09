@@ -1,7 +1,6 @@
 
 export const environment = {
   production: true,
-  // assets: '/gym-app-preview/',
   assets: '',
-  url: 'https://gym-application.herokuapp.com',
+  url: 'https://eshop-testing-app.herokuapp.com',
 };
