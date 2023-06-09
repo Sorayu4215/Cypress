@@ -29,7 +29,7 @@ export class RegistrationComponent {
   getFormData(data?:any){
     this.submitted = true
     this.loader = true
-    if(data.status == 'VALID' && this.credentials.status == 'VALID'){
+    if(this.credentials.status == 'VALID'){
 
       //password matching check
       if(this.credentials.value.newPassword !== this.credentials.value.passwordConfirmation) {

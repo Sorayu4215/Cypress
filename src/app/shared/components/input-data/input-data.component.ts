@@ -74,10 +74,32 @@ export class InputDataComponent implements OnInit {
   })
   @Output() formData = new EventEmitter()
 
-  addNewItem() {
-    console.log(this.address);
-    
-    this.formData.emit(this.address);
+  addNewItem() {   
+    const { email, name, address, country, city, post_code, phone_number, newsletter, terms_and_condition, bussiness_account, compaty_reg_number, VAT, BIC, IBAN, bank_account_holder } = this.address.value
+    if (
+      this.address.get('email')?.status == 'VALID' 
+      && this.address.get('name')?.status == 'VALID' 
+      && this.address.get('address')?.status !== undefined 
+      && this.address.get('country')?.status !== undefined 
+      && this.address.get('city')?.status !== undefined 
+      && this.address.get('post_code')?.status !== undefined 
+      && this.address.get('phone_number')?.status !== undefined 
+      && this.address.get('terms_and_condition')?.status !== undefined
+      ) {
+            
+      if (
+        bussiness_account == true 
+        && this.address.get('compaty_reg_number')?.status == 'VALID' 
+        && this.address.get('VAT')?.status == 'VALID' 
+        && this.address.get('BIC')?.status == 'VALID' 
+        && this.address.get('IBAN')?.status == 'VALID' 
+        && this.address.get('bank_account_holder')?.status == 'VALID'
+        ){
+        this.formData.emit(this.address);
+      } else if(bussiness_account == false){
+        this.formData.emit(this.address);
+      }
+    }    
   }
 
   ngOnInit(): void {

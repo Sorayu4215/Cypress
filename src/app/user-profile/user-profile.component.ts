@@ -64,7 +64,6 @@ export class UserProfileComponent {
   getFormData(data:any){
     this.loaderData = true
     
-    if(data.valid){
       this.data.changeUserData(data.value).subscribe((data:any)=>{
         this.loaderData = false
         this.success = true
@@ -72,9 +71,7 @@ export class UserProfileComponent {
         this.loaderData = false
         this.error = true
       })
-    }else{
-      this.loaderData = false
-    }
+
     
   }
 
