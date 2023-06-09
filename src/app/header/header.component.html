@@ -8,27 +8,22 @@
                 <fa-icon [icon]="bars" class="fa-3x" [attr.data-type]="attr.headerDropdownIcon"></fa-icon>
                 <button class="dropdown-button-cover"></button>
             </button> 
-            <button class="header-cart btn relative" [attr.data-type]="attr.shopingCartBtn" [routerLink]="this.resources.cartTitle">
+            <button class="header-cart btn relative" [attr.data-type]="attr.shopingCartBtn" [routerLink]="this.resources.cartURL">
                 <fa-icon [icon]="this.shopingCart" class="fa-3x" [attr.data-type]="attr.shopingCartIcon"></fa-icon>
-                <div *ngIf="this.amountItems !== 0" class="badge-mobile" [attr.data-type]="attr.headerBadge">
-                    {{this.amountItems}}</div>
+                <!-- <div *ngIf="this.amountItems !== 0" class="badge-mobile" [attr.data-type]="attr.headerBadge">
+                    {{this.amountItems}}</div> -->
+            </button>
+            <button *ngIf="(this.authorized == true )" class="header-cart btn" >
+                <div (click)="logOut()">
+                    <fa-icon [icon]="this.resources.logOut"  class="fa-3x" [attr.data-type]="attr.headerLogOutIcon" ></fa-icon>
+                </div>
             </button>
 
-            <!-- <button class="header-icon space dropdown-button" *ngIf="auth.loggedIn" (click)="dropdownAuthorizatedShow = !dropdownAuthorizatedShow">
-                <fa-icon [icon]="logInUser" class="fa-2x color-primary"></fa-icon>
-                 <button class="dropdown-auth-button-cover"></button>
-            </button>  -->
-            <!-- <li class="dropdown" *ngIf="dropdownAuthorizatedShow" [@headerTransition]>
-                <div class="dropdown-select-section" [@headerTransition]>
-                    <Label class="username">{{this.auth.username}}</Label>
-                    <button class="btn dropdown-selector color-primary2" (click)="logOut()">Odhlásenie</button>
-                </div>
-            </li> -->
             <li class="dropdown" [@headerTransition] *ngIf="dropdownShow">
                 <div [@headerTransition] class="dropdown-select-section">
                      <div *ngFor="let sekcia of this.Sections; let i = index" [attr.data-type]="attr.headerItem + sekcia.section" [attr.data-type]="attr.headerItems"> 
                         <button class="btn dropdown-selector color-primary2" [routerLink]="Sections[i].section"
-                           (click)="dropdownShow = false">{{sekcia.title}}</button>
+                           (click)="dropdownShow = false" *ngIf="(this.authorized == true && sekcia.title !== this.resources.authorizationTitle) || (this.authorized == false && sekcia.title !== this.resources.myOrdersTitle && sekcia.title !== this.resources.userProfileTitle)">{{sekcia.title}}</button>
 
                     </div> 
                 </div>
@@ -41,25 +36,18 @@
 
         <div class="sections">
             <div *ngFor="let section of this.Sections; let i2 = index" [attr.data-type]="attr.headerItems">
-                <button class="btn padding-right  header-btn" [routerLink]="Sections[i2].section" [attr.data-type]="attr.headerItem + section.section">
+                <button class="btn padding-right  header-btn" [routerLink]="Sections[i2].section" [attr.data-type]="attr.headerItem + section.section" *ngIf="(this.authorized == true && section.title !== this.resources.authorizationTitle) || (this.authorized == false && section.title !== this.resources.myOrdersTitle && section.title !== this.resources.userProfileTitle)">
                     {{section.title}} 
-                    <fa-icon *ngIf="section.section == 'Cart'" [icon]="this.shopingCart" [attr.data-type]="attr.shopingCartIcon"></fa-icon>  
-                    <div *ngIf="section.section == 'Cart' && this.amountItems !== 0" class="badge" [attr.data-type]="attr.headerBadge">{{this.amountItems}}</div>
+                    <fa-icon *ngIf="section.section == this.resources.cartURL" [icon]="this.shopingCart" [attr.data-type]="attr.shopingCartIcon"></fa-icon>  
+                    <div *ngIf="section.section == this.resources.cartURL && this.amountItems !== 0" class="badge" [attr.data-type]="attr.headerBadge">{{this.amountItems}}</div>
                 </button>
+                </div>
+                <div *ngIf="(this.authorized == true )" (click)="logOut()">
+                    <button class="btn padding-right  header-btn" [attr.data-type]="attr.headerLogOut">
+                        Log Out
+                        <fa-icon [icon]="this.resources.logOut" [attr.data-type]="attr.headerLogOutIcon"></fa-icon>
+                    </button>
                 </div>
             </div>
         </div>
-            <!-- <div *ngIf="auth.loggedIn">
-                <button class="header-btn header-icon space2" (mouseenter)="showDropdown($event)" (mouseleave)="hideDropdown($event)">
-                    <fa-icon [icon]="logInUser" class="fa-2x color-primary"></fa-icon>
-                </button>
-                <div class="subsection-wrapper-logIn display-not" (mouseenter)="showDropdown($event)" (mouseleave)="hideDropdown($event)">
-                    <div class="subsections" >
-                        <Label class="username">{{this.auth.username}}</Label>
-                        <button  class="btn dropdown-selector color-primary" (click)="logOut()">
-                            Odhlásenie
-                        </button>
-                    </div>
-                </div>
-            </div> -->
 </header>

@@ -93,7 +93,6 @@ export class CartComponent implements OnInit {
     
     localStorage.setItem('Items', JSON.stringify(this.originalData))
     
-    console.log(this.items);
     this.common.badge.next('')
     
   }

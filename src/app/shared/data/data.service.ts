@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { resourcesService } from '../resources.service';
-import { map } from 'rxjs';
+import { map,Subject } from 'rxjs';
 
 
 @Injectable({
@@ -9,9 +9,16 @@ import { map } from 'rxjs';
 })
 export class DataService {
  
-  constructor(private http:HttpClient, private resources:resourcesService) {}
+  constructor(private http:HttpClient, private resources:resourcesService) {
+    this.logedIn.subscribe(() => {
+      this.initializeApp()
+    })
+  }
   
   error:boolean
+  userData = new Subject<any>()
+  test:any
+  logedIn = new Subject<any>()
 
   getItems(){
     return this.http.get(`${this.resources.apiURL}/api/v1/items`)
@@ -20,8 +27,12 @@ export class DataService {
     return this.http.get(`${this.resources.apiURL}/api/v1/items/${id}`)
   }
 
-  makeOrder(idProperty:number,itemProperty:any,addressProperty:any, shippinngProperty:any, tokenProperty?:any){
-    return this.http.post(`${this.resources.apiURL}/api/v1/order`, { id: idProperty,item: itemProperty, address: addressProperty, shipping:shippinngProperty })
+  makeOrder(idProperty:number,itemProperty:any,addressProperty:any, shippinngProperty:any, date:string){
+    let token:undefined | string = undefined
+    if(localStorage.getItem('User')){
+      token = JSON.parse(localStorage.getItem('User')!).token
+    }
+    return this.http.post(`${this.resources.apiURL}/api/v1/order`, { id: idProperty, item: itemProperty, address: addressProperty, shipping: shippinngProperty, date: date }, { headers: { Authorization: `Bearer ${token}` }})
   }
 
   getItemsAttributes(arrayOfIds: { idItems: number, amount?: number, waranty?: boolean, returnOption ?:boolean}[] ){
@@ -49,6 +60,56 @@ export class DataService {
 
   user(token: string) {
     return this.http.get(`${this.resources.apiURL}/api/v1/user`, { headers: { Authorization: `Bearer ${token}` } })
+  }
+
+  registration(data: any) {
+    return this.http.post(`${this.resources.apiURL}/api/v1/registration`, data,)
+  }
+
+  getOrders(){
+    let token: undefined | string = undefined
+    if (localStorage.getItem('User')) {
+      token = JSON.parse(localStorage.getItem('User')!).token
+    }
+    return this.http.get(`${this.resources.apiURL}/api/v1/order`, { headers: { Authorization: `Bearer ${token}` } })
+  }
+
+  changeUserData(data:any){
+    let token: undefined | string = undefined
+    if (localStorage.getItem('User')) {
+      token = JSON.parse(localStorage.getItem('User')!).token
+    }
+    return this.http.post(`${this.resources.apiURL}/api/v1/change-user-data`, data, { headers: { Authorization: `Bearer ${token}` } } )
+  }
+
+  changeUsername(data:any){
+    let token: undefined | string = undefined
+    if (localStorage.getItem('User')) {
+      token = JSON.parse(localStorage.getItem('User')!).token
+    }
+    return this.http.post(`${this.resources.apiURL}/api/v1/change-username`, data, { headers: { Authorization: `Bearer ${token}` } })
+  }
+  changePassword(data:any){
+    let token: undefined | string = undefined
+    if (localStorage.getItem('User')) {
+      token = JSON.parse(localStorage.getItem('User')!).token
+    }
+    return this.http.post(`${this.resources.apiURL}/api/v1/change-password`, data, { headers: { Authorization: `Bearer ${token}` } })
+  }
+
+  initializeApp(): Promise<any> {
+    if (JSON.parse(localStorage.getItem('User')!)) {
+      const user = JSON.parse(localStorage.getItem('User')!)
+      this.user(user.token).subscribe((data) => {
+        this.userData.next(data)
+      },err =>{
+        localStorage.removeItem('User')
+      })
+    } else{
+      this.userData.next(false)
+    }
+    
+    return Promise.resolve();
   }
 
 }

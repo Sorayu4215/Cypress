@@ -1,6 +1,14 @@
 <h4 class="title" [attr.data-type]="attr.title">{{this.resources.authorizationTitle}}</h4>
 
 <app-error [errorText]="errorMessage" *ngIf="error"></app-error>
+<app-succuess *ngIf="this.sucess" [successText]="this.resources.authorizationSucessful"></app-succuess>
+<!-- <div class="success-wrapper" [attr.data-type]="attr.success" *ngIf="this.sucess">
+    <div class="success-box" [attr.data-type]="attr.successBox">
+        <fa-icon [icon]="this.resources.success" class="success-icon" [attr.data-type]="attr.successIcon"></fa-icon>
+        <p class="success-text" [attr.data-type]="attr.successLable">{{this.resources.authorizationSucessful}}</p>
+    </div>
+</div> -->
+
 
 <form action="" [formGroup]="LogIn" (ngSubmit)="LogInFunction()" #ngForm="ngForm" class="form" *ngIf="!forgotPassword" [attr.data-type]="attr.form">
     <div class="form-style">
@@ -18,7 +26,7 @@
     <div class="buttons" [attr.data-type]="attr.buttons">
         <button type="button" class="forgot-password"  [attr.data-type]="attr.registration" routerLink="../{{this.resources.registrationURL}}">{{this.resources.registrationTitle}}</button><br>
         <button type="button" class="forgot-password"  [attr.data-type]="attr.forgotPassword" (click)="forgotPassword = true">{{this.resources.authorizationForgotPasswordBtn}}</button><br>
-        <input type="submit" class="edit-button" value="Log In" [attr.data-type]="attr.logIn">
+        <input type="submit" class="edit-button" value="Log In" [attr.data-type]="attr.logIn" *ngIf="!this.loader">
     </div>
 </form>
 
@@ -41,3 +49,5 @@
 <div class="alighn" *ngIf=" this.password != ''">
     <h5  [attr.data-type]="attr.passwordRevealed">{{this.resources.authorizationShowPassword}} {{this.password}}</h5>
 </div>
+
+<app-loader *ngIf="this.loader"></app-loader>

@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { header } from './header-enum';
 import { CommonService } from '../shared/service/common.service';
 import { DataService } from '../shared/data/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -16,8 +17,15 @@ import { DataService } from '../shared/data/data.service';
   ]
 })
 export class HeaderComponent implements OnInit {
-  constructor(public resources: resourcesService, private common:CommonService, private data:DataService) {  
-  
+  constructor(public resources: resourcesService, private common:CommonService, private data:DataService, private router:Router) {  
+    this.data.userData.subscribe((data:any)=>{
+      if(data){
+        this.authorized = true
+      }else if (data == false){
+        this.authorized = false
+      }  
+    })    
+    
   }
 
   //pouzite v hmtl
@@ -44,8 +52,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut(){
-    // this.auth.logOut()
-    this.dropdownAuthorizatedShow= false
+    localStorage.removeItem('User')
+    this.data.logedIn.next('')
+    this.router.navigate([this.resources.mainPageURL])
   }
 
   ngOnInit(): void {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { resourcesService } from '../shared/resources.service';
 import { order } from './order-enum';
 import { DataService } from '../shared/data/data.service';
+import { CommonService } from '../shared/service/common.service';
 
 @Component({
   selector: 'app-order',
@@ -10,15 +11,17 @@ import { DataService } from '../shared/data/data.service';
 })
 export class OrderComponent {
   
-  constructor(public resources:resourcesService, private data: DataService){
+  constructor(public resources:resourcesService, private data: DataService,private common:CommonService){
     const shipping = JSON.parse(localStorage.getItem('Shipping')!)
     const items = JSON.parse(localStorage.getItem('Items')!)
     const address = JSON.parse(localStorage.getItem('Address')!)
     this.id = this.generateUniqueId()
+    let date  = new Date().toLocaleDateString('en-GB')
     
-    this.data.makeOrder(this.id,items,address,shipping).subscribe(data=>{
+    this.data.makeOrder(this.id,items,address,shipping,date).subscribe(data=>{
       this.orderDone = true
       this.deleteItems()
+      this.common.badge.next('')
     },err=>{
       this.error = true
       this.errorMessage = 'Something went wrong'     
@@ -29,6 +32,7 @@ export class OrderComponent {
   error:boolean | undefined
   errorMessage: string 
   orderDone: boolean | undefined
+
 
 generateUniqueId() {
   const currentTime = new Date().getTime();

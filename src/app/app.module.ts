@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -29,6 +29,12 @@ import { ErrorComponent } from './shared/components/error/error.component';
 import { FiltersComponent } from './main-page/filters/filters.component';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { AddedToCartComponent } from './shared/components/added-to-cart/added-to-cart.component';
+import { DataService } from './shared/data/data.service';
+import { SuccuessComponent } from './shared/components/succuess/succuess.component';
+
+export function startupDataFactory(startupService: DataService) {
+  return () => startupService.initializeApp();
+}
 
 
 @NgModule({
@@ -54,7 +60,8 @@ import { AddedToCartComponent } from './shared/components/added-to-cart/added-to
     ErrorComponent,
     FiltersComponent,
     LoaderComponent,
-    AddedToCartComponent
+    AddedToCartComponent,
+    SuccuessComponent
 
   ],
   imports: [
@@ -65,7 +72,14 @@ import { AddedToCartComponent } from './shared/components/added-to-cart/added-to
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [CookieService],
+  providers: [CookieService, 
+    DataService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: startupDataFactory,
+      deps: [DataService],
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

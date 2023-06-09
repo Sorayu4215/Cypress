@@ -31,7 +31,7 @@
     <button class="cart-navidation-btn" [routerLink]="'/'+this.resources.cartTitle"
         [attr.data-type]="attr.backToCartNavigation">
         <fa-icon [icon]="this.resources.arrowLeft" class="cart-navidation-icon"></fa-icon>
-        Back to {{this.resources.cartTitle}}
+        Back to {{this.resources.cartURL}}
     </button>
     <button class="cart-navidation-btn" [attr.data-type]="attr.addressNavigation" (click)="navigateTo()">
         {{this.resources.adresstitle}}

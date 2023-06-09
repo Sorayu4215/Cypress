@@ -38,7 +38,7 @@
     opacity: 0.6;
 }
 .wrapper{
-    /* margin-left: 20%; */
+    margin-bottom: 6rem;
 
 }
 .items{
@@ -102,6 +102,12 @@ input.ng-touched.ng-invalid{
 
 .form-margin{
   margin-bottom: 10rem;
+}
+
+@media screen and (max-width:850px) {
+    .items {
+    margin-left: 15%;
+}
 }
 
 

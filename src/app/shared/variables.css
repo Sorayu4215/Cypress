@@ -47,6 +47,9 @@ body{
 
     /* error color */
     --error-background-color: #f65454;
+
+    /* success color  */
+    --success-color: #4BB543;
 }
 
 .background-white{
@@ -141,6 +144,12 @@ p{
     color: rgba(255,0,0, 0.8);
     }
 
+
+    @media screen and (max-width:850px) {
+    .items {
+    margin-left: 15%;
+}
+}
 
 @media screen and (min-width:1300px) {
     
@@ -324,7 +333,7 @@ h6{
 }
 
 .input{
-    /* width: 65%; */
+    width: 100%;
     max-width: 500px;
     padding: 0.5rem 0.5rem 0.5rem 0.2rem;
     border: 1.2px solid var(--darker-primary1-color);

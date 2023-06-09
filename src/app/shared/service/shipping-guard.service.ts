@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { UrlTree } from '@angular/router'; 
+import { resourcesService } from '../resources.service';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { UrlTree } from '@angular/router';
 })
 export class ShippingGuardService implements CanActivate {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private resources:resourcesService) { }
 
 
   canActivate(
@@ -19,12 +20,12 @@ export class ShippingGuardService implements CanActivate {
     if (itemsProvided !== null){
       if(itemsProvided.length == 0) {
           // Navigate to a specific component or route
-          this.router.navigate(['Shop']);
+          this.router.navigate([this.resources.mainPageURL]);
         return false
       }
       return true
     }  else{
-      this.router.navigate(['Shop']);
+      this.router.navigate([this.resources.mainPageURL]);
       return false
     }
 }

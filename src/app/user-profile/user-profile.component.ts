@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { resourcesService } from '../shared/resources.service';
 import { userProfile } from './user-profile-enum';
+import { DataService } from '../shared/data/data.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,37 +11,47 @@ import { userProfile } from './user-profile-enum';
 })
 export class UserProfileComponent {
 
-  constructor(public resources:resourcesService){}
+  constructor(public resources:resourcesService, private data:DataService){
+    this.data.userData.subscribe((data:any)=>{
+      this.userData = data
+    })
+  }
+
 
   isDisabled:boolean = true
   companyUser:boolean = false
   editButton:boolean = true
-  isDisabledCredentials:boolean = true
-  editButtonCredentials: boolean = true
+  isDisabledUsernameCredentials:boolean = true
+  isDisabledPasswordCredentials:boolean = true
+  editButtonUsernameCredentials: boolean = true
+  editButtonPasswordCredentials: boolean = true
   error:boolean
   errorMessage:string
   errorCredentials:boolean
   errorMessageCredentials:string
+  userData:any
+  success:boolean = false
+  successUsername:boolean = false
+  successPassword:boolean = false
+  errorUsername: boolean
+  errorPassword: boolean
+  errorMessageUsername: string
+  errorMessagePassword: string
+  loaderData:boolean = false
+  loaderUsername:boolean = false
+  loaderPassword:boolean = false
   readonly attr = userProfile
   @ViewChild('addressForm') addressForm: NgForm;
-  // address = new FormGroup({
-  //   email: new FormControl('', [Validators.required, Validators.email]),
-  //   name: new FormControl( '', [Validators.required]),
-  //   address: new FormControl('', Validators.required),
-  //   city: new FormControl('', Validators.required),
-  //   postCode: new FormControl('', Validators.required),
-  //   phoneNumber: new FormControl( '', [Validators.required, Validators.minLength(9)]),
-  //   newsletter: new FormControl(false),
-  //   billingBusiness: new FormControl(false),
-  //   companyRegistrationNo: new FormControl(''),
-  //   VAT: new FormControl(''),
-  //   BIC: new FormControl(''),
-  //   IBAN: new FormControl(''),
-  //   bankAccountHolder: new FormControl(''),
-  // })
-  credentials = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+
+  username = new FormGroup({
+    newUsername: new FormControl('', Validators.required),
+    // password: new FormControl('', Validators.required),
+    // passwordConfirmation: new FormControl('', Validators.required),
+  })
+
+  password = new FormGroup({
+    // username: new FormControl('', Validators.required),
+    newPassword: new FormControl('', Validators.required),
     passwordConfirmation: new FormControl('', Validators.required),
   })
   
@@ -49,26 +60,75 @@ export class UserProfileComponent {
     this.editButton = false
   }
 
-  // saveValues(){
-  //   if(this.address.valid){
-  //     console.log(this.address.value);
-  //     console.log(this.address.valid);
-  //   }
-  // }
 
   getFormData(data:any){
-    console.log(data);
+    this.loaderData = true
+    
+    if(data.valid){
+      this.data.changeUserData(data.value).subscribe((data:any)=>{
+        this.loaderData = false
+        this.success = true
+      },err =>{
+        this.loaderData = false
+        this.error = true
+      })
+    }else{
+      this.loaderData = false
+    }
     
   }
 
-  changeValuesCredentials(){
-    this.isDisabledCredentials = !this.isDisabledCredentials
-    this.editButtonCredentials = false
+  changeValuesCredentials(formName: 'username' | 'password'){
+    if(formName == 'username'){
+      this.isDisabledUsernameCredentials = !this.isDisabledUsernameCredentials
+      this.editButtonUsernameCredentials = false
+      
+    } else if (formName == 'password'){
+      this.isDisabledPasswordCredentials = !this.isDisabledPasswordCredentials
+      this.editButtonPasswordCredentials = false
+
+    }
+
+
   }
-  saveValuesCredentials(){
-    if (this.credentials.valid){
-      this.isDisabledCredentials = !this.isDisabledCredentials
-      this.editButtonCredentials = true
+
+  saveUsernameValuesCredentials(){
+    if (this.username.valid){
+      this.loaderUsername = true
+      this.data.changeUsername({username: this.username.value.newUsername}).subscribe((data)=>{
+        this.isDisabledUsernameCredentials = !this.isDisabledUsernameCredentials
+        this.editButtonUsernameCredentials = true
+        this.loaderUsername = false
+        this.successUsername = true
+      },err=>{
+        this.loaderUsername = false
+        this.errorUsername = true
+        this.errorMessageUsername = err.error.msg        
+      })
+    }
+  }
+
+  savePasswordValuesCredentials() {
+    if (this.password.valid) {
+      if (this.password.value.newPassword == this.password.value.passwordConfirmation){
+        this.loaderPassword = true
+        this.data.changePassword({ newPassword: this.password.value.newPassword }).subscribe((data) => {
+        this.isDisabledPasswordCredentials = !this.isDisabledPasswordCredentials
+        this.editButtonPasswordCredentials = true
+          this.editButtonPasswordCredentials = true
+          this.loaderPassword = false
+          this.successPassword = true
+        },err =>{
+          this.loaderPassword = false
+          this.errorPassword = true
+          this.errorMessagePassword = err.error.msg  
+        })
+
+      }else{
+        this.errorPassword = true
+        this.errorMessagePassword = "Passwords are not matching!" 
+      }
+      
     }
   }
 }

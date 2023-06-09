@@ -23,10 +23,10 @@
             <fa-icon [icon]="this.resources.close" class="success-chacked"></fa-icon>
         </div>
         <p class="order-text" [attr.data-type]="attr.problemOrderLbl">{{this.resources.orderProblem}}</p>
-        <button class="navigation-btn" [routerLink]="'/'+this.resources.mainPageTitle" [attr.data-type]="attr.backButton">
+        <button class="navigation-btn" [routerLink]="'/'+this.resources.mainPageURL" [attr.data-type]="attr.backButton">
             <fa-icon [icon]="this.resources.arrowLeft" class=""></fa-icon>
             Return to
-            {{this.resources.orderTitle}}
+            {{this.resources.mainPageTitle}}
     </button>
     </div>
 </div>

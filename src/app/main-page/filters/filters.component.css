@@ -53,4 +53,8 @@
         padding: 0.5rem 0.25rem;
         min-width: 100px;
     }   
+    .slier-values{
+        margin: 0 auto;
+    max-width: 50%;
+}
 }

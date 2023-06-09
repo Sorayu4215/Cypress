@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faLocationDot, faPhone, faEnvelope, faArrowRight, faArrowLeft, faInfo,faShoppingCart, faMagnifyingGlass, faClose, faCheck,faArrowDown, faWarning } from '@fortawesome/free-solid-svg-icons';
+import { faLocationDot, faPhone, faSignOut, faEnvelope, faArrowRight, faArrowLeft, faInfo,faShoppingCart, faMagnifyingGlass, faClose, faCheck,faArrowDown, faWarning } from '@fortawesome/free-solid-svg-icons';
 import { billing } from '../billing/billing-enum';
 
 @Injectable({ providedIn: 'root' })
@@ -26,11 +26,13 @@ export class resourcesService {
   arrowDown = faArrowDown
   success = faCheck
   warning = faWarning
+  logOut = faSignOut
 
 
   //authorizaition
-  authorizationURL= 'LogIn'
+  authorizationURL= 'logIn'
   authorizationTitle = 'Log In'
+  authorizationSucessful = "Authorization was successful!"
   authorizationInsertValue = 'Insert Value!'
   authorizationLogInBtn = 'Log In'
   authorizationForgotPasswordBtn = "Forgot Password?"
@@ -41,10 +43,11 @@ export class resourcesService {
   //registration
   registrationURL = 'Registration'
   registrationTitle = 'Registration'
+  registrationSuccess = 'User was successfully registered!'
 
   //main Page
   mainPageTitle = 'Shop'
-  mainPageURL = 'Shop'
+  mainPageURL = 'shop'
 
   //filter
   filterTitle= 'Filters'
@@ -57,11 +60,6 @@ export class resourcesService {
   filterCheapers = 'From cheap'
   filterExpensie= 'From expensive'
   feitlerSearch = 'Search'
-
-
-  // shoping cart
-  shopingCartTitle = 'Cart'
-  shopingCartURL = 'Cart'
 
   //item details
   detailsAddToCartButton = 'Add to Cart'
@@ -112,14 +110,14 @@ export class resourcesService {
 
   //cart
   cartTitle = 'Cart'
-  cartURL = 'Cart'
+  cartURL = 'cart'
   cartWarranty = 'Warranty + 1 year'
   cartReturnOption = 'Return option'
   cartDPH = 'Tax'
   cartPriceWithoutDPH = 'Price without Tax'
   cartTotalPrice = 'Total Price with TAX'
   cartBillingNavigation = this.billingPageTitle
-  cartBactToShopingNavigation = `Back to ${this.mainPageTitle}`
+  cartBactToShopingNavigation = `Back to ${this.mainPageURL}`
 
   //summary page
   summarryPageTitle = 'Summary'
@@ -155,11 +153,14 @@ export class resourcesService {
   //user-profile
   userProfileTitle= "User Profile"
   userProfileURL= "user-profile"
-  userProfileCredentialsTitle = 'Change credentials'
+  userProfileUsernameCredentialsTitle = 'Change username'
+  userProfilePasswordCredentialsTitle = 'Change password'
   userProfileUsername = 'Username'
   userProfilePassword = 'Password'
   userProfilePasswordConfirmation = 'Password confirmation'
   userProfileCredentials = 'Save credentials'
+  userProfileCredentialsChange = 'Yours credentials was successfully changed!'
+  userProfileUserDataChange = 'Yours data was successfully changed!'
 
   //cookie-banner
   cookieBanner = 'Cookie Banner'
@@ -191,8 +192,8 @@ export class resourcesService {
   kontaktStreet = 'Hlavna ulica 2'
 
 
-
+  problem= 'Something went wrong!'
   icon: string = 'logo.png'
 
-  Sections = [{ section: this.mainPageURL, title: this.mainPageTitle }, { section: this.authorizationURL, title: this.authorizationTitle }, { section: this.myOrdersURL, title: this.myOrdersTitle }, { section: this.userProfileURL, title: this.userProfileTitle },{section: this.shopingCartURL , title: this.shopingCartTitle}]
+  Sections = [{ section: this.mainPageURL, title: this.mainPageTitle }, { section: this.authorizationURL, title: this.authorizationTitle }, { section: this.myOrdersURL, title: this.myOrdersTitle }, { section: this.userProfileURL, title: this.userProfileTitle },{section: this.cartURL , title: this.cartTitle}]
 }

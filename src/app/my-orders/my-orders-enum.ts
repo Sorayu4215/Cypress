@@ -8,6 +8,8 @@ export enum myOrders{
     myOrdersTime = 'my-orders-time',
     myOrdersArrow = 'my-orders-arrow',
 
+    myOrdersTotalPrice = 'my-orders-total-price-',
+
     myOrdersSingleItem = 'my-orders-single-details-item-',
     myOrdersImage = 'my-orders-item-image-',
     myOrdersTitle = 'my-orders-item-title-',

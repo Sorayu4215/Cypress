@@ -6,5 +6,7 @@ export enum header{
     shopingCartIcon = 'header-cart-icon',
     headerItem = 'header-item-',
     headerItems = 'header-items',
-    headerBadge = 'header-badge'
+    headerBadge = 'header-badge',
+    headerLogOut = 'header-log-out',
+    headerLogOutIcon = 'header-log-out-icon'
 }

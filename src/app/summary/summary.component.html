@@ -1,109 +1,114 @@
 <h4 class="summary-title">{{this.resources.summarryPageTitle}}</h4>
 
-<div class="summary-wrapper">
-    <div class="summary-address">
-        <div class="summary-single-element" [attr.data-type]="attr.nameDiv">
-            <p class="summary-headling" [attr.data-type]="attr.nameLabel">{{this.resources.summaryName}}</p>
-            <label for="" class="summary data" [attr.data-type]="attr.nameInput">{{this.userData.name}}</label>
-        </div>
-        <div class="summary-single-element" [attr.data-type]="attr.emailDiv">
-            <p class="summary-headling" [attr.data-type]="attr.emailLabel">{{this.resources.summaryEmail}}</p>
-            <label for="" class="summary data" [attr.data-type]="attr.emailInput">{{this.userData.email}}</label>
-        </div>
-        <div class="summary-single-element" [attr.data-type]="attr.addressDiv">
-            <p class="summary-headling" [attr.data-type]="attr.addressLabel">{{this.resources.summaryAddress}}</p>
-            <label for="" class="summary data" [attr.data-type]="attr.addressInput">{{this.userData.address}}</label>
-        </div>
-        <div class="summary-single-element" [attr.data-type]="attr.cityDiv">
-            <p class="summary-headling" [attr.data-type]="attr.cityLabel">{{this.resources.summaryCity}}</p>
-            <label for="" class="summary data" [attr.data-type]="attr.cityInput">{{this.userData.city}}</label>
-        </div>
-        <div class="summary-single-element" [attr.data-type]="attr.postCodeDiv">
-            <p class="summary-headling" [attr.data-type]="attr.postCodeLabel">{{this.resources.summaryPostcode}}</p>
-            <label for="" class="summary data" [attr.data-type]="attr.postCodeInput">{{this.userData.postCode}}</label>
-        </div>
-        <div class="summary-single-element" [attr.data-type]="attr.phoneNumberDiv">
-            <p class="summary-headling" [attr.data-type]="attr.phoneNumberLabel">{{this.resources.summaryPhoneNumber}}</p>
-            <label for="" class="summary data" [attr.data-type]="attr.phoneNumberInput">{{this.userData.phoneNumber}}</label>
-        </div>
+<app-loader *ngIf="loader"></app-loader>
+<app-error *ngIf="error" [errorText]="errorMessage"></app-error>
 
-        <div class="summary-company">
-            <div class="summary-single-element" [attr.data-type]="attr.companyRegistrationNumberDiv" *ngIf="this.userData.companyRegistrationNo">
-                <p class="summary-headling" [attr.data-type]="attr.companyRegistrationNumberLabel">{{this.resources.summaryCompanyRegistrationNo}}</p>
-                <label for="" class="summary data" [attr.data-type]="attr.companyRegistrationNumberInput">{{this.userData.companyRegistrationNo}}</label>
+<div *ngIf="!loader">
+    <div class="summary-wrapper">
+        <div class="summary-address">
+            <div class="summary-single-element" [attr.data-type]="attr.nameDiv">
+                <p class="summary-headling" [attr.data-type]="attr.nameLabel">{{this.resources.summaryName}}</p>
+                <label for="" class="summary data" [attr.data-type]="attr.nameInput">{{this.userData.name}}</label>
             </div>
-            <div class="summary-single-element" [attr.data-type]="attr.VATDiv" *ngIf="this.userData.VAT">
-                <p class="summary-headling" [attr.data-type]="attr.VATLabel">{{this.resources.summaryVAT}}</p>
-                <label for="" class="summary data" [attr.data-type]="attr.VATInput">{{this.userData.VAT}}</label>
+            <div class="summary-single-element" [attr.data-type]="attr.emailDiv">
+                <p class="summary-headling" [attr.data-type]="attr.emailLabel">{{this.resources.summaryEmail}}</p>
+                <label for="" class="summary data" [attr.data-type]="attr.emailInput">{{this.userData.email}}</label>
             </div>
-            <div class="summary-single-element" [attr.data-type]="attr.BICDiv" *ngIf="this.userData.BIC">
-                <p class="summary-headling" [attr.data-type]="attr.BICLabel">{{this.resources.summaryBIC}}</p>
-                <label for="" class="summary data" [attr.data-type]="attr.BICInput">{{this.userData.BIC}}</label>
+            <div class="summary-single-element" [attr.data-type]="attr.addressDiv">
+                <p class="summary-headling" [attr.data-type]="attr.addressLabel">{{this.resources.summaryAddress}}</p>
+                <label for="" class="summary data" [attr.data-type]="attr.addressInput">{{this.userData.address}}</label>
             </div>
-            <div class="summary-single-element" [attr.data-type]="attr.IBANDiv" *ngIf="this.userData.IBAN">
-                <p class="summary-headling" [attr.data-type]="attr.IBANLabel">{{this.resources.summaryIBAN}}</p>
-                <label for="" class="summary data" [attr.data-type]="attr.IBANInput">{{this.userData.IBAN}}</label>
+            <div class="summary-single-element" [attr.data-type]="attr.cityDiv">
+                <p class="summary-headling" [attr.data-type]="attr.cityLabel">{{this.resources.summaryCity}}</p>
+                <label for="" class="summary data" [attr.data-type]="attr.cityInput">{{this.userData.city}}</label>
             </div>
-            <div class="summary-single-element" [attr.data-type]="attr.nameOfBankAccountDiv" *ngIf="this.userData.bankAccountHolder">
-                <p class="summary-headling" [attr.data-type]="attr.nameOfBankAccountLabel">{{this.resources.summaryNameOfBankAccountHolder}}</p>
-                <label for="" class="summary data" [attr.data-type]="attr.nameOfBankAccountInput">{{this.userData.bankAccountHolder}}</label>
+            <div class="summary-single-element" [attr.data-type]="attr.postCodeDiv">
+                <p class="summary-headling" [attr.data-type]="attr.postCodeLabel">{{this.resources.summaryPostcode}}</p>
+                <label for="" class="summary data" [attr.data-type]="attr.postCodeInput">{{this.userData.postCode}}</label>
             </div>
+            <div class="summary-single-element" [attr.data-type]="attr.phoneNumberDiv">
+                <p class="summary-headling" [attr.data-type]="attr.phoneNumberLabel">{{this.resources.summaryPhoneNumber}}</p>
+                <label for="" class="summary data" [attr.data-type]="attr.phoneNumberInput">{{this.userData.phoneNumber}}</label>
+            </div>
+    
+            <div class="summary-company">
+                <div class="summary-single-element" [attr.data-type]="attr.companyRegistrationNumberDiv" *ngIf="this.userData.companyRegistrationNo">
+                    <p class="summary-headling" [attr.data-type]="attr.companyRegistrationNumberLabel">{{this.resources.summaryCompanyRegistrationNo}}</p>
+                    <label for="" class="summary data" [attr.data-type]="attr.companyRegistrationNumberInput">{{this.userData.companyRegistrationNo}}</label>
+                </div>
+                <div class="summary-single-element" [attr.data-type]="attr.VATDiv" *ngIf="this.userData.VAT">
+                    <p class="summary-headling" [attr.data-type]="attr.VATLabel">{{this.resources.summaryVAT}}</p>
+                    <label for="" class="summary data" [attr.data-type]="attr.VATInput">{{this.userData.VAT}}</label>
+                </div>
+                <div class="summary-single-element" [attr.data-type]="attr.BICDiv" *ngIf="this.userData.BIC">
+                    <p class="summary-headling" [attr.data-type]="attr.BICLabel">{{this.resources.summaryBIC}}</p>
+                    <label for="" class="summary data" [attr.data-type]="attr.BICInput">{{this.userData.BIC}}</label>
+                </div>
+                <div class="summary-single-element" [attr.data-type]="attr.IBANDiv" *ngIf="this.userData.IBAN">
+                    <p class="summary-headling" [attr.data-type]="attr.IBANLabel">{{this.resources.summaryIBAN}}</p>
+                    <label for="" class="summary data" [attr.data-type]="attr.IBANInput">{{this.userData.IBAN}}</label>
+                </div>
+                <div class="summary-single-element" [attr.data-type]="attr.nameOfBankAccountDiv" *ngIf="this.userData.bankAccountHolder">
+                    <p class="summary-headling" [attr.data-type]="attr.nameOfBankAccountLabel">{{this.resources.summaryNameOfBankAccountHolder}}</p>
+                    <label for="" class="summary data" [attr.data-type]="attr.nameOfBankAccountInput">{{this.userData.bankAccountHolder}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="line-vertical"></div>
+        <div class="summary-billing">
+                <div class="summary-single-element" [attr.data-type]="attr.deliveryMethodDiv">
+                    <p class="summary-headling"[attr.data-type]="attr.deliveryMethodLabel">{{this.resources.summaryDeliveryMethod}}</p>
+                    <label for="" class="summary data" [attr.data-type]="attr.deliveryMethodInput">{{this.shipping.shipping}}</label>
+                </div>
+                <div class="summary-single-element" [attr.data-type]="attr.paymentTypeDiv">
+                    <p class="summary-headling" [attr.data-type]="attr.paymentTypeLabel">{{this.resources.summaryPaymentType}}</p>
+                    <label for="" class="summary data" [attr.data-type]="attr.paymentTypeInput">{{this.shipping.payment}}</label>
+                </div>
         </div>
     </div>
-    <div class="line-vertical"></div>
-    <div class="summary-billing">
-            <div class="summary-single-element" [attr.data-type]="attr.deliveryMethodDiv">
-                <p class="summary-headling"[attr.data-type]="attr.deliveryMethodLabel">{{this.resources.summaryDeliveryMethod}}</p>
-                <label for="" class="summary data" [attr.data-type]="attr.deliveryMethodInput">{{this.shipping.shipping}}</label>
+    
+    <div class="cart-wrapper">
+    
+        <div class="cart-single-element" [attr.data-type]="attr.summarySingleItem +i" *ngFor="let item of this.items; let i = index">
+            <!-- treba sem pridat k data-type cislo iteracie, teda index i  -->
+            <div class="cart-info">
+                <img src="{{item.image}}" alt="" class="cart-image" [attr.data-type]="attr.summaryImage +i">
+                <h5 class="cart-title" [attr.data-type]="attr.summaryTitle+i">{{item.title}}</h5>
+                <h5 class="cart-price" [attr.data-type]="attr.summaryCount+i">{{this.item.price}} €</h5>
+                <h5 class="cart-price" [attr.data-type]="attr.summaryAmount+i">{{this.item.amount}}</h5>
+                <h4 class="cart-single-total-price" [attr.data-type]="attr.summaryPriceWithAccesories">{{this.common.totalItemPrice(item.price,item.waranty,item.returnOption,item.amount) }} €</h4>
             </div>
-            <div class="summary-single-element" [attr.data-type]="attr.paymentTypeDiv">
-                <p class="summary-headling" [attr.data-type]="attr.paymentTypeLabel">{{this.resources.summaryPaymentType}}</p>
-                <label for="" class="summary data" [attr.data-type]="attr.paymentTypeInput">{{this.shipping.payment}}</label>
+            <div class="cart-additional" [attr.data-type]="attr.summaryWarrantyDiv +i" *ngIf="item.waranty">
+                <p class="cart-additional-label"[attr.data-type]="attr.summaryWarrantyTitle+i">{{this.resources.cartWarranty}}
+                </p>
+                <h5 class="cart-additional-price"[attr.data-type]="attr.summaryWarrantyPrice+i">20 €</h5>
             </div>
+            <div class="cart-additional" [attr.data-type]="attr.summaryReturnOptionDiv+i" *ngIf="item.returnOption">
+                <p class="cart-additional-label" [attr.data-type]="attr.summaryReturnOptionTitle+i">
+                    {{this.resources.cartReturnOption}}</p>
+                <h5 class="cart-additional-price" [attr.data-type]="attr.summaryReturnOptionPrice+i">10 €</h5>
+            </div>
+        </div>
+    
     </div>
-</div>
-
-<div class="cart-wrapper">
-
-    <div class="cart-single-element" [attr.data-type]="attr.summarySingleItem +i" *ngFor="let item of this.items; let i = index">
-        <!-- treba sem pridat k data-type cislo iteracie, teda index i  -->
-        <div class="cart-info">
-            <img src="{{item.image}}" alt="" class="cart-image" [attr.data-type]="attr.summaryImage +i">
-            <h5 class="cart-title" [attr.data-type]="attr.summaryTitle+i">{{item.title}}</h5>
-            <h5 class="cart-price" [attr.data-type]="attr.summaryCount+i">{{this.item.price}} €</h5>
-            <h5 class="cart-price" [attr.data-type]="attr.summaryAmount+i">{{this.item.amount}}</h5>
-            <h4 class="cart-single-total-price" [attr.data-type]="attr.summaryPriceWithAccesories">{{this.common.totalItemPrice(item.price,item.waranty,item.returnOption,item.amount) }} €</h4>
-        </div>
-        <div class="cart-additional" [attr.data-type]="attr.summaryWarrantyDiv +i" *ngIf="item.waranty">
-            <p class="cart-additional-label"[attr.data-type]="attr.summaryWarrantyTitle+i">{{this.resources.cartWarranty}}
-            </p>
-            <h5 class="cart-additional-price"[attr.data-type]="attr.summaryWarrantyPrice+i">20 €</h5>
-        </div>
-        <div class="cart-additional" [attr.data-type]="attr.summaryReturnOptionDiv+i" *ngIf="item.returnOption">
-            <p class="cart-additional-label" [attr.data-type]="attr.summaryReturnOptionTitle+i">
-                {{this.resources.cartReturnOption}}</p>
-            <h5 class="cart-additional-price" [attr.data-type]="attr.summaryReturnOptionPrice+i">10 €</h5>
+    
+    <div class="cart-wrapper total-wrapper">
+        <div class="total" [attr.data-type]="attr.summaryTotalPriceDiv">
+            <h4 [attr.data-type]="attr.summaryTotalPriceTitle">{{this.resources.cartTotalPrice}}</h4>
+            <h4 class="cart-total-price" [attr.data-type]="attr.summaryTotalPricePrice">{{this.common.amountWithDPH(this.common.allItemsPrice(this.items))}} €</h4>
         </div>
     </div>
-
-</div>
-
-<div class="cart-wrapper total-wrapper">
-    <div class="total" [attr.data-type]="attr.summaryTotalPriceDiv">
-        <h4 [attr.data-type]="attr.summaryTotalPriceTitle">{{this.resources.cartTotalPrice}}</h4>
-        <h4 class="cart-total-price" [attr.data-type]="attr.summaryTotalPricePrice">{{this.common.amountWithDPH(this.common.allItemsPrice(this.items))}} €</h4>
+    
+    <app-error [errorText]="errorMessage" *ngIf="error"></app-error>
+    
+    <div class="cart-wrapper cart-navigation">
+        <button class="cart-navigation-btn back" [routerLink]="'/'+this.resources.adresstitle" [attr.data-type]="attr.backToAddress">
+            <fa-icon [icon]="this.resources.arrowLeft" class="cart-navigation-icon"></fa-icon> Back to {{this.resources.adresstitle}}
+        </button>
+        <button class="cart-navigation-btn order" [attr.data-type]="attr.order" (click)="makeOrder()">
+            {{this.resources.orderTitle}}
+            <fa-icon [icon]="this.resources.arrowRight" class="cart-navigation-icon"></fa-icon>
+        </button>
     </div>
-</div>
 
-<app-error [errorText]="errorMessage" *ngIf="error"></app-error>
-
-<div class="cart-wrapper cart-navigation">
-    <button class="cart-navigation-btn back" [routerLink]="'/'+this.resources.adresstitle" [attr.data-type]="attr.backToAddress">
-        <fa-icon [icon]="this.resources.arrowLeft" class="cart-navigation-icon"></fa-icon> Back to {{this.resources.adresstitle}}
-    </button>
-    <button class="cart-navigation-btn order" [attr.data-type]="attr.order" (click)="makeOrder()">
-        {{this.resources.orderTitle}}
-        <fa-icon [icon]="this.resources.arrowRight" class="cart-navigation-icon"></fa-icon>
-    </button>
-</div>
-
+</div>    

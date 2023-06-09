@@ -51,11 +51,11 @@
 </div>
 
 <div class="cart-wrapper cart-navigation"  *ngIf="this.items !== undefined && this.error !== true">
-    <button class="cart-navidation-btn" [routerLink]="'/'+this.resources.mainPageTitle" [attr.data-type]="attr.cartBackToShopNavigation">
+    <button class="cart-navidation-btn" [routerLink]="'/'+this.resources.mainPageURL" [attr.data-type]="attr.cartBackToShopNavigation">
         <fa-icon [icon]="this.resources.arrowLeft" class="cart-navidation-icon"></fa-icon>
         {{this.resources.cartBactToShopingNavigation}}
     </button>
-    <button class="cart-navidation-btn" [attr.data-type]="attr.cartBillingNavigation" [routerLink]="'/'+this.resources.billingPageTitle">
+    <button  *ngIf="!this.loader && this.items.length !== 0" class="cart-navidation-btn" [attr.data-type]="attr.cartBillingNavigation" [routerLink]="'/'+this.resources.billingPageTitle">
         {{this.resources.cartBillingNavigation}}
         <fa-icon [icon]="this.resources.arrowRight" class="cart-navidation-icon"></fa-icon>
     </button>

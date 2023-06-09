@@ -11,14 +11,19 @@ import { DataService } from '../shared/data/data.service';
   styleUrls: ['./summary.component.css']
 })
 export class SummaryComponent implements OnInit{
-  
   constructor(public resources: resourcesService, private router: Router, public common: CommonService, public data: DataService){
+    this.loader = true
     this.originalData = JSON.parse(localStorage.getItem('Items')!)
+    
     this.data.getItemsAttributes(this.originalData).subscribe((item: any) => {
       this.items = item
+      this.loader = false
+    },err =>{
+      this.loader = false
+      this.error = true
+      this.errorMessage = 'Something went wrong'
     })
     if (this.items == null) this.items = []
-
   }
 
   originalData: any
@@ -29,6 +34,7 @@ export class SummaryComponent implements OnInit{
   userData:any
   shipping: any
   totalPrice:number
+  loader:boolean
   readonly attr = summary
 
   makeOrder(){

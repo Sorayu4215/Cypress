@@ -17,19 +17,11 @@ export class UserGuardService {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let user:any
     if (JSON.parse(localStorage.getItem('User')!)){
-      user = JSON.parse(localStorage.getItem('User')!)
+      return true
     }else{  
       alert('Not Authorized!')   
       return false
     }
 
-    return new Promise(resolve => {
-    this.http.get(`${this.resources.apiURL}/api/v1/user`, { headers: { Authorization: `Bearer ${user.token}`}}).subscribe( data =>{
-      resolve(true)
-    },err =>{
-      alert('Not Authorized!')
-      resolve(false)      
-    })
-   })
   }
 }

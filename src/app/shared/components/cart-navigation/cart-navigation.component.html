@@ -1,13 +1,13 @@
 <div class="cart-navigation">
-    <div class="cart-navigation-page" [ngClass]="this.router.url.slice(1) == this.resources.cartTitle ? 'active' : ''" [attr.data-type]="attr.navigationOne">
+    <div class="cart-navigation-page" [ngClass]="this.router.url.slice(1) == this.resources.cartURL ? 'active' : ''" [attr.data-type]="attr.navigationOne">
         <h5>1. {{this.resources.cartTitle}}</h5>
     </div>
     <fa-icon [icon]="this.resources.arrowRight" class="cart-navigation-icon"></fa-icon>
-    <div class="cart-navigation-page" [ngClass]="this.router.url.slice(1) == this.resources.billingPageTitle ? 'active' : ''" [attr.data-type]="attr.navigationTwo">
+    <div class="cart-navigation-page" [ngClass]="this.router.url.slice(1) == this.resources.billingPageURL ? 'active' : ''" [attr.data-type]="attr.navigationTwo">
         <h5>2. {{this.resources.billingPageTitle}}</h5>
     </div>
     <fa-icon [icon]="this.resources.arrowRight" class="cart-navigation-icon"></fa-icon>
-    <div class="cart-navigation-page" [ngClass]="this.router.url.slice(1) == this.resources.adresstitle ? 'active' : ''" [attr.data-type]="attr.navigationThree">
+    <div class="cart-navigation-page" [ngClass]="this.router.url.slice(1) == this.resources.adressURL ? 'active' : ''" [attr.data-type]="attr.navigationThree">
         <h5>3. {{this.resources.adresstitle}}</h5>
     </div>
 

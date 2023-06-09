@@ -1,42 +1,75 @@
 <h4 class="user-account-title" [attr.data-type]="attr.userProfileTitle">{{this.resources.userProfileTitle}}</h4>
 
-<app-error [errorText]="errorMessage" *ngIf="error"></app-error>
-<app-input-data [submitBtnName]="'Save'" (formData)="getFormData($event)" ></app-input-data>
+
+<app-error [errorText]="this.resources.problem" *ngIf="error"></app-error>
+<app-succuess *ngIf="success" [successText]="this.resources.userProfileUserDataChange"></app-succuess>
+<app-input-data [submitBtnName]="'Save'" (formData)="getFormData($event)" [prefilledValues]="this.userData"></app-input-data>
+
+<app-loader *ngIf="loaderData"></app-loader>
 
 
-<app-error [errorText]="errorMessageCredentials" *ngIf="errorCredentials"></app-error>
-<h5 class="user-account-title martin-top" [attr.data-type]="attr.changeCredentialsTitle">{{this.resources.userProfileCredentialsTitle}}</h5>
-<div class="form-margin">
-    <form action="" [formGroup]="credentials" #ngFormCredentials="ngForm" class="form alighn" (ngSubmit)="saveValuesCredentials()">
-        <fieldset class="input-wrapper" [disabled]="isDisabledCredentials" [attr.data-type]="attr.addressDiv" [disabled]="isDisabledCredentials">
-            <label class="input-name" [attr.data-type]="attr.addressLabel">{{this.resources.userProfileUsername}}</label>
-            <input type="text" formControlName="username" class="input alighn input-width" placeholder="Insert {{this.resources.userProfileUsername}}"
-                [attr.data-type]="attr.addressInput">
+
+<h5 class="user-account-title martin-top" [attr.data-type]="attr.changeUsernameCredentialsTitle">{{this.resources.userProfileUsernameCredentialsTitle}}</h5>
+<app-succuess *ngIf="successUsername" [successText]="this.resources.userProfileUserDataChange"></app-succuess>
+<app-error [errorText]="errorMessageUsername" *ngIf="errorUsername"></app-error>
+<div>
+    <form action="" [formGroup]="username" #ngFormUsernameCredentials="ngForm" class="form alighn" (ngSubmit)="saveUsernameValuesCredentials()">
+        <fieldset class="input-wrapper" [disabled]="isDisabledUsernameCredentials" [attr.data-type]="attr.usernameDiv">
+            <label class="input-name" [attr.data-type]="attr.usernameLabel">{{this.resources.userProfileUsername}}</label>
+            <input type="text" formControlName="newUsername" class="input alighn input-width" placeholder="Insert new {{this.resources.userProfileUsername}}"
+                [attr.data-type]="attr.usernameInput">
             <span
-                *ngIf="credentials.get('username')!.touched && credentials.get('username')!.invalid || ngFormCredentials.submitted && credentials.get('username')!.invalid"
-                class="invalid">Insert value!</span>
-        </fieldset><br>
-        <fieldset class="input-wrapper" [disabled]="isDisabledCredentials" [attr.data-type]="attr.addressDiv" [disabled]="isDisabledCredentials">
-            <label class="input-name" [attr.data-type]="attr.addressLabel">{{this.resources.userProfilePassword}}</label>
-            <input type="password" formControlName="password" class="input alighn input-width" placeholder="Insert {{this.resources.userProfilePassword}}"
-                [attr.data-type]="attr.addressInput">
-            <span
-                *ngIf="credentials.get('password')!.touched && credentials.get('password')!.invalid || ngFormCredentials.submitted && credentials.get('password')!.invalid"
-                class="invalid">Insert value!</span>
-        </fieldset><br>
-        <fieldset class="input-wrapper" [disabled]="isDisabledCredentials" [attr.data-type]="attr.addressDiv" [disabled]="isDisabledCredentials">
-            <label class="input-name" [attr.data-type]="attr.addressLabel">{{this.resources.userProfilePasswordConfirmation}}</label>
-            <input type="password" formControlName="passwordConfirmation" class="input alighn input-width" placeholder="Insert {{this.resources.userProfilePasswordConfirmation}}"
-                [attr.data-type]="attr.addressInput">
-            <span
-                *ngIf="credentials.get('passwordConfirmation')!.touched && credentials.get('passwordConfirmation')!.invalid || ngFormCredentials.submitted && credentials.get('passwordConfirmation')!.invalid"
+                *ngIf="username.get('newUsername')!.touched && username.get('newUsername')!.invalid || ngFormUsernameCredentials.submitted && username.get('newUsername')!.invalid"
                 class="invalid">Insert value!</span>
         </fieldset><br>
             <div class="user-accout-buttons2">
-                <input type="submit" class="edit-button" (click)="changeValuesCredentials()" *ngIf="editButtonCredentials"
-                    [attr.data-type]="attr.changeCredentialsBtn" value="Change Credentials">
-                <input type="submit" class="edit-button" value="Save" *ngIf="!editButtonCredentials"
+                <input type="submit" class="edit-button" (click)="changeValuesCredentials('username')" *ngIf="editButtonUsernameCredentials"
+                    [attr.data-type]="attr.changeCredentialsBtn" value="Change Username">
+                <input type="submit" class="edit-button" value="Save" *ngIf="!editButtonUsernameCredentials && !loaderUsername"
                     [attr.data-type]="attr.saveCredentialsBtn">
             </div>
         </form>
     </div>
+
+<app-loader *ngIf="loaderUsername"></app-loader>
+
+
+
+<h5 class="user-account-title" [attr.data-type]="attr.changePasswordCredentialsTitle">
+    {{this.resources.userProfilePasswordCredentialsTitle}}</h5>
+    <app-succuess *ngIf="successPassword" [successText]="this.resources.userProfileUserDataChange"></app-succuess>
+    <app-error [errorText]="errorMessagePassword" *ngIf="errorPassword"></app-error>
+<div >
+    <form action="" [formGroup]="password" #ngFormPasswordCredentials="ngForm" class="form alighn"
+        (ngSubmit)="savePasswordValuesCredentials()">
+        <fieldset class="input-wrapper" [disabled]="isDisabledPasswordCredentials" [attr.data-type]="attr.newPasswordDiv">
+            <label class="input-name"
+                [attr.data-type]="attr.newPasswordLabel">New {{this.resources.userProfilePassword}}</label>
+            <input type="password" formControlName="newPassword" class="input alighn input-width"
+                placeholder="Insert new {{this.resources.userProfilePassword}}" [attr.data-type]="attr.newPasswordInput">
+            <span
+                *ngIf="password.get('newPassword')!.touched && password.get('newPassword')!.invalid || ngFormPasswordCredentials.submitted && password.get('newPassword')!.invalid"
+                class="invalid">Insert value!</span>
+        </fieldset><br>
+        <fieldset class="input-wrapper" [disabled]="isDisabledPasswordCredentials" [attr.data-type]="attr.newConfirmPasswordDiv">
+            <label class="input-name"
+                [attr.data-type]="attr.newConfirmPasswordLabel">{{this.resources.userProfilePasswordConfirmation}}</label>
+            <input type="password" formControlName="passwordConfirmation" class="input alighn input-width"
+                placeholder="Insert {{this.resources.userProfilePasswordConfirmation}}"
+                [attr.data-type]="attr.newConfirmPasswordInput">
+            <span
+                *ngIf="password.get('passwordConfirmation')!.touched && password.get('passwordConfirmation')!.invalid || ngFormPasswordCredentials.submitted && password.get('passwordConfirmation')!.invalid"
+                class="invalid">Insert value!</span>
+        </fieldset><br>
+        <div class="user-accout-buttons2">
+            <input type="submit" class="edit-button" (click)="changeValuesCredentials('password')" *ngIf="editButtonPasswordCredentials"
+                [attr.data-type]="attr.changeCredentialsBtn" value="Change Password">
+            <input type="submit" class="edit-button" value="Save" *ngIf="!editButtonPasswordCredentials"
+                [attr.data-type]="attr.saveCredentialsBtn">
+        </div>
+    </form>
+</div>
+
+<app-loader *ngIf="loaderPassword"></app-loader>
+
+

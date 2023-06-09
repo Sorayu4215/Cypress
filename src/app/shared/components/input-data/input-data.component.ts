@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { resourcesService } from '../../resources.service';
 import { inputData } from './input-data-enum';
 import { countries } from '../../data/country';
+import { DataService } from '../../data/data.service';
 
 @Component({
   selector: 'app-input-data',
@@ -12,7 +13,14 @@ import { countries } from '../../data/country';
 export class InputDataComponent implements OnInit {
 
 
-  constructor(public resources: resourcesService) { 
+  constructor(public resources: resourcesService, private data: DataService) { 
+    if (localStorage.getItem('User')){
+      const token = JSON.parse(localStorage.getItem('User')!).token
+      this.data.user(token).subscribe((data: any) => {
+        this.address.setValue(data)
+        this.companyUser = data.bussiness_account
+      })
+    }
   }
 
 
@@ -28,34 +36,56 @@ export class InputDataComponent implements OnInit {
   isDisabledCredentials: boolean = true
   editButtonCredentials: boolean = true
   readonly attr = inputData
+  // address = new FormGroup({
+  //   email: new FormControl( '' , [Validators.required, Validators.email]),
+  //   name: new FormControl('', [Validators.required]),
+  //   address: new FormControl('', Validators.required),
+  //   country: new FormControl('', Validators.required),
+  //   city: new FormControl('', Validators.required),
+  //   post_code: new FormControl('', Validators.required),
+  //   phone_number: new FormControl('', [Validators.required, Validators.minLength(9)]),
+  //   newsletter: new FormControl(false),
+  //   terms_and_condition: new FormControl(false, Validators.requiredTrue),
+  //   bussiness_account: new FormControl(false),
+  //   compaty_reg_number: new FormControl(''),
+  //   VAT: new FormControl(''),
+  //   BIC: new FormControl(''),
+  //   IBAN: new FormControl(''),
+  //   bank_account_holder: new FormControl(''),
+  //   idUsers: new FormControl(''),
+  // })
   address = new FormGroup({
     email: new FormControl( '' , [Validators.required, Validators.email]),
     name: new FormControl('', [Validators.required]),
     address: new FormControl('', Validators.required),
     country: new FormControl('', Validators.required),
     city: new FormControl('', Validators.required),
-    postCode: new FormControl('', Validators.required),
-    phoneNumber: new FormControl('', [Validators.required, Validators.minLength(9)]),
+    post_code: new FormControl('', Validators.required),
+    phone_number: new FormControl('', [Validators.required, Validators.minLength(9)]),
     newsletter: new FormControl(false),
-    termsAndConditions: new FormControl(false, Validators.requiredTrue),
-    billingBusiness: new FormControl(false),
-    companyRegistrationNo: new FormControl(''),
+    terms_and_condition: new FormControl(false, Validators.requiredTrue),
+    bussiness_account: new FormControl(false),
+    compaty_reg_number: new FormControl(''),
     VAT: new FormControl(''),
     BIC: new FormControl(''),
     IBAN: new FormControl(''),
-    bankAccountHolder: new FormControl(''),
+    bank_account_holder: new FormControl(''),
+    idUsers: new FormControl(''),
   })
   @Output() formData = new EventEmitter()
 
   addNewItem() {
+    console.log(this.address);
+    
     this.formData.emit(this.address);
   }
 
   ngOnInit(): void {
-    if(this.userData){
-      console.log();
-      this.address.setValue(this.userData)    
-    }
+    this.address.setValue(this.userData)  
+    this.companyUser = this.userData.bussiness_account
+    this.data.userData.subscribe((data: any) => { 
+      this.address.setValue(data)  
+    })
   }
 
 }

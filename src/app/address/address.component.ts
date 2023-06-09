@@ -48,7 +48,6 @@ export class AddressComponent implements OnInit{
 
 
   item(event:any){
-
     if(event.status == 'VALID'){
       localStorage.setItem('Address', JSON.stringify(event.value))
       this.router.navigate([this.resources.summarryPageURL])

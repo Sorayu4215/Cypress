@@ -1,0 +1,22 @@
+.success-wrapper{
+    display: block;
+    margin: 2rem auto;
+    text-align: center;
+}
+.success-box{
+    display: inline-block;
+    padding: 1rem 3rem;
+    background-color: #d2d2d2;
+    border-radius: 2px;
+    border: 2px solid var(--success-color);
+}
+.success-icon{
+    font-size: 150%;
+    color: var(--success-color);
+    margin-right: 1.5rem;
+}
+.success-text{
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 125%;
+}

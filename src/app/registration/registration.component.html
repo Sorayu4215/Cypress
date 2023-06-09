@@ -1,3 +1,41 @@
-<app-error [errorText]="errorMessage" *ngIf="error"></app-error>
 <h4 class="title" [attr.data-type]="attr.title">{{this.resources.registrationTitle}}</h4>
-<app-input-data [submitBtnName]="'Register'" (formData)="getFormData($event)"></app-input-data>
+<app-error [errorText]="errorMessage" *ngIf="error"></app-error>
+<app-succuess *ngIf="success" [successText]="this.resources.registrationSuccess"></app-succuess>
+
+<div class="items">
+    <form action="" [formGroup]="credentials" #ngFormPasswordCredentials="ngForm" class="form"
+    (ngSubmit)="getFormData()">
+        <fieldset class="input-wrapper" [attr.data-type]="attr.usernameDiv">
+            <label class="input-name" [attr.data-type]="attr.usernameLabel">New
+                {{this.resources.userProfileUsername}}</label>
+            <input type="username" formControlName="username" class="input input-width"
+                placeholder="Insert new {{this.resources.userProfilePassword}}" [attr.data-type]="attr.usernameInput">
+            <span
+                *ngIf="credentials.get('username')!.touched && credentials.get('username')!.invalid || this.submitted && credentials.get('username')!.invalid"
+                class="invalid">Insert value!</span>
+        </fieldset><br>
+        <fieldset class="input-wrapper" [attr.data-type]="attr.passwordDiv">
+            <label class="input-name" [attr.data-type]="attr.passwordLabel">New
+                {{this.resources.userProfilePassword}}</label>
+            <input type="password" formControlName="newPassword" class="input input-width"
+                placeholder="Insert new {{this.resources.userProfilePassword}}" [attr.data-type]="attr.passwordInput">
+            <span
+                *ngIf="credentials.get('newPassword')!.touched && credentials.get('newPassword')!.invalid || this.submitted && credentials.get('newPassword')!.invalid"
+                class="invalid">Insert value!</span>
+        </fieldset><br>
+        <fieldset class="input-wrapper" 
+            [attr.data-type]="attr.passwordConfirmationDiv">
+            <label class="input-name"
+                [attr.data-type]="attr.passwordConfirmationLabel">{{this.resources.userProfilePasswordConfirmation}}</label>
+            <input type="password" formControlName="passwordConfirmation" class="input input-width"
+                placeholder="Insert {{this.resources.userProfilePasswordConfirmation}}"
+                [attr.data-type]="attr.passwordConfirmationInput">
+            <span
+                *ngIf="credentials.get('passwordConfirmation')!.touched && credentials.get('passwordConfirmation')!.invalid || this.submitted && credentials.get('newPassword')!.invalid"
+                class="invalid">Insert value!</span>
+        </fieldset><br>
+    </form>
+</div>
+
+<app-input-data [submitBtnName]="'Register'" (formData)="getFormData($event)" style="margin-bottom: 3rem;"></app-input-data>
+<app-loader *ngIf="loader"></app-loader>
