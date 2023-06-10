@@ -11,6 +11,12 @@ export class resourcesService {
   //api server
   apiURL = 'http://localhost:3000'
 
+  //meta 
+  metaDescription = 'Ockay Testing app, testing app for purposes of testing and learning.'
+  metaKeywords = 'Testing app, leargning testing, QA, automation app, testing eshop'
+  metaAuthor = 'Martin Ockay | Ockay Template page, QA leader'
+  metaTemplate = 'Ockay template, testing app esphop done'
+
   //icons
   facebook = faFacebook
   instagram = faInstagram
