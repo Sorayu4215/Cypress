@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { resourcesService } from './shared/resources.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,9 @@ import { resourcesService } from './shared/resources.service';
 })
 export class AppComponent {
 
-  constructor(private meta: Meta, public resources: resourcesService){
+  public isBrowser = isPlatformBrowser(this.platformId);
+
+  constructor(private meta: Meta, public resources: resourcesService, @Inject(PLATFORM_ID) private platformId: any,){
     this.meta.addTag({ name: 'description', content: this.resources.metaDescription })
     this.meta.addTag({ name: 'keywords', content: this.resources.metaKeywords })
     this.meta.addTag({ name: 'author', content: this.resources.metaAuthor })
