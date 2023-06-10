@@ -7,10 +7,10 @@ build:
   stage: build
   script:
     - npm install
-    - npm run build --prod
+    - npm run prerender
   artifacts:
     paths:
-      - dist/
+      - dist
 
 deploy:
   image: ruby:latest
