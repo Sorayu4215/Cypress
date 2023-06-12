@@ -2,18 +2,17 @@
   "name": "testing-app",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
     "start": "NODE_ENV=production node server.js",
     "start_dev": "NODE_ENV=development node server.js",
     "server_start": "NODE_ENV=production nodemon server.js",
     "server_start_development": "NODE_ENV=development nodemon server.js",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
     "dev:ssr": "ng run testing-app:serve-ssr",
     "serve:ssr": "node dist/testing-app/server/main.js",
     "build:ssr": "ng build && ng run testing-app:server",
-    "prerender": "ng run testing-app:prerender"
+    "prerender": "ng run testing-app:prerender",
+    "prerenderDev": "ng run testing-app:prerender:development",
+    "cy:open": "npx cypress open",
+    "cy:run:prod": "npx cypress run --config baseUrl='https://eshop-testing-app.herokuapp.com'"
   },
   "private": true,
   "dependencies": {
@@ -34,6 +33,7 @@
     "body-parse": "^0.1.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
+    "cypress": "^12.14.0",
     "dotenv": "^16.0.3",
     "express": "^4.15.2",
     "express-fileupload": "^1.4.0",
@@ -44,6 +44,7 @@
     "localstorage-polyfill": "^1.0.1",
     "mysql": "^2.18.1",
     "ngx-cookie-service": "^15.0.0",
+    "ngx-meta": "^0.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

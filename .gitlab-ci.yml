@@ -1,9 +1,11 @@
 stages:
   - build
   - deploy
+  - test
+
+  image: node:latest
 
 build:
-  image: node:latest
   stage: build
   script:
     - npm install
@@ -19,3 +21,8 @@ deploy:
     - gem install dpl
   script:
     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+
+integration_tests:
+  stage: test
+  script: 
+    - npm run cy:run:prod

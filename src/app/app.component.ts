@@ -12,7 +12,7 @@ export class AppComponent {
 
   public isBrowser = isPlatformBrowser(this.platformId);
 
-  constructor(private meta: Meta, public resources: resourcesService, @Inject(PLATFORM_ID) private platformId: any,){
+  constructor(public resources: resourcesService, private meta: Meta, @Inject(PLATFORM_ID) private platformId: any) {
     this.meta.addTag({ name: 'description', content: this.resources.metaDescription })
     this.meta.addTag({ name: 'keywords', content: this.resources.metaKeywords })
     this.meta.addTag({ name: 'author', content: this.resources.metaAuthor })
