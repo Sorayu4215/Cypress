@@ -25,4 +25,7 @@ integration_tests:
   image: cypress/browsers
   stage: test
   script: 
+    - npm ci
+    - npm start &
     - npm run cy:run:prod
+
