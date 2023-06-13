@@ -12,7 +12,7 @@
     "prerender": "ng run testing-app:prerender",
     "prerenderDev": "ng run testing-app:prerender:development",
     "cy:open": "npx cypress open",
-    "cy:run:prod": "npx cypress run --config baseUrl='https://eshop-testing-app.herokuapp.com'"
+    "cy:run:prod": "npx cypress run --config baseUrl='https://eshop-testing-app.herokuapp.com' --headless"
   },
   "private": true,
   "dependencies": {
