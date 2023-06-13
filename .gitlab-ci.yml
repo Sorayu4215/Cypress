@@ -3,9 +3,8 @@ stages:
   - deploy
   - test
 
-image: node:latest
-
 build:
+  image: node:latest
   stage: build
   script:
     - npm install
@@ -26,6 +25,4 @@ integration_tests:
   image: cypress/browsers
   stage: test
   script: 
-    - npm ci
-    - npm start &
     - npm run cy:run:prod
