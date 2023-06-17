@@ -1,66 +1,70 @@
 export enum summary{
     emailDiv = 'summary-email-div',
-    emailInput = 'summary-email-input',
+    emailDataLabel = 'summary-email-DataLabel',
     emailLabel = 'summary-email-label',
 
     nameDiv = 'summary-name-div',
-    nameInput = 'summary-name-input',
+    nameDataLabel = 'summary-name-DataLabel',
     nameLabel = 'summary-name-label',
 
     addressDiv = 'summary-address-div',
-    addressInput = 'summary-address-input',
+    addressDataLabel = 'summary-address-DataLabel',
     addressLabel = 'summary-address-label',
 
+    countryDiv = 'summary-country-div',
+    countryDataLabel = 'summary-country-DataLabel',
+    countryLabel = 'summary-country-label',
+
     cityDiv = 'summary-city-div',
-    cityInput = 'summary-city-input',
+    cityDataLabel = 'summary-city-DataLabel',
     cityLabel = 'summary-city-label',
 
     postCodeDiv = 'summary-post-code-div',
-    postCodeInput = 'summary-post-code-input',
+    postCodeDataLabel = 'summary-post-code-DataLabel',
     postCodeLabel = 'summary-post-code-label',
 
     phoneNumberDiv = 'summary-phone-number-div',
-    phoneNumberInput = 'summary-phone-number-input',
+    phoneNumberDataLabel = 'summary-phone-number-DataLabel',
     phoneNumberLabel = 'summary-phone-number-label',
 
     newsletterDiv = 'summary-newsletter-div',
-    newsletterInput = 'summary-newsletter-input',
+    newsletterDataLabel = 'summary-newsletter-DataLabel',
     newsletterLabel = 'summary-newsletter-label',
 
     termsAndConditionDiv = 'summary-terms-and-condition-div',
-    termsAndConditionInput = 'summary-terms-and-condition-input',
+    termsAndConditionDataLabel = 'summary-terms-and-condition-DataLabel',
     termsAndConditionLabel = 'summary-terms-and-condition-label',
 
     businessAccountDiv = 'summary-business-account-div',
-    businessAccountInput = 'summary-business-account-input',
+    businessAccountDataLabel = 'summary-business-account-DataLabel',
     businessAccountLabel = 'summary-business-account-label',
 
     companyRegistrationNumberDiv = 'summary-company-registration-number-div',
-    companyRegistrationNumberInput = 'summary-company-registration-number-input',
+    companyRegistrationNumberDataLabel = 'summary-company-registration-number-DataLabel',
     companyRegistrationNumberLabel = 'summary-company-registration-number-label',
 
     VATDiv = 'summary-VAT-div',
-    VATInput = 'summary-VAT-input',
+    VATDataLabel = 'summary-VAT-DataLabel',
     VATLabel = 'summary-VAT-label',
 
     BICDiv = 'summary-BIC-div',
-    BICInput = 'summary-BIC-input',
+    BICDataLabel = 'summary-BIC-DataLabel',
     BICLabel = 'summary-BIC-label',
 
     IBANDiv = 'summary-IBAN-div',
-    IBANInput = 'summary-IBAN-input',
+    IBANDataLabel = 'summary-IBAN-DataLabel',
     IBANLabel = 'summary-IBAN-label',
 
     nameOfBankAccountDiv = 'summary-name-of-bank-account-div',
-    nameOfBankAccountInput = 'summary-name-of-bank-account-input',
+    nameOfBankAccountDataLabel = 'summary-name-of-bank-account-DataLabel',
     nameOfBankAccountLabel = 'summary-name-of-bank-account-label',
 
     deliveryMethodDiv = 'summary-delivery-method-div',
-    deliveryMethodInput = 'summary-delivery-method-input',
+    deliveryMethodDataLabel = 'summary-delivery-method-DataLabel',
     deliveryMethodLabel = 'summary-delivery-method-label',
 
     paymentTypeDiv = 'summary-payment-type-div',
-    paymentTypeInput = 'summary-payment-type-input',
+    paymentTypeDataLabel = 'summary-payment-type-DataLabel',
     paymentTypeLabel = 'summary-payment-type-label',
 
     summarySingleItem = 'summary-single-item-',

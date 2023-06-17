@@ -5,17 +5,17 @@
 <div class="main-wrapper" *ngIf="!this.error && this.items !== undefined">
     <app-filters [items]="this.items" (filteredData)="filterApplied($event)"></app-filters>
     <div class="post-wrapper">
-            <div class="single-product" *ngFor="let item of items" [attr.data-type]="attr.productSingleProduct" (click)="this.router.navigate([item.idItems])">
-                <img src="{{item.image}}" alt="Product image" class="product-image"[attr.data-type]="attr.productImage">
-                <h5 class="product-title" [attr.data-type]="attr.productTitle">{{item.title}}</h5>
-                <p class="product-description" [attr.data-type]="attr.productDescription">{{item.description}}</p>
-                <h4 class="product-price" [attr.data-type]="attr.productPrice">{{item.price}}€</h4>
+            <div class="single-product" *ngFor="let item of items; let i = index" [attr.data-type]="attr.productSingleProduct +i" (click)="this.router.navigate([item.idItems])">
+                <img src="{{item.image}}" alt="Product image" class="product-image"[attr.data-type]="attr.productImage+i">
+                <h5 class="product-title" [attr.data-type]="attr.productTitle+i">{{item.title}}</h5>
+                <p class="product-description" [attr.data-type]="attr.productDescription+i">{{item.description}}</p>
+                <h4 class="product-price" [attr.data-type]="attr.productPrice+i">{{item.price}}€</h4>
                 <div class="product-icons">
-                    <div class="product-icon" [attr.data-type]="attr.productInfoBtn" (click)="this.router.navigate([item.idItems])">
-                        <fa-icon [icon]="this.resources.info" [attr.data-type]="attr.productInfoIcon"></fa-icon>
+                    <div class="product-icon" [attr.data-type]="attr.productInfoBtn+i" (click)="this.router.navigate([item.idItems])">
+                        <fa-icon [icon]="this.resources.info" [attr.data-type]="attr.productInfoIcon+i"></fa-icon>
                     </div>
-                    <div  class="product-icon" [attr.data-type]="attr.productCartBtn" (click)="this.common.addToCart($event, item.idItems)">
-                        <fa-icon [icon]="this.resources.cart" [attr.data-type]="attr.productCartIcon"></fa-icon>
+                    <div  class="product-icon" [attr.data-type]="attr.productCartBtn+i" (click)="this.common.addToCart($event, item.idItems)">
+                        <fa-icon [icon]="this.resources.cart" [attr.data-type]="attr.productCartIcon+i"></fa-icon>
                     </div>
                 </div>
             </div>

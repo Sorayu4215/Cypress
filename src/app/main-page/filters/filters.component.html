@@ -1,15 +1,15 @@
 <div class="filter-wrapper shadow" [attr.data-type]="attr.filter">
     <h5 class="filter-title" [attr.data-type]="attr.filterTitle">{{this.resources.filterTitle}}</h5>
     <div class="line-horizontal"></div>
-    <div class="section">
-        <h6 class="subfilter-title" [attr.data-type]="attr.filterCategoryTitle">{{this.resources.feitlerSearch}}</h6>
-        <input type="text" name="" id="" placeholder="Type item to find..." class="input-search" (input)="applyFilter()" #searchInput>
+    <div class="section" [attr.data-type]="attr.filterSearchSection">
+        <h6 class="subfilter-title" [attr.data-type]="attr.filterSearchTitle">{{this.resources.feitlerSearch}}</h6>
+        <input type="text" name="" id="" placeholder="Type item to find..." class="input-search" (input)="applyFilter()" #searchInput [attr.data-type]="attr.filterSearchInput">
     </div>
     <div class="line-horizontal"></div>
     <div class="section" [attr.data-type]="attr.filterCategorySection">
         <h6 class="subfilter-title" [attr.data-type]="attr.filterCategoryTitle">{{this.resources.filtersCategory}}</h6>
-        <button class="subfilter-button"  [ngClass]="this.activeCategory == this.resources.filtersCategoryAll ? 'active' : ''" [attr.data-type]="attr.filterCategoryButton" (click)="applyFilter('All')">{{this.resources.filtersCategoryAll}}</button>
-        <button class="subfilter-button"  [ngClass]="this.activeCategory == option ? 'active' : ''" [attr.data-type]="attr.filterCategoryButton + i" *ngFor="let option of this.filterOptions; let i = index" (click)="applyFilter(option)">{{option}}</button>
+        <button class="subfilter-button"  [ngClass]="this.activeCategory == this.resources.filtersCategoryAll ? 'active' : ''" [attr.data-type]="attr.filterCategoryButton + 'All'" (click)="applyFilter('All')">{{this.resources.filtersCategoryAll}}</button>
+        <button class="subfilter-button"  [ngClass]="this.activeCategory == option ? 'active' : ''" [attr.data-type]="attr.filterCategoryButton + option" *ngFor="let option of this.filterOptions; let i = index" (click)="applyFilter(option)">{{option}}</button>
     </div>
     <div class="line-horizontal"></div>
     <div class="section" [attr.data-type]="attr.filterPriceSection">

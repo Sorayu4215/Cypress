@@ -8,49 +8,53 @@
         <div class="summary-address">
             <div class="summary-single-element" [attr.data-type]="attr.nameDiv">
                 <p class="summary-headling" [attr.data-type]="attr.nameLabel">{{this.resources.summaryName}}</p>
-                <label for="" class="summary data" [attr.data-type]="attr.nameInput">{{this.userData.name}}</label>
+                <label for="" class="summary data" [attr.data-type]="attr.nameDataLabel">{{this.userData.name}}</label>
             </div>
             <div class="summary-single-element" [attr.data-type]="attr.emailDiv">
                 <p class="summary-headling" [attr.data-type]="attr.emailLabel">{{this.resources.summaryEmail}}</p>
-                <label for="" class="summary data" [attr.data-type]="attr.emailInput">{{this.userData.email}}</label>
+                <label for="" class="summary data" [attr.data-type]="attr.emailDataLabel">{{this.userData.email}}</label>
             </div>
             <div class="summary-single-element" [attr.data-type]="attr.addressDiv">
                 <p class="summary-headling" [attr.data-type]="attr.addressLabel">{{this.resources.summaryAddress}}</p>
-                <label for="" class="summary data" [attr.data-type]="attr.addressInput">{{this.userData.address}}</label>
+                <label for="" class="summary data" [attr.data-type]="attr.addressDataLabel">{{this.userData.address}}</label>
+            </div>
+            <div class="summary-single-element" [attr.data-type]="attr.countryDiv">
+                <p class="summary-headling" [attr.data-type]="attr.countryLabel">{{this.resources.addressCountry}}</p>
+                <label for="" class="summary data" [attr.data-type]="attr.countryDataLabel">{{this.userData.country}}</label>
             </div>
             <div class="summary-single-element" [attr.data-type]="attr.cityDiv">
                 <p class="summary-headling" [attr.data-type]="attr.cityLabel">{{this.resources.summaryCity}}</p>
-                <label for="" class="summary data" [attr.data-type]="attr.cityInput">{{this.userData.city}}</label>
+                <label for="" class="summary data" [attr.data-type]="attr.cityDataLabel">{{this.userData.city}}</label>
             </div>
             <div class="summary-single-element" [attr.data-type]="attr.postCodeDiv">
                 <p class="summary-headling" [attr.data-type]="attr.postCodeLabel">{{this.resources.summaryPostcode}}</p>
-                <label for="" class="summary data" [attr.data-type]="attr.postCodeInput">{{this.userData.postCode}}</label>
+                <label for="" class="summary data" [attr.data-type]="attr.postCodeDataLabel">{{this.userData.post_code}}</label>
             </div>
             <div class="summary-single-element" [attr.data-type]="attr.phoneNumberDiv">
                 <p class="summary-headling" [attr.data-type]="attr.phoneNumberLabel">{{this.resources.summaryPhoneNumber}}</p>
-                <label for="" class="summary data" [attr.data-type]="attr.phoneNumberInput">{{this.userData.phoneNumber}}</label>
+                <label for="" class="summary data" [attr.data-type]="attr.phoneNumberDataLabel">{{this.userData.phone_number}}</label>
             </div>
     
-            <div class="summary-company">
-                <div class="summary-single-element" [attr.data-type]="attr.companyRegistrationNumberDiv" *ngIf="this.userData.companyRegistrationNo">
+            <div class="summary-company" *ngIf="this.userData.bussiness_account">
+                <div class="summary-single-element" [attr.data-type]="attr.companyRegistrationNumberDiv">
                     <p class="summary-headling" [attr.data-type]="attr.companyRegistrationNumberLabel">{{this.resources.summaryCompanyRegistrationNo}}</p>
-                    <label for="" class="summary data" [attr.data-type]="attr.companyRegistrationNumberInput">{{this.userData.companyRegistrationNo}}</label>
+                    <label for="" class="summary data" [attr.data-type]="attr.companyRegistrationNumberDataLabel">{{this.userData.compaty_reg_number}}</label>
                 </div>
                 <div class="summary-single-element" [attr.data-type]="attr.VATDiv" *ngIf="this.userData.VAT">
                     <p class="summary-headling" [attr.data-type]="attr.VATLabel">{{this.resources.summaryVAT}}</p>
-                    <label for="" class="summary data" [attr.data-type]="attr.VATInput">{{this.userData.VAT}}</label>
+                    <label for="" class="summary data" [attr.data-type]="attr.VATDataLabel">{{this.userData.VAT}}</label>
                 </div>
                 <div class="summary-single-element" [attr.data-type]="attr.BICDiv" *ngIf="this.userData.BIC">
                     <p class="summary-headling" [attr.data-type]="attr.BICLabel">{{this.resources.summaryBIC}}</p>
-                    <label for="" class="summary data" [attr.data-type]="attr.BICInput">{{this.userData.BIC}}</label>
+                    <label for="" class="summary data" [attr.data-type]="attr.BICDataLabel">{{this.userData.BIC}}</label>
                 </div>
                 <div class="summary-single-element" [attr.data-type]="attr.IBANDiv" *ngIf="this.userData.IBAN">
                     <p class="summary-headling" [attr.data-type]="attr.IBANLabel">{{this.resources.summaryIBAN}}</p>
-                    <label for="" class="summary data" [attr.data-type]="attr.IBANInput">{{this.userData.IBAN}}</label>
+                    <label for="" class="summary data" [attr.data-type]="attr.IBANDataLabel">{{this.userData.IBAN}}</label>
                 </div>
-                <div class="summary-single-element" [attr.data-type]="attr.nameOfBankAccountDiv" *ngIf="this.userData.bankAccountHolder">
+                <div class="summary-single-element" [attr.data-type]="attr.nameOfBankAccountDiv">
                     <p class="summary-headling" [attr.data-type]="attr.nameOfBankAccountLabel">{{this.resources.summaryNameOfBankAccountHolder}}</p>
-                    <label for="" class="summary data" [attr.data-type]="attr.nameOfBankAccountInput">{{this.userData.bankAccountHolder}}</label>
+                    <label for="" class="summary data" [attr.data-type]="attr.nameOfBankAccountDataLabel">{{this.userData.bank_account_holder}}</label>
                 </div>
             </div>
         </div>
@@ -58,11 +62,11 @@
         <div class="summary-billing">
                 <div class="summary-single-element" [attr.data-type]="attr.deliveryMethodDiv">
                     <p class="summary-headling"[attr.data-type]="attr.deliveryMethodLabel">{{this.resources.summaryDeliveryMethod}}</p>
-                    <label for="" class="summary data" [attr.data-type]="attr.deliveryMethodInput">{{this.shipping.shipping}}</label>
+                    <label for="" class="summary data" [attr.data-type]="attr.deliveryMethodDataLabel">{{this.shipping.shipping}}</label>
                 </div>
                 <div class="summary-single-element" [attr.data-type]="attr.paymentTypeDiv">
                     <p class="summary-headling" [attr.data-type]="attr.paymentTypeLabel">{{this.resources.summaryPaymentType}}</p>
-                    <label for="" class="summary data" [attr.data-type]="attr.paymentTypeInput">{{this.shipping.payment}}</label>
+                    <label for="" class="summary data" [attr.data-type]="attr.paymentTypeDataLabel">{{this.shipping.payment}}</label>
                 </div>
         </div>
     </div>

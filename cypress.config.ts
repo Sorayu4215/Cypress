@@ -6,11 +6,10 @@ export default defineConfig({
       // implement node event listeners here
     },
     baseUrl: 'http://localhost:3000',
-    supportFile: 'tests/cypress/support/*.page.{js,jsx,ts,tsx}',
+    supportFile: 'tests/cypress/support/customCommands.ts',
     specPattern: 'tests/cypress/integration/*.spec.{js,jsx,ts,tsx}'
   },  
   video:false,
   videosFolder:"tests/cypress/video",
   screenshotsFolder:"tests/cypress/screenshots"  
-  
 });

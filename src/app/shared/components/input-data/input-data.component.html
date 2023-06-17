@@ -31,9 +31,9 @@
                 <fieldset class="input-wrapper" [attr.data-type]="attr.countryDiv" >
                     <label class="input-name" [attr.data-type]="attr.countryLabel">{{this.resources.addressCountry}}</label>
 
-                    <select class="form-select" id="country" name="country"  formControlName="country" class="input" placehol>
+                    <select class="form-select" id="country" name="country"  formControlName="country" class="input" placehol [attr.data-type]="attr.countryInput">
                         <option value="" selected disabled>Select {{this.resources.addressCountry}}</option>
-                        <option  placehol value="{{country.name}}" id="{{country.id}}" *ngFor="let country of this.countries">{{country.name}}</option>
+                        <option  placehol value="{{country.name}}" id="{{country.id}}" *ngFor="let country of this.countries" [attr.data-type]="country.name">{{country.name}}</option>
                     </select>
                     <span [attr.data-type]="attr.countryError" 
                         *ngIf="address.get('city')!.touched && address.get('country')!.invalid || ngForm.submitted && address.get('country')!.invalid"

@@ -1,6 +1,9 @@
 export enum filters{
     filter= 'filter',
     filterTitle = 'filter-title',
+    filterSearchSection= ' filter-search-section',
+    filterSearchTitle= ' filter-search-title',
+    filterSearchInput = 'filter-search-input',
     filterCategorySection= ' filter-category-section',
     filterCategoryTitle= ' filter-category-title',
     filterCategoryButton = 'filter-category-button-',
