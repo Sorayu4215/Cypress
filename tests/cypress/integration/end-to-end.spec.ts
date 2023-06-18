@@ -10,7 +10,7 @@ describe('End to end tests',()=>{
 
 
     context('Purchase flow',()=>{
-        specify.only('User is not logged in',()=>{
+        specify('User is not logged in',()=>{
             //accept cookie banner 
             productPage.cookieBanner.should('be.visible')
             productPage.cookieBannerAllowButton.click()
@@ -57,7 +57,23 @@ describe('End to end tests',()=>{
                 cy.wrap(ID).as('ID')
             })
 
+            //verify order in database
+            cy.task('queryDb', 'SELECT * FROM Orders;').then(($result: any) => {
+                cy.get('@ID').then((result) => {
+                    const match = $result.some(($element: {
+                        orderId: number;
+                        item: string;
+                        address: string;
+                        date: string;
+                        shipping: string;
+                        userID: string;
+                    }) => $element.orderId === Number(result));
+
+                    expect(match).to.be.true;
+                });
+            });
         })
+
         specify('User is logged in',()=>{
 
         })
