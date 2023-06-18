@@ -10,7 +10,7 @@ describe('End to end tests',()=>{
 
 
     context('Purchase flow',()=>{
-        specify('User is not logged in',()=>{
+        specify.only('User is not logged in',()=>{
             //accept cookie banner 
             productPage.cookieBanner.should('be.visible')
             productPage.cookieBannerAllowButton.click()
@@ -76,6 +76,15 @@ describe('End to end tests',()=>{
 
         specify('User is logged in',()=>{
 
+        })
+
+        afterEach(()=>{
+            cy.get('@ID').then((result) => {
+                cy.task('queryDb', `DELETE FROM Orders WHERE (orderId = '${Number(result)}');`).then(($result: any) => {
+                    console.log($result);
+                    cy.log($result)
+                })
+            })
         })
     })
 
