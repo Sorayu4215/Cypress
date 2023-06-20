@@ -6,4 +6,9 @@ export class OrderPage {
     get ID() {
         return cy.get('[data-type="order-successful-id"]')
     }
+
+    //navigation
+    get returnToShop(){
+        return cy.get('[data-type="order-return-button"]')
+    }
 }

@@ -16,12 +16,16 @@ export class ProductPage{
     }
 
     //items
+    get productWrapper(){
+        return cy.get('[data-type="product-wrapper"]')
+    }
     get firstItem(){
         return cy.get('[data-type="single-product-0"]')
     }
     get firstItemCartButton(){
         return cy.get('[data-type="product-cart-button-0"]')
     }
+
 
 
     //navigation modal

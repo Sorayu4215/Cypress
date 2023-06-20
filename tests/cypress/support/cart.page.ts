@@ -1,5 +1,8 @@
 export class CartPage{
     //items
+    get itemsWrapper(){
+        return cy.get('[data-type="cart-wrapper"]')
+    }
     get firstItemDiv(){
         return cy.get('[data-type="cart-single-item-0"]')
     }

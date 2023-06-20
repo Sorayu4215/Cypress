@@ -1,4 +1,5 @@
 export enum mainPage{
+    productWrapper = 'product-wrapper',
     productTitle = 'product-title-',
     productImage = 'product-image-',
     productDescription = 'product-description-',

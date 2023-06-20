@@ -4,7 +4,7 @@
 
 <div class="main-wrapper" *ngIf="!this.error && this.items !== undefined">
     <app-filters [items]="this.items" (filteredData)="filterApplied($event)"></app-filters>
-    <div class="post-wrapper">
+    <div class="post-wrapper" [attr.data-type]="attr.productWrapper">
             <div class="single-product" *ngFor="let item of items; let i = index" [attr.data-type]="attr.productSingleProduct +i" (click)="this.router.navigate([item.idItems])">
                 <img src="{{item.image}}" alt="Product image" class="product-image"[attr.data-type]="attr.productImage+i">
                 <h5 class="product-title" [attr.data-type]="attr.productTitle+i">{{item.title}}</h5>

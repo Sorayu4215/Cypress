@@ -3,7 +3,7 @@
 <app-error *ngIf="!this.loader && this.items.length == 0" [errorText]="'Your cart is empty!'"></app-error>
 <app-error *ngIf="this.error == true" [errorText]="'Something whet wrong!'"></app-error>
 
-<div class="cart-wrapper" *ngIf="this.items !== undefined && this.error !== true">
+<div class="cart-wrapper" *ngIf="this.items !== undefined && this.error !== true" [attr.data-type]="attr.cartWrapper">
 
     <div class="cart-single-element" [attr.data-type]="attr.cartSingleItem+i" *ngFor="let item of this.items; let i=index" > <!-- treba sem pridat k data-type cislo iteracie, teda index i  -->
         <div class="cart-info">

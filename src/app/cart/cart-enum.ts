@@ -1,4 +1,5 @@
 export enum cart{
+    cartWrapper = 'cart-wrapper',
     cartSingleItem = 'cart-single-item-',
     cartImage = 'cart-item-image-',
     cartTitle = 'cart-item-title-',
