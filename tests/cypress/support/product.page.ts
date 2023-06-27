@@ -3,6 +3,15 @@ export class ProductPage{
     get cookieBanner(){
         return cy.get('[data-type="cookie-banner"]')
     }
+    get cookieBannerDetails(){
+        return cy.get('[data-type="cookie-banner-header-details-btn"]')
+    }
+    get cookieBannerPreferenciesInput(){
+        return cy.get('[data-type="cookie-banner-preferencies-span"]')
+    }
+    get cookieBannerStatusInput(){
+        return cy.get('[data-type="cookie-banner-stats-span"]')
+    } 
     get cookieBannerAllowButton(){
         return cy.get('[data-type="cookie-banner-allow-btn"]')
     }
@@ -16,7 +25,7 @@ export class ProductPage{
     }
 
     //items
-    get productWrapper(){
+    get productsWrapper(){
         return cy.get('[data-type="product-wrapper"]')
     }
     get firstItem(){
@@ -25,11 +34,32 @@ export class ProductPage{
     get firstItemCartButton(){
         return cy.get('[data-type="product-cart-button-0"]')
     }
-
-
+    get productBackpack(){
+        return cy.contains('Backpack')
+    }
 
     //navigation modal
     get modalCartNavigationButton(){
         return cy.get('[data-type="navigate-to-cart"]')
+    }
+    get modalShoppingButton(){
+        return cy.get('[data-type="back-to-shoping"]')
+    }
+
+    //header
+    get headerShopButton(){
+        return cy.get('[data-type="header-item-shop"]')
+    }
+    get headerLogInButton() {
+        return cy.get('[data-type="header-item-logIn"]')
+    }
+    get headerCartButton(){
+        return cy.get('[data-type="header-item-cart"]')
+    }
+    get headerCartBadgeButton(){
+        return cy.get('[data-type="header-badge"]')
+    }
+    get headerMyOrdersButton(){
+        return cy.get('[data-type="header-item-my-orders"]')
     }
 }

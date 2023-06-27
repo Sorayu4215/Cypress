@@ -5,6 +5,7 @@ import { MyOrdersPage } from "./myOrders.page";
 import { OrderPage } from "./order.page";
 import { PersonalDataPage } from "./personalData.page";
 import { ProductPage } from "./product.page";
+import { ProductDetails } from "./productDetails.page";
 import { SummaryPage } from "./summary.page";
 import { ShippingPage } from "./shipping.page";
 
@@ -15,7 +16,8 @@ const myOrdersPage = new MyOrdersPage()
 const orderPage = new OrderPage()
 const personalData = new PersonalDataPage()
 const productPage = new ProductPage()
+const productDetailsPage = new ProductDetails()
 const summaryPage = new SummaryPage()
 const shippingPage = new ShippingPage()
 
-export { productPage, addressPage, cartPage, authorisationPage, myOrdersPage, orderPage, personalData, summaryPage, shippingPage }
+export { productPage, addressPage, cartPage, authorisationPage, myOrdersPage, orderPage, personalData, productDetailsPage, summaryPage, shippingPage }

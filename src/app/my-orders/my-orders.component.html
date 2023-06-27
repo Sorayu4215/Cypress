@@ -4,7 +4,7 @@
 <app-loader *ngIf="this.loader"></app-loader>
 
 <div class="cart-wrapper">
-    <div style="margin: 1rem;"  [attr.data-type]="attr.myOrdersItemDiv +i" *ngFor="let element of this.items; let i = index">
+    <div style="margin: 1rem;"  [attr.data-type]="attr.myOrdersItemDiv + element.orderId" *ngFor="let element of this.items; let i = index">
         <div class="my-order-hadline" (click)="showDetails($event)" [attr.data-type]="attr.myOrdersItemHeadline + i">
             <p class="my-order-text" [attr.data-type]="attr.myOrdersID + i">{{this.resources.myOrderID}}{{element.orderId}}</p>
             <p class="my-order-text" [attr.data-type]="attr.myOrdersTitle + i">{{this.resources.myOrderTime}}{{element.date.slice(1, -1)}}</p>

@@ -8,7 +8,7 @@ export default defineConfig({
       // implement node event listeners here
       on("task",{
         queryDb: (query)=>{
-          return queryTestDb(query, config,env(config))
+          return queryTestDb(query, config, config.env['envName'])
         }
       })
     },
@@ -28,24 +28,15 @@ export default defineConfig({
     },
 
     baseUrl: 'http://localhost:3000',
-    supportFile: 'tests/cypress/support/customCommands.ts',
+    supportFile: 'tests/cypress/support/commands.ts',
     specPattern: 'tests/cypress/integration/*.spec.{js,jsx,ts,tsx}'
   },  
   video:false,
   videosFolder:"tests/cypress/video",
-  screenshotsFolder:"tests/cypress/screenshots"  
+  screenshotsFolder:"tests/cypress/screenshots",
+  watchForFileChanges:false  
 });
 
-
-function env(config:any){
-  let env = 'production'
-  
-  if(config.env.envName == 'local'){
-    env = 'local'
-  }
-  
-  return env
-}
 
 function queryTestDb(query: any, config: any, env:string) {
 
@@ -55,7 +46,10 @@ function queryTestDb(query: any, config: any, env:string) {
 
   return new Promise((resolve, reject) => {
     connection.query(query, (error: any, result: any) => {
-      if (error) reject(error)
+      if (error) {
+        if (error.code == "ER_DUP_ENTRY") resolve(error)
+        reject(error)
+    }
       else {
         connection.end()
         return resolve(result)

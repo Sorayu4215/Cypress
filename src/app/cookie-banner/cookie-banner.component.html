@@ -18,7 +18,7 @@
                     </div>
                     <label class="switch"  (click)="disable()" >
                         <input type="checkbox"  [attr.data-type]="attr.detailsNeededInput" [id]="this.resources.cookieBannerNeededTitle" #needed [checked]="neededCookies" disabled>
-                        <span class="slider round"></span>
+                        <span class="slider round" [attr.data-type]="attr.detailsNeededSpan"></span>
                     </label>
                 </section>
                 <section  class="align-checkbox" [attr.data-type]="attr.detailsPreferenciesDiv">
@@ -28,7 +28,7 @@
                     </div>
                     <label class="switch" >
                         <input type="checkbox" [attr.data-type]="attr.detailsPreferenciesInput" id="{{this.resources.cookieBannerPreferenciesTitle}}" checked (click)="preferenciesAction()">
-                        <span class="slider round"></span>
+                        <span class="slider round" [attr.data-type]="attr.detailsPreferenciesSpan"></span>
                     </label>
                 </section>
                 <section  class="align-checkbox" [attr.data-type]="attr.detailsStatsDiv">
@@ -38,7 +38,7 @@
                     </div>
                     <label class="switch" >
                         <input type="checkbox" [attr.data-type]="attr.detailsStatsInput" id="{{this.resources.cookieBannerStatsTitle}}" checked (click)="statsAction()">
-                        <span class="slider round"></span>
+                        <span class="slider round" [attr.data-type]="attr.detailsStatsSpan"></span>
                     </label>
                 </section>
             </div>

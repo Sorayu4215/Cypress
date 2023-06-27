@@ -18,7 +18,7 @@
         </div>
         <div class="cart-additional" *ngIf="item.waranty">
             <p class="cart-additional-label" [attr.data-type]="attr.cartWarrantyTitle+i">{{this.resources.cartWarranty}}</p>
-            <h5 class="cart-additional-price" [attr.data-type]="attr.cartWarrantyPrice"+i>20 €</h5>
+            <h5 class="cart-additional-price" [attr.data-type]="attr.cartWarrantyPrice+i">20 €</h5>
             <button class="close" [attr.data-type]="attr.cartWarrantyDelete+i" (click)="deleteWaranty(item.idItems)">
                 <fa-icon [icon]="this.resources.close" class="close-icon"></fa-icon>
             </button>
