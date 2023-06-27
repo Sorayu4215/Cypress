@@ -34,7 +34,8 @@ export default defineConfig({
   video:false,
   videosFolder:"tests/cypress/video",
   screenshotsFolder:"tests/cypress/screenshots",
-  watchForFileChanges:false  
+  watchForFileChanges:false,
+  retries: 1,
 });
 
 

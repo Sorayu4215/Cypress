@@ -15,7 +15,7 @@ const logIn = async (request, response,next) => {
        return  response.status(401).json({msg: 'Wrong username or password!'})
     }
 
-    let query = "SELECT * FROM Users"
+    let query = "SELECT * FROM users"
 
     await new Promise((resolve,reject)=>{
         database.query(query, (err, data) => {
@@ -45,7 +45,7 @@ const user =  (request, response, next) => {
     const token = request.headers.authorization.split(' ')[1]
     const user = jwt.decode(token, process.env.JWT_SECRET)
 
-    let query = `SELECT * FROM Users WHERE idUsers = '${user.idUsers}'`
+    let query = `SELECT * FROM users WHERE idUsers = '${user.idUsers}'`
     database.query(query, (err, data) => {
         if (data) {
             data[0].newsletter = data[0].newsletter === 'true';
@@ -85,7 +85,7 @@ const changeUserData = (request,response)=>{
         }
     }
 
-    const query = `UPDATE Users SET email = '${email}', name = '${name}', address = '${address}', city = '${city}', post_code = '${post_code}', phone_number = '${phone_number}', country = '${country}', newsletter = '${newsletter}', bussiness_account = '${bussiness_account}', compaty_reg_number = '${compaty_reg_number}', BIC = '${BIC}', VAT = '${VAT}', IBAN = '${IBAN}' , bank_account_holder = '${bank_account_holder}' WHERE idUsers = '${user.idUsers}'`
+    const query = `UPDATE users SET email = '${email}', name = '${name}', address = '${address}', city = '${city}', post_code = '${post_code}', phone_number = '${phone_number}', country = '${country}', newsletter = '${newsletter}', bussiness_account = '${bussiness_account}', compaty_reg_number = '${compaty_reg_number}', BIC = '${BIC}', VAT = '${VAT}', IBAN = '${IBAN}' , bank_account_holder = '${bank_account_holder}' WHERE idUsers = '${user.idUsers}'`
 
     database.query(query, (err, data) => {
         if (data) {
@@ -108,7 +108,7 @@ const changeUserData = (request,response)=>{
      }
 
     //  check if username is not already used
-     let query = `SELECT * FROM Users`
+     let query = `SELECT * FROM users`
 
      await new Promise((resolve, reject) => {
          database.query(query, (err, data) => {
@@ -128,7 +128,7 @@ const changeUserData = (request,response)=>{
          return response.status(400).json({ msg: 'Username is already used!' })
      }
 
-     const queryChange = `UPDATE Users SET username = '${username}' WHERE idUsers = '${user.idUsers}'`
+     const queryChange = `UPDATE users SET username = '${username}' WHERE idUsers = '${user.idUsers}'`
 
      database.query(queryChange, (err, data) => {
          if (data) {
@@ -148,7 +148,7 @@ const changeUserData = (request,response)=>{
          return response.status(400).json({ msg: 'Wrong request!' })
      }
 
-     const query = `UPDATE Users SET password = '${newPassword}' WHERE idUsers = '${user.idUsers}'`
+     const query = `UPDATE users SET password = '${newPassword}' WHERE idUsers = '${user.idUsers}'`
 
      database.query(query, (err, data) => {
          if (data) {
@@ -173,7 +173,7 @@ const registration = async (request, response) =>{
 
 let used = false
      //verify us username is not used
-     let queryUsedUser = "SELECT * FROM Users"
+    let queryUsedUser = "SELECT * FROM users"
 
      await new Promise((resolve, reject) => {
          return database.query(queryUsedUser, (err, data) => {
@@ -196,7 +196,7 @@ let used = false
      }
 
      //crate user
-    const query = `INSERT INTO Users (username, password, email, name, address, city , post_code, phone_number, country, newsletter , terms_and_condition, bussiness_account , compaty_reg_number, BIC, VAT, IBAN, bank_account_holder) VALUES ('${username}','${password}','${email}', '${name}','${address}','${city}','${post_code}','${phone_number}','${country}','${newsletter}','${terms_and_condition}','${bussiness_account}','${compaty_reg_number}','${BIC}','${VAT}','${IBAN}' ,'${bank_account_holder}')`
+    const query = `INSERT INTO users (username, password, email, name, address, city , post_code, phone_number, country, newsletter , terms_and_condition, bussiness_account , compaty_reg_number, BIC, VAT, IBAN, bank_account_holder) VALUES ('${username}','${password}','${email}', '${name}','${address}','${city}','${post_code}','${phone_number}','${country}','${newsletter}','${terms_and_condition}','${bussiness_account}','${compaty_reg_number}','${BIC}','${VAT}','${IBAN}' ,'${bank_account_holder}')`
      await new Promise((resolve, reject) => {
      database.query(query, (err, data) => {
          if (data) {

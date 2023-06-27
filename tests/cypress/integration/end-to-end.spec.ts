@@ -103,6 +103,7 @@ describe('Purchase flow',()=>{
         productPage.headerLogInButton.click()
         authorisationPage.usernameInput.type('test_user')
         authorisationPage.passwordInput.type('12345678')
+        
         authorisationPage.logInButton.click()
 
         //choose product

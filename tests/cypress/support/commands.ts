@@ -38,7 +38,7 @@
 
 Cypress.Commands.add('testuserDatabaseRegistration', (username: string, password: string,  email: string, name:string, address: string, city: string, country: string, phone_number: string, post_code: string, terms_and_condition: string, newsletter?: string, bussiness_account?: string, compaty_reg_number?: string, BIC?: string, VAT?: string, IBAN?: string, bank_account_holder?:string ) => { 
         cy.task('queryDb', 
-            `INSERT INTO Users (username, password, email, name, address, city , post_code, phone_number, country, newsletter , terms_and_condition, bussiness_account , compaty_reg_number, BIC, VAT, IBAN, bank_account_holder) VALUES ('${username}','${password}','${email}', '${name}','${address}','${city}','${post_code}','${phone_number}','${country}','${newsletter}','${terms_and_condition}','${bussiness_account}','${compaty_reg_number}','${BIC}','${VAT}','${IBAN}' ,'${bank_account_holder}')`)
+            `INSERT INTO users (username, password, email, name, address, city , post_code, phone_number, country, newsletter , terms_and_condition, bussiness_account , compaty_reg_number, BIC, VAT, IBAN, bank_account_holder) VALUES ('${username}','${password}','${email}', '${name}','${address}','${city}','${post_code}','${phone_number}','${country}','${newsletter}','${terms_and_condition}','${bussiness_account}','${compaty_reg_number}','${BIC}','${VAT}','${IBAN}' ,'${bank_account_holder}')`)
         .then(
             ($result: any) => {
                 cy.log("Testuser is ready!")
@@ -48,7 +48,7 @@ Cypress.Commands.add('testuserDatabaseRegistration', (username: string, password
 
 Cypress.Commands.add('testuserDatabaseDeregistration', (username: string) => { 
         cy.task('queryDb', 
-            `DELETE FROM Users WHERE (username = '${username}');`)
+            `DELETE FROM users WHERE (username = '${username}');`)
         .then(
             ($result: any) => {
                 cy.log("User degeristered!")
