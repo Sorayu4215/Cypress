@@ -137,7 +137,7 @@ describe('Purchase flow',()=>{
         shippingPage.addressButton.click()
 
         //address page
-        addressPage.summaryButton.click({ force: true })
+        addressPage.summaryButton.click()
         
         //summary page check and make order 
         summaryPage.orderButton.click()
