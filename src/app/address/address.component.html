@@ -3,7 +3,7 @@
 <app-input-data [userData]="this.data" [submitBtnName]="this.resources.summarryPageTitle" (formData)="item($event)" ></app-input-data>
 
     
-    <div class="cart-wrapper cart-navigation">
+    <div class="cart-wrapper cart-navigation"></div>
         <button class="cart-navidation-btn" [routerLink]="'/'+this.resources.billingPageTitle"
         [attr.data-type]="summary.backToShipping">
         <fa-icon [icon]="this.resources.arrowLeft" class="cart-navidation-icon"></fa-icon>
@@ -13,5 +13,4 @@
         {{this.resources.summarryPageTitle}}
         <fa-icon [icon]="this.resources.arrowRight" class="cart-navidation-icon"></fa-icon>
     </button> -->
-</div>
 <!-- </form> -->

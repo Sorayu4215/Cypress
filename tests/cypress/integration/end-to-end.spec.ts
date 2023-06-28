@@ -86,7 +86,7 @@ describe('Purchase flow',()=>{
         cy.testuserDatabaseRegistration('test_user', '12345678', 'johnSmilga@test.com', 'John Smilga', 'Main 32', 'Bratislava', 'Slovakia', '0258471698', '14 759', 'true')
     })
 
-    specify('User is logged in',()=>{
+    specify.only('User is logged in',()=>{
         //accept only technical cookies
         productPage.cookieBannerDetails.click()
         productPage.cookieBannerPreferenciesInput.click()
@@ -103,7 +103,7 @@ describe('Purchase flow',()=>{
         productPage.headerLogInButton.click()
         authorisationPage.usernameInput.type('test_user')
         authorisationPage.passwordInput.type('12345678')
-        
+
         authorisationPage.logInButton.click()
 
         //choose product
@@ -136,9 +136,9 @@ describe('Purchase flow',()=>{
         shippingPage.CreditCardOption.click()
         shippingPage.addressButton.click()
 
-        //summary page
+        //address page
         addressPage.summaryButton.click({ force: true })
-
+        
         //summary page check and make order 
         summaryPage.orderButton.click()
 

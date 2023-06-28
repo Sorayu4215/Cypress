@@ -1,6 +1,8 @@
 <div class="user-profile-wrapper">
     <div class="wrapper">
-        <form action="" [formGroup]="address" #ngForm="ngForm" class="form split" (ngSubmit)="addNewItem()">
+        <form action="" [formGroup]="address" #ngForm="ngForm" class="form" (ngSubmit)="addNewItem()">
+            <div class="split">
+
             <div class="items">
                 <fieldset class="input-wrapper" [attr.data-type]="attr.emailDiv" >
                     <label class="input-name" [attr.data-type]="attr.emailLabel">{{this.resources.addressEmail}}</label>
@@ -97,13 +99,6 @@
                     <label class="input-checkbox-name" for="business-account"
                         [attr.data-type]="attr.businessAccountLabel"> {{this.resources.addressBusinessAccount}}</label>
                 </fieldset><br>
-
-                <div class="user-accout-buttons">
-                    <!-- <input type="submit" class="edit-button button" (click)="changeValues()" *ngIf="editButton"
-                        [attr.data-type]="attr.changeValuesBtn" value="Change Values"> -->
-                    <input type="submit" class="edit-button button" value="{{this.submitBtnName}}"
-                        [attr.data-type]="attr.saveValuesBtn">
-                </div>
             </div>
 
             <div class="line-vertical" *ngIf="this.companyUser"></div>
@@ -155,6 +150,13 @@
                         class="invalid">{{this.resources.addressErrorMessage}}</span>
                 </fieldset><br>
             </div>
+            </div>
+            <div class="user-accout-buttons">
+                    <input type="submit" class="edit-button button" value="{{this.submitBtnName}}"
+                        [attr.data-type]="attr.saveValuesBtn">
+                </div>
+
+
         </form>
 
     </div>

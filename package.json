@@ -15,6 +15,7 @@
     "prerender": "ng run testing-app:prerender",
     "prerenderDev": "ng run testing-app:prerender:development",
     "cy:open": "npx cypress open --env envName=local",
+    "cy:open:prod": "npx cypress open --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
     "cy:run:prod": "npx cypress run --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production"
   },
   "private": true,
