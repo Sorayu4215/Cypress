@@ -27,4 +27,7 @@ integration_tests:
   script: 
     - npm ci
     - npm run cy:run:prod
+  artifacts:
+    paths:
+      - tests/cypress/screenshots/
 
