@@ -86,7 +86,7 @@ describe('Purchase flow',()=>{
         cy.testuserDatabaseRegistration('test_user', '12345678', 'johnSmilga@test.com', 'John Smilga', 'Main 32', 'Bratislava', 'Slovakia', '0258471698', '14 759', 'true')
     })
 
-    specify.only('User is logged in',()=>{
+    specify('User is logged in',()=>{
         //accept only technical cookies
         productPage.cookieBannerDetails.click()
         productPage.cookieBannerPreferenciesInput.click()
