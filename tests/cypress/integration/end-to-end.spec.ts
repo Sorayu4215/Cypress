@@ -204,7 +204,7 @@ describe('Authorisation flow',()=>{
         productPage.headerLogInButton.should('not.exist')
     })
 
-    specify.only('Business account registration',()=>{
+    specify('Business account registration',()=>{
         authorisationPage.registrationButton.click()
         //fill credentials
         registrationPage.usernameInput.type('test_user3')

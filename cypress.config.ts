@@ -31,7 +31,7 @@ export default defineConfig({
     supportFile: 'tests/cypress/support/commands.ts',
     specPattern: 'tests/cypress/integration/*.spec.{js,jsx,ts,tsx}'
   },  
-  video:true,
+  video:false,
   videosFolder:"tests/cypress/video",
   screenshotsFolder:"tests/cypress/screenshots",
   watchForFileChanges:false,
