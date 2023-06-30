@@ -1,5 +1,9 @@
-import { productPage,cartPage,shippingPage,addressPage,summaryPage,orderPage,authorisationPage,productDetailsPage,myOrdersPage } from "../support/main"
+import { productPage,cartPage,shippingPage,addressPage,summaryPage,orderPage,authorisationPage,productDetailsPage,myOrdersPage,registrationPage } from "../support/main"
 import '../support/commands'
+
+before(() => {
+    cy.testuserDatabaseRegistration('test_user', '12345678', 'johnSmilga@test.com', 'John Smilga', 'Main 32', 'Bratislava', 'Slovakia', '0258471698', '14 759', 'true')
+})
 
 describe('Purchase flow',()=>{
 
@@ -14,18 +18,15 @@ describe('Purchase flow',()=>{
         productPage.cookieBanner.should('be.visible')
         productPage.cookieBannerAllowButton.click()
         productPage.cookieBanner.should('not.exist')
-
         //filter
         productPage.filterSearchInput.type('T')
         productPage.filterClothingButton.click()
         productPage.productsWrapper.then((element)=>{
             expect(element[0].childElementCount).to.eq(1)
         })
-
         //add first item to cart
         productPage.firstItemCartButton.click()
         productPage.modalCartNavigationButton.click()
-
         //get total price and wrap it into variable and navigate into shipping page
         cartPage.firstItemDiv.should('be.visible')
         cartPage.itemsWrapper.then((element)=>{
@@ -35,16 +36,13 @@ describe('Purchase flow',()=>{
             cy.wrap(element.text()).as('totalPrice')
         })
         cartPage.shippingButton.click()
-
         //choose delivery, payment type and navigate into adress
         shippingPage.personalPickupOption.click()
         shippingPage.CreditCardOption.click()
         shippingPage.addressButton.click()
-
         //fill address data and navigate to summary page
         addressPage.pernalData('johnSmilga@test.com','John Smilga','Main 32','Slovakia','Bratislava','14 759','0258471698')
         addressPage.summaryButton.click({force:true})
-
         //summary page check and make order 
         summaryPage.verifyUserlData('johnSmilga@test.com', 'John Smilga', 'Main 32', 'Slovakia', 'Bratislava', '14 759', '0258471698')
         summaryPage.verifyDeliveryAndPayment('Personal pickup','Credit / Debit Card')
@@ -53,7 +51,6 @@ describe('Purchase flow',()=>{
             cy.get('@totalPrice').should('eq',element.text())
         })
         summaryPage.orderButton.click()
-
         //verify order and save ID 
         orderPage.successIcon.should('be.visible')
         orderPage.ID.then(element=>{
@@ -61,11 +58,9 @@ describe('Purchase flow',()=>{
             const ID = wrappedID.match(/\d/g)!.join('')
             cy.wrap(ID).as('ID')
         })
-        
         //verify shop page
         orderPage.returnToShop.click()
         productPage.productsWrapper.should('be.visible')
-
         //verify order in database
         cy.task('queryDb', 'SELECT * FROM Orders;').then(($result: any) => {
             cy.get('@ID').then((result) => {
@@ -82,11 +77,9 @@ describe('Purchase flow',()=>{
         });
     })
 
-    before(()=>{
-        cy.testuserDatabaseRegistration('test_user', '12345678', 'johnSmilga@test.com', 'John Smilga', 'Main 32', 'Bratislava', 'Slovakia', '0258471698', '14 759', 'true')
-    })
 
-    specify.only('User is logged in',()=>{
+
+    specify('User is logged in',()=>{
         //accept only technical cookies
         productPage.cookieBannerDetails.click()
         productPage.cookieBannerPreferenciesInput.click()
@@ -98,14 +91,11 @@ describe('Purchase flow',()=>{
             expect(cookieValues).to.haveOwnProperty('preferencies').to.eq(false)  
             expect(cookieValues).to.haveOwnProperty('stats').to.eq(false)  
         })
-
         //Log In
         productPage.headerLogInButton.click()
         authorisationPage.usernameInput.type('test_user')
         authorisationPage.passwordInput.type('12345678')
-
         authorisationPage.logInButton.click()
-
         //choose product
         productPage.headerShopButton.click()
         productPage.productBackpack.click()
@@ -118,7 +108,6 @@ describe('Purchase flow',()=>{
         productDetailsPage.addToCartButton.click()
         productPage.modalShoppingButton.click()
         productPage.headerCartBadgeButton.should('have.text','1')
-
         //cart
         productPage.headerCartButton.click()
         cartPage.warrantyLabel().should('be.visible')
@@ -130,18 +119,14 @@ describe('Purchase flow',()=>{
             })
         })
         cartPage.shippingButton.click()
-
         //choose delivery, payment type and navigate into adress
         shippingPage.personalPickupOption.click()
         shippingPage.CreditCardOption.click()
         shippingPage.addressButton.click()
-
         //address page
-        addressPage.summaryButton.click({ force: true })
-        
+        addressPage.summaryButton.click()
         //summary page check and make order 
         summaryPage.orderButton.click()
-
         //verify order and save ID 
         orderPage.successIcon.should('be.visible')
         orderPage.ID.then(element => {
@@ -158,10 +143,6 @@ describe('Purchase flow',()=>{
         
     })
 
-    after(()=>{
-        cy.testuserDatabaseDeregistration('test_user')
-    })
-
     afterEach(()=>{
         cy.get('@ID').then((result) => {
             cy.task('queryDb', `DELETE FROM Orders WHERE (orderId = '${Number(result)}');`).then(($result: any) => {
@@ -173,12 +154,82 @@ describe('Purchase flow',()=>{
 
 
 describe('Authorisation flow',()=>{
-    specify('Log in and Log out',()=>{
 
+    beforeEach(()=>{
+        // cy.setCookie('Cookie','%7B%22needed%22%3Atrue%2C%22preferencies%22%3Atrue%2C%22stats%22%3Atrue%7D')
+        cy.setCookie('Cookie',JSON.stringify({needed:true, preferecies:false, stats:false}))
+        cy.visit('/logIn')
+    })
+
+    specify('Log in and Log out',()=>{
+        //log In 
+        authorisationPage.usernameInput.type('test_user')
+        authorisationPage.passwordInput.type('12345678')
+        authorisationPage.logInButton.click()
+        //verify login
+        authorisationPage.sucessMessage.should('be.visible')
+        //verify blank login page when user is logged in 
+        productPage.headerMyOrdersButton.click()
+        cy.visit('/logIn')
+        authorisationPage.usernameInput.should('not.exist')
+        //verify header elements
+        productPage.headerMyOrdersButton.should('be.visible')
+        productPage.headerUserProfileButton.should('be.visible')
+        productPage.headerLogOutButton.should('be.visible')
+        productPage.headerLogInButton.should('not.exist')
+        //logOut
+        productPage.headerLogOutButton.click()
+        //verify headers
+        cy.visit('/logIn')
+        authorisationPage.usernameInput.should('be.visible')
+        productPage.headerUserProfileButton.should('not.exist')
+        productPage.headerMyOrdersButton.should('not.exist')
+        productPage.headerLogInButton.should('be.visible')
     })
 
     specify('Registration',()=>{
+        authorisationPage.registrationButton.click()
+        //fill credentials
+        registrationPage.usernameInput.type('test_user2')
+        registrationPage.passwordInput.type('12345678')
+        registrationPage.confirmPasswordInput.type('12345678')
+        //fill user data
+        addressPage.pernalData('johnSmilga@test.com', 'John Smilga', 'Main 32', 'Slovakia', 'Bratislava', '14 759', '0258471698')
+        registrationPage.registerButon.click()
+        //verify header elements
+        registrationPage.successMessage.should('be.visible')
+        productPage.headerMyOrdersButton.should('be.visible')
+        productPage.headerUserProfileButton.should('be.visible')
+        productPage.headerLogOutButton.should('be.visible')
+        productPage.headerLogInButton.should('not.exist')
+    })
 
+    specify.only('Business account registration',()=>{
+        authorisationPage.registrationButton.click()
+        //fill credentials
+        registrationPage.usernameInput.type('test_user3')
+        registrationPage.passwordInput.type('12345678')
+        registrationPage.confirmPasswordInput.type('12345678')
+        //fill user data
+        addressPage.pernalData('johnSmilga@test.com', 'John Smilga', 'Main 32', 'Slovakia', 'Bratislava', '14 759', '0258471698')
+        addressPage.businessData('NI123456', 'GB999 9999 73', 'KBSPSKBXXXX','SK0809000000000123123123','John Smilga')
+        //register
+        registrationPage.registerButon.click()
+        //verify
+        registrationPage.successMessage.should('be.visible')
+        productPage.headerMyOrdersButton.should('be.visible')
+        productPage.headerUserProfileButton.should('be.visible')
+        productPage.headerLogOutButton.should('be.visible')
+        productPage.headerLogInButton.should('not.exist')
+        //logout
+        productPage.headerLogOutButton.click()
+        //verify login
+        cy.visit('/logIn')
+        authorisationPage.usernameInput.type('test_user3')
+        authorisationPage.passwordInput.type('12345678')
+        authorisationPage.logInButton.click()
+        //verify login
+        authorisationPage.sucessMessage.should('be.visible')
     })
 
     specify('Forgot password',()=>{
@@ -188,12 +239,8 @@ describe('Authorisation flow',()=>{
 })
 
 describe('User profile',()=>{
-    specify('Change Username',()=>{
+    specify('Change Username and password',()=>{
             
-    })
-
-    specify('Change Password',()=>{
-
     })
 
     specify('Change Perosnal data',()=>{
@@ -203,4 +250,10 @@ describe('User profile',()=>{
     specify('Change Business data',()=>{
 
     })
+})
+
+after(() => {
+    cy.testuserDatabaseDeregistration('test_user')
+    cy.testuserDatabaseDeregistration('test_user2')
+    cy.testuserDatabaseDeregistration('test_user3')
 })

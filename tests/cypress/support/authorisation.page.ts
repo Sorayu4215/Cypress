@@ -12,4 +12,12 @@ export class AuthorisationPage {
     get logInButton() {
         return cy.get('[data-type="log-in-button"]')
     }
+    get registrationButton(){
+        return cy.get('[data-type="registration-button"]')
+    }
+
+    //message
+    get sucessMessage(){
+        return cy.get('[data-type="success-box"]')
+    }
 }

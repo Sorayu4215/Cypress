@@ -16,13 +16,14 @@ import { ShippingGuardService } from './shared/service/shipping-guard.service';
 import { AddressGuardService } from './shared/service/address-guard.service';
 import { OrderGuardService } from './shared/service/order-guard.service';
 import { UserGuardService } from './shared/service/user-guard.service';
+import { AuthorisationService } from './shared/service/authorisation-guard.service';
 
 const resources = new resourcesService
 
 const routes: Routes = [
   { path: '', redirectTo: resources.mainPageURL, pathMatch: 'full' },
   { path: resources.mainPageURL, component: MainPageComponent },
-  { path: resources.authorizationURL, component: AuthorizationComponent},
+  { path: resources.authorizationURL, component: AuthorizationComponent, canActivate: [AuthorisationService] },
   { path: resources.cartURL, component: CartComponent },
   { path: resources.billingPageURL, component: BillingComponent, canActivate: [ShippingGuardService]},
   { path: resources.adressURL, component: AddressComponent, canActivate: [AddressGuardService]},

@@ -25,6 +25,26 @@ export class AddressPage{
         return cy.get('[data-type="terms-and-conditions-input"]')
     }
 
+    //business data
+    get businessAccountInpt(){
+        return cy.get('[data-type="newsletter-input"]')
+    }
+    get companyRegistrationNoInput() {
+        return cy.get('[data-type="company-registration-number-input"]')
+    }
+    get VATNoInput() {
+        return cy.get('[data-type="VAT-input"]')
+    }
+    get BICInput() {
+        return cy.get('[data-type="BIC-input"]')
+    }
+    get IBANInput() {
+        return cy.get('[data-type="IBAN-input"]')
+    }
+    get NameOfBankAccountIban() {
+        return cy.get('[data-type="name-of-bank-account-input"]')
+    }
+
     //navigation
     get summaryButton(){
         return cy.get('[data-type="save-values-btn"]')
@@ -40,5 +60,14 @@ export class AddressPage{
         this.postCodelInput.type(postCode)
         this.phoneNumberInput.type(phoneNumber)
         this.termsAndConditionInput.check({force:true})
+    }
+
+    businessData(companyRegistrationNumber: string, VATNumber: string, BICNumber: string, IBAN: string, NameOfBankAccountIbanInput:string){
+        this.businessAccountInpt.check({force:true})
+        this.companyRegistrationNoInput.type(companyRegistrationNumber)
+        this.VATNoInput.type(VATNumber)
+        this.BICInput.type(BICNumber)
+        this.IBANInput.type(IBAN)
+        this.NameOfBankAccountIban.type(NameOfBankAccountIbanInput)
     }
 }

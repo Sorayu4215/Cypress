@@ -53,13 +53,19 @@ export class ProductPage{
     get headerLogInButton() {
         return cy.get('[data-type="header-item-logIn"]')
     }
+    get headerMyOrdersButton(){
+        return cy.get('[data-type="header-item-my-orders"]')
+    }
+    get headerUserProfileButton(){
+        return cy.get('[data-type="header-item-user-profile"]')
+    }
     get headerCartButton(){
         return cy.get('[data-type="header-item-cart"]')
     }
     get headerCartBadgeButton(){
         return cy.get('[data-type="header-badge"]')
     }
-    get headerMyOrdersButton(){
-        return cy.get('[data-type="header-item-my-orders"]')
+    get headerLogOutButton(){
+        return cy.get('[data-type="header-log-out"]')
     }
 }
