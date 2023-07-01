@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const { request } = require('http');
 const { query } = require('express');
 const { use } = require('../routing/authorisationRouter');
-const { log } = require('console');
 
 const logIn = async (request, response,next) => {
     let userFound = false
@@ -180,7 +179,6 @@ let used = false
              if (data) {
                  data.forEach(element => {
                      if (element.username == username) {
-                         log(element.username)
                         used = true
                      }
                     resolve('')

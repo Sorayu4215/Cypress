@@ -156,18 +156,13 @@ describe('Purchase flow',()=>{
 describe('Authorisation flow',()=>{
 
     beforeEach(()=>{
-        // cy.setCookie('Cookie','%7B%22needed%22%3Atrue%2C%22preferencies%22%3Atrue%2C%22stats%22%3Atrue%7D')
         cy.setCookie('Cookie',JSON.stringify({needed:true, preferecies:false, stats:false}))
         cy.visit('/logIn')
     })
 
     specify('Log in and Log out',()=>{
         //log In 
-        authorisationPage.usernameInput.type('test_user')
-        authorisationPage.passwordInput.type('12345678')
-        authorisationPage.logInButton.click()
-        //verify login
-        authorisationPage.sucessMessage.should('be.visible')
+        cy.logIn("test_user","12345678")
         //verify blank login page when user is logged in 
         productPage.headerMyOrdersButton.click()
         cy.visit('/logIn')
@@ -202,7 +197,12 @@ describe('Authorisation flow',()=>{
         productPage.headerUserProfileButton.should('be.visible')
         productPage.headerLogOutButton.should('be.visible')
         productPage.headerLogInButton.should('not.exist')
+        //verify user in database 
+        cy.task('queryDb', `SELECT * FROM users WHERE (username = 'test_user2')`).then(($result: any) => {
+            expect($result).length(1)
+        })
     })
+    
 
     specify('Business account registration',()=>{
         authorisationPage.registrationButton.click()
@@ -225,16 +225,9 @@ describe('Authorisation flow',()=>{
         productPage.headerLogOutButton.click()
         //verify login
         cy.visit('/logIn')
-        authorisationPage.usernameInput.type('test_user3')
-        authorisationPage.passwordInput.type('12345678')
-        authorisationPage.logInButton.click()
-        //verify login
-        authorisationPage.sucessMessage.should('be.visible')
+        cy.logIn("test_user3", "12345678")
     })
 
-    specify('Forgot password',()=>{
-
-    })
 
 })
 

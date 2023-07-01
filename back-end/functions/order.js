@@ -1,4 +1,3 @@
-const { log } = require('console');
 let database = require('../database/mysql')
 const jwt = require('jsonwebtoken');
 
@@ -62,7 +61,6 @@ const getOrders = async(request, response) =>{
                 return element
             })
             return response.status(200).json(items)
-            // log(data)
         } else {
             return response.status(500).json({ msg: 'Something went wrong!' })
         }

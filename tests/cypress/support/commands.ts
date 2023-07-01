@@ -35,6 +35,7 @@
 //     }
 //   }
 // }
+import { authorisationPage } from "./main"
 
 Cypress.Commands.add('testuserDatabaseRegistration', (username: string, password: string,  email: string, name:string, address: string, city: string, country: string, phone_number: string, post_code: string, terms_and_condition: string, newsletter?: string, bussiness_account?: string, compaty_reg_number?: string, BIC?: string, VAT?: string, IBAN?: string, bank_account_holder?:string ) => { 
         cy.task('queryDb', 
@@ -53,4 +54,12 @@ Cypress.Commands.add('testuserDatabaseDeregistration', (username: string) => {
             ($result: any) => {
                 cy.log("User degeristered!")
         })
+})
+
+Cypress.Commands.add('logIn',(username:string, password:string)=>{
+        authorisationPage.usernameInput.type(username)
+        authorisationPage.passwordInput.type(password)
+        authorisationPage.logInButton.click()
+        //verify login
+        authorisationPage.sucessMessage.should('be.visible')
 })
