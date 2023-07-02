@@ -52,13 +52,13 @@ export class AddressPage{
 
     //basic fnuctions
     pernalData(email:string,name:string,address:string,country:string,city:string,postCode:string,phoneNumber:string){
-        this.emailInput.type(email)
-        this.nameInput.type(name)
-        this.addressInput.type(address)
+        this.emailInput.clear().type(email)
+        this.nameInput.clear().type(name)
+        this.addressInput.clear().type(address)
         this.countrySelect.select(country)
-        this.cityInput.type(city)
-        this.postCodelInput.type(postCode)
-        this.phoneNumberInput.type(phoneNumber)
+        this.cityInput.clear().type(city)
+        this.postCodelInput.clear().type(postCode)
+        this.phoneNumberInput.clear().type(phoneNumber)
         this.termsAndConditionInput.check({force:true})
     }
 

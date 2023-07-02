@@ -10,7 +10,6 @@ export class RegistrationPage{
         return cy.get('[data-type="password-confirmation-input"]')
     }
 
-
     //button
     get registerButon(){
         return cy.get('[data-type="save-values-btn"]')

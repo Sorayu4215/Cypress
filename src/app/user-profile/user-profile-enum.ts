@@ -1,6 +1,4 @@
-
 export enum userProfile {
-
 
     userProfileTitle = 'user-profile-title',
   
@@ -35,8 +33,10 @@ export enum userProfile {
     passwordConfirmationInput = 'user-profile-password-confirmation-input',
     passwordConfirmationLabel = 'user-profile-password-confirmation-label',
 
-    changeCredentialsBtn = 'user-profile-change-credentials-btn',
-    saveCredentialsBtn = 'user-profile-save-credentials-btn',
+    changeCredentialsUsernameBtn = 'user-profile-change-credentials-username-btn',
+    changeCredentialsPasswordBtn = 'user-profile-change-credentials-password-btn',
+    saveCredentialsUsernameBtn = 'user-profile-save-credentials-username-btn',
+    saveCredentialsPasswordBtn = 'user-profile-save-credentials-password-btn',
 
 }
 

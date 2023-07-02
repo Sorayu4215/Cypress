@@ -1,8 +1,9 @@
-import { productPage,cartPage,shippingPage,addressPage,summaryPage,orderPage,authorisationPage,productDetailsPage,myOrdersPage,registrationPage } from "../support/main"
+import { productPage,cartPage,shippingPage,addressPage,summaryPage,orderPage,authorisationPage,productDetailsPage,myOrdersPage,registrationPage, personalData } from "../support/main"
 import '../support/commands'
 
 before(() => {
     cy.testuserDatabaseRegistration('test_user', '12345678', 'johnSmilga@test.com', 'John Smilga', 'Main 32', 'Bratislava', 'Slovakia', '0258471698', '14 759', 'true')
+    cy.testuserDatabaseRegistration('test_change_credentials', '12345678', 'johnSmilga@test.com', 'John Smilga', 'Main 32', 'Bratislava', 'Slovakia', '0258471698', '14 759', 'true')
 })
 
 describe('Purchase flow',()=>{
@@ -232,16 +233,72 @@ describe('Authorisation flow',()=>{
 })
 
 describe('User profile',()=>{
+    beforeEach(() => {
+        cy.setCookie('Cookie', JSON.stringify({ needed: true, preferecies: false, stats: false }))
+    })
+
     specify('Change Username and password',()=>{
-            
+        //log in 
+        cy.quickLogIn('test_change_credentials', '12345678')
+        cy.visit('/user-profile')
+        //change username 
+        personalData.changeUsernameButton.click()
+        personalData.usernameInput.type('test_change_credentials2')
+        personalData.saveUsernameButton.click()
+        //success message
+        personalData.successBox.should('be.visible')
+        //change password
+        cy.reload()
+        personalData.changePasswordButton.click()
+        personalData.passwordInput.type('123456789')
+        personalData.confirmPasswordInput.type('123456789')
+        personalData.savePasswordButton.click()
+        //success message
+        personalData.successBox.should('be.visible')
+        //log out and log in with new credentials
+        productPage.headerLogOutButton.click()
+        cy.visit('/logIn')
+        cy.logIn("test_change_credentials2", "123456789")
     })
 
     specify('Change Perosnal data',()=>{
-
+        //log in 
+        cy.quickLogIn('test_user', '12345678')
+        cy.visit('/user-profile')
+        //change data
+        addressPage.pernalData('test@test.com', 'Junior Clark', 'Side 28', 'Italy','Milan', '92 698', '0123456789')
+        personalData.saveButton.click()
+        //success message
+        personalData.successBox.should('be.visible')
+        //check if data cahnged in database
+        cy.task('queryDb', `SELECT * FROM users WHERE (username = 'test_user')`).then(($result: any) => {
+            expect($result[0]).to.have.property('email').to.eq('test@test.com')
+            expect($result[0]).to.have.property('name').to.eq('Junior Clark')
+            expect($result[0]).to.have.property('address').to.eq('Side 28')
+            expect($result[0]).to.have.property('country').to.eq('Italy')
+            expect($result[0]).to.have.property('city').to.eq('Milan')
+            expect($result[0]).to.have.property('post_code').to.eq('92 698')
+            expect($result[0]).to.have.property('phone_number').to.eq('0123456789')
+        })
     })
 
     specify('Change Business data',()=>{
-
+        //log in 
+        cy.quickLogIn('test_user', '12345678')
+        cy.visit('/user-profile')
+        //change data
+        addressPage.businessData('KIPRT123456', 'TR999 9999 73', 'KBSPSKBTRGJ', 'SK0809000000000123456789', 'Test User')
+        personalData.saveButton.click()
+        //success message
+        personalData.successBox.should('be.visible')
+        //check if data cahnged in database
+        cy.task('queryDb', `SELECT * FROM users WHERE (username = 'test_user')`).then(($result: any) => {
+            expect($result[0]).to.have.property('compaty_reg_number').to.eq('KIPRT123456')
+            expect($result[0]).to.have.property('VAT').to.eq('TR999 9999 73')
+            expect($result[0]).to.have.property('BIC').to.eq('KBSPSKBTRGJ')
+            expect($result[0]).to.have.property('IBAN').to.eq('SK0809000000000123456789')
+            expect($result[0]).to.have.property('bank_account_holder').to.eq('Test User')
+        })
     })
 })
 
@@ -249,4 +306,5 @@ after(() => {
     cy.testuserDatabaseDeregistration('test_user')
     cy.testuserDatabaseDeregistration('test_user2')
     cy.testuserDatabaseDeregistration('test_user3')
+    cy.testuserDatabaseDeregistration('test_change_credentials2')
 })

@@ -57,9 +57,19 @@ Cypress.Commands.add('testuserDatabaseDeregistration', (username: string) => {
 })
 
 Cypress.Commands.add('logIn',(username:string, password:string)=>{
-        authorisationPage.usernameInput.type(username)
-        authorisationPage.passwordInput.type(password)
-        authorisationPage.logInButton.click()
-        //verify login
-        authorisationPage.sucessMessage.should('be.visible')
+    authorisationPage.usernameInput.type(username)
+    authorisationPage.passwordInput.type(password)
+    authorisationPage.logInButton.click()
+    //verify login
+    authorisationPage.sucessMessage.should('be.visible')
+})
+
+Cypress.Commands.add('quickLogIn',(username:string, password:string)=>{
+    cy.request({
+        method: 'POST',
+        url: `${Cypress.config().baseUrl}/api/v1/login`,
+        body: { username: username, password: password }
+    }).then((result: any) => {
+        window.localStorage.setItem('User', JSON.stringify({ token: result.body.token }))
+    })
 })

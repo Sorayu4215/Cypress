@@ -24,9 +24,9 @@
         </fieldset><br>
             <div class="user-accout-buttons2">
                 <input type="submit" class="edit-button" (click)="changeValuesCredentials('username')" *ngIf="editButtonUsernameCredentials"
-                    [attr.data-type]="attr.changeCredentialsBtn" value="Change Username">
+                    [attr.data-type]="attr.changeCredentialsUsernameBtn" value="Change Username">
                 <input type="submit" class="edit-button" value="Save" *ngIf="!editButtonUsernameCredentials && !loaderUsername"
-                    [attr.data-type]="attr.saveCredentialsBtn">
+                    [attr.data-type]="attr.saveCredentialsUsernameBtn">
             </div>
         </form>
     </div>
@@ -63,9 +63,9 @@
         </fieldset><br>
         <div class="user-accout-buttons2">
             <input type="submit" class="edit-button" (click)="changeValuesCredentials('password')" *ngIf="editButtonPasswordCredentials"
-                [attr.data-type]="attr.changeCredentialsBtn" value="Change Password">
+                [attr.data-type]="attr.changeCredentialsPasswordBtn" value="Change Password">
             <input type="submit" class="edit-button" value="Save" *ngIf="!editButtonPasswordCredentials"
-                [attr.data-type]="attr.saveCredentialsBtn">
+                [attr.data-type]="attr.saveCredentialsPasswordBtn">
         </div>
     </form>
 </div>
