@@ -285,7 +285,7 @@ describe('User profile',()=>{
         })
     })
 
-    specify.only('Change Business data',()=>{
+    specify('Change Business data',()=>{
         //log in 
         cy.quickLogIn('test_user', '12345678')
         cy.visit('/user-profile')
