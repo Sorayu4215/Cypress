@@ -22,7 +22,7 @@ deploy:
     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
 
 integration_tests:
-  image: cypress/browsers:node16.15.0-chrome114
+  image: node16.13.2-chrome100-ff98
   stage: test
   script: 
     - npm ci
