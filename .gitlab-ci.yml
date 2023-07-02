@@ -22,12 +22,12 @@ deploy:
     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
 
 integration_tests:
-  image: cypress/browsers
+  image: cypress/browsers:node16.13.2-chrome100-ff98
   stage: test
   script: 
     - npm ci
     - npm run cy:run:prod
   artifacts:
     paths:
-      - tests/cypress/screenshots/
+      - /builds/Martin-Oc/test-app/tests/cypress/screenshots/end-to-end.spec.ts/
 
