@@ -29,5 +29,5 @@ integration_tests:
     - npm run cy:run:prod
   artifacts:
     paths:
-      - tests/cypress/screenshots/
+      - /builds/Martin-Oc/test-app/tests/cypress/screenshots/end-to-end.spec.ts/
 
