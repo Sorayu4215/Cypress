@@ -28,6 +28,10 @@ integration_tests:
     - npm ci
     - npm run cy:run:prod
   artifacts:
+    when: always
     paths:
-      - /builds/Martin-Oc/test-app/tests/cypress/screenshots/end-to-end.spec.ts/
+      - cypress/videos/**/*.mp4
+      - cypress/screenshots/**/*.png
+      - tests/cypress/screenshots/**/**.png
+    expire_in: 1 day
 
