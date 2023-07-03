@@ -26,8 +26,11 @@ export class AddressPage{
     }
 
     //business data
-    get businessAccountInpt(){
+    get businessAccountInput(){
         return cy.get('[data-type="business-account-input"]', { timeout: 15000 })
+    }
+    get businessAccountDiv(){
+        return cy.get('[data-type="business-account-div"]', { timeout: 15000 })
     }
     get companyRegistrationNoInput() {
         return cy.get('[data-type="company-registration-number-input"]', { timeout: 15000 })
@@ -63,7 +66,8 @@ export class AddressPage{
     }
 
     businessData(companyRegistrationNumber: string, VATNumber: string, BICNumber: string, IBAN: string, NameOfBankAccountIbanInput:string){
-        this.businessAccountInpt.check({force:true})
+        this.businessAccountDiv.should('be.visible')
+        this.businessAccountInput.check({force:true})
         this.companyRegistrationNoInput.type(companyRegistrationNumber, { timeout: 15000 })
         this.VATNoInput.type(VATNumber)
         this.BICInput.type(BICNumber)

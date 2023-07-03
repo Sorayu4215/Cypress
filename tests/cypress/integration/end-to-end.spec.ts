@@ -127,6 +127,7 @@ describe('Purchase flow',()=>{
         shippingPage.addressButton.click()
         //address page
         cy.wait("@getUser")
+        addressPage.summaryButton.should('be.visible')
         addressPage.summaryButton.click()
         //summary page check and make order 
         // cy.wait(3000)
@@ -293,6 +294,7 @@ describe('User profile',()=>{
         //change data
         // cy.wait(3000)
         cy.wait('@getUser')
+
         addressPage.businessData('KIPRT123456', 'TR999 9999 73', 'KBSPSKBTRGJ', 'SK0809000000000123456789', 'Test User')
         personalData.saveButton.click()
         //success message
