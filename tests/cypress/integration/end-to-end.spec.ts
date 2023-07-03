@@ -125,13 +125,11 @@ describe('Purchase flow',()=>{
         shippingPage.CreditCardOption.click()
         shippingPage.addressButton.click()
         //address page
-        cy.wait(5000)
         addressPage.summaryButton.click()
         //summary page check and make order 
-        cy.wait(5000)
-        summaryPage.orderButton.click()
+        cy.wait(3000)
+        summaryPage.orderButton.click({timeout:15000})
         //verify order and save ID 
-        cy.wait(5000)
         orderPage.successIcon.should('be.visible')
         orderPage.ID.then(element => {
             const wrappedID = element.text()
@@ -290,7 +288,7 @@ describe('User profile',()=>{
         cy.quickLogIn('test_user', '12345678')
         cy.visit('/user-profile')
         //change data
-        cy.wait(5000)
+        // cy.wait(3000)
         addressPage.businessData('KIPRT123456', 'TR999 9999 73', 'KBSPSKBTRGJ', 'SK0809000000000123456789', 'Test User')
         personalData.saveButton.click()
         //success message

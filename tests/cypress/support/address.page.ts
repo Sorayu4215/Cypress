@@ -64,7 +64,7 @@ export class AddressPage{
 
     businessData(companyRegistrationNumber: string, VATNumber: string, BICNumber: string, IBAN: string, NameOfBankAccountIbanInput:string){
         this.businessAccountInpt.check({force:true})
-        this.companyRegistrationNoInput.type(companyRegistrationNumber)
+        this.companyRegistrationNoInput.type(companyRegistrationNumber, { timeout: 15000 })
         this.VATNoInput.type(VATNumber)
         this.BICInput.type(BICNumber)
         this.IBANInput.type(IBAN)
