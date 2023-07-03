@@ -27,7 +27,7 @@ export class AddressPage{
 
     //business data
     get businessAccountInpt(){
-        return cy.get('[data-type="newsletter-input"]', { timeout: 15000 })
+        return cy.get('[data-type="business-account-input"]', { timeout: 15000 })
     }
     get companyRegistrationNoInput() {
         return cy.get('[data-type="company-registration-number-input"]', { timeout: 15000 })
