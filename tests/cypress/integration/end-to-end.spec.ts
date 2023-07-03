@@ -130,7 +130,7 @@ describe('Purchase flow',()=>{
         addressPage.summaryButton.should('be.visible')
         addressPage.summaryButton.click()
         //summary page check and make order 
-        // cy.wait(3000)
+        cy.wait(1000)
         summaryPage.orderButton.click({timeout:15000})
         //verify order and save ID 
         orderPage.successIcon.should('be.visible')
@@ -292,9 +292,8 @@ describe('User profile',()=>{
         cy.intercept('**/user').as('getUser')
         cy.visit('/user-profile')
         //change data
-        // cy.wait(3000)
+        cy.wait(1000)
         cy.wait('@getUser')
-
         addressPage.businessData('KIPRT123456', 'TR999 9999 73', 'KBSPSKBTRGJ', 'SK0809000000000123456789', 'Test User')
         personalData.saveButton.click()
         //success message
