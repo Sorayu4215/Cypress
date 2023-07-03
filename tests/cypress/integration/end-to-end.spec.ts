@@ -80,7 +80,7 @@ describe('Purchase flow',()=>{
 
 
 
-    specify.only('User is logged in',()=>{
+    specify('User is logged in',()=>{
         //accept only technical cookies
         cy.intercept('**/user').as('getUser')
         productPage.cookieBannerDetails.click()
