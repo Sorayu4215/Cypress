@@ -80,7 +80,7 @@ describe('Purchase flow',()=>{
 
 
 
-    specify('User is logged in',()=>{
+    specify.only('User is logged in',()=>{
         //accept only technical cookies
         cy.intercept('**/user').as('getUser')
         productPage.cookieBannerDetails.click()
@@ -126,7 +126,7 @@ describe('Purchase flow',()=>{
         shippingPage.CreditCardOption.click()
         shippingPage.addressButton.click()
         //address page
-        cy.wait("getUser")
+        cy.wait("@getUser")
         addressPage.summaryButton.click()
         //summary page check and make order 
         // cy.wait(3000)
