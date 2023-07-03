@@ -82,6 +82,7 @@ describe('Purchase flow',()=>{
 
     specify('User is logged in',()=>{
         //accept only technical cookies
+        cy.intercept('**/user').as('getUser')
         productPage.cookieBannerDetails.click()
         productPage.cookieBannerPreferenciesInput.click()
         productPage.cookieBannerStatusInput.click()
@@ -125,6 +126,7 @@ describe('Purchase flow',()=>{
         shippingPage.CreditCardOption.click()
         shippingPage.addressButton.click()
         //address page
+        cy.wait("getUser")
         addressPage.summaryButton.click()
         //summary page check and make order 
         // cy.wait(3000)
@@ -286,9 +288,11 @@ describe('User profile',()=>{
     specify('Change Business data',()=>{
         //log in 
         cy.quickLogIn('test_user', '12345678')
+        cy.intercept('**/user').as('getUser')
         cy.visit('/user-profile')
         //change data
         // cy.wait(3000)
+        cy.wait('@getUser')
         addressPage.businessData('KIPRT123456', 'TR999 9999 73', 'KBSPSKBTRGJ', 'SK0809000000000123456789', 'Test User')
         personalData.saveButton.click()
         //success message
@@ -309,4 +313,5 @@ after(() => {
     cy.testuserDatabaseDeregistration('test_user2')
     cy.testuserDatabaseDeregistration('test_user3')
     cy.testuserDatabaseDeregistration('test_change_credentials2')
+    cy.testuserDatabaseDeregistration('test_change_credentials')
 })
