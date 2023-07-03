@@ -42,7 +42,7 @@ export class SummaryPage{
 
     //navigation
     get orderButton(){
-        return cy.get('[data-type="summary-order"]')
+        return cy.get('[data-type="summary-order"]', { timeout: 15000 })
     }
 
     //basic functions

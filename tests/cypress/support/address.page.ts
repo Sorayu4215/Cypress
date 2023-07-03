@@ -27,10 +27,10 @@ export class AddressPage{
 
     //business data
     get businessAccountInpt(){
-        return cy.get('[data-type="newsletter-input"]')
+        return cy.get('[data-type="newsletter-input"]', { timeout: 15000 })
     }
     get companyRegistrationNoInput() {
-        return cy.get('[data-type="company-registration-number-input"]')
+        return cy.get('[data-type="company-registration-number-input"]', { timeout: 15000 })
     }
     get VATNoInput() {
         return cy.get('[data-type="VAT-input"]')
@@ -47,7 +47,7 @@ export class AddressPage{
 
     //navigation
     get summaryButton(){
-        return cy.get('[data-type="save-values-btn"]')
+        return cy.get('[data-type="save-values-btn"]', { timeout: 15000 })
     }
 
     //basic fnuctions

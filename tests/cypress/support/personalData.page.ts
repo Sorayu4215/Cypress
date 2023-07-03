@@ -1,7 +1,7 @@
 export class PersonalDataPage{
     //sucess
     get successBox(){
-        return cy.get('[data-type="success-box"]')
+        return cy.get('[data-type="success-box"]', { timeout: 15000 })
     }
 
     //address data 

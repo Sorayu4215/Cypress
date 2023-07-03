@@ -127,7 +127,7 @@ describe('Purchase flow',()=>{
         //address page
         addressPage.summaryButton.click()
         //summary page check and make order 
-        cy.wait(3000)
+        // cy.wait(3000)
         summaryPage.orderButton.click({timeout:15000})
         //verify order and save ID 
         orderPage.successIcon.should('be.visible')
