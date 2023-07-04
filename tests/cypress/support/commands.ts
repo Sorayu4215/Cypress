@@ -86,6 +86,7 @@ Cypress.Commands.add('APIWithoutToken',(APImethod: "GET"| "POST"| "DELETE"| "PUT
         body: {},
         failOnStatusCode: false
     }).then((result: any) => {
+        expect(result.body).to.have.property('msg').to.eq('Not authorized!')
         expect(result.status).to.eq(APIstatus)
     })
 })
@@ -101,6 +102,7 @@ Cypress.Commands.add('APIInvalidtToken', (APImethod: "GET" | "POST" | "DELETE" |
         body: {},
         failOnStatusCode: false
     }).then((result: any) => {
+        expect(result.body).to.have.property('msg').to.eq('Not authorized!')
         expect(result.status).to.eq(APIstatus)
     })
 })
