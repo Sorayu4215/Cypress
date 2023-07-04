@@ -17,9 +17,12 @@ export class InputDataComponent implements OnInit {
     if (localStorage.getItem('User')){
       const token = JSON.parse(localStorage.getItem('User')!).token
       this.data.user(token).subscribe((data: any) => {
+        this.loader = false
         this.address.setValue(data)
         this.companyUser = data.bussiness_account
       })
+    }else{
+      this.loader = false
     }
   }
 
@@ -36,24 +39,6 @@ export class InputDataComponent implements OnInit {
   isDisabledCredentials: boolean = true
   editButtonCredentials: boolean = true
   readonly attr = inputData
-  // address = new FormGroup({
-  //   email: new FormControl( '' , [Validators.required, Validators.email]),
-  //   name: new FormControl('', [Validators.required]),
-  //   address: new FormControl('', Validators.required),
-  //   country: new FormControl('', Validators.required),
-  //   city: new FormControl('', Validators.required),
-  //   post_code: new FormControl('', Validators.required),
-  //   phone_number: new FormControl('', [Validators.required, Validators.minLength(9)]),
-  //   newsletter: new FormControl(false),
-  //   terms_and_condition: new FormControl(false, Validators.requiredTrue),
-  //   bussiness_account: new FormControl(false),
-  //   compaty_reg_number: new FormControl(''),
-  //   VAT: new FormControl(''),
-  //   BIC: new FormControl(''),
-  //   IBAN: new FormControl(''),
-  //   bank_account_holder: new FormControl(''),
-  //   idUsers: new FormControl(''),
-  // })
   address = new FormGroup({
     email: new FormControl( '' , [Validators.required, Validators.email]),
     name: new FormControl('', [Validators.required]),
@@ -72,6 +57,7 @@ export class InputDataComponent implements OnInit {
     bank_account_holder: new FormControl(''),
     idUsers: new FormControl(''),
   })
+  loader = true
   @Output() formData = new EventEmitter()
 
   addNewItem() {   
@@ -104,8 +90,10 @@ export class InputDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.address.setValue(this.userData)  
+    this.loader = false
     this.companyUser = this.userData.bussiness_account
     this.data.userData.subscribe((data: any) => { 
+      this.loader = false
       this.address.setValue(data)  
     })
   }

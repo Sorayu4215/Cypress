@@ -43,7 +43,7 @@ describe('Purchase flow',()=>{
         shippingPage.addressButton.click()
         //fill address data and navigate to summary page
         addressPage.pernalData('johnSmilga@test.com','John Smilga','Main 32','Slovakia','Bratislava','14 759','0258471698')
-        addressPage.summaryButton.click({force:true})
+        addressPage.summaryButton.click()
         //summary page check and make order 
         summaryPage.verifyUserlData('johnSmilga@test.com', 'John Smilga', 'Main 32', 'Slovakia', 'Bratislava', '14 759', '0258471698')
         summaryPage.verifyDeliveryAndPayment('Personal pickup','Credit / Debit Card')
@@ -129,7 +129,7 @@ describe('Purchase flow',()=>{
         cy.wait("@getUser")
         addressPage.summaryButton.should('be.visible')
         // cy.wait(1000)
-        addressPage.summaryButton.click({ force: true })
+        addressPage.summaryButton.click()
         //summary page check and make order 
         summaryPage.orderButton.click({timeout:15000})
         //verify order and save ID 

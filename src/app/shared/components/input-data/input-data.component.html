@@ -1,5 +1,6 @@
 <div class="user-profile-wrapper">
-    <div class="wrapper">
+    <app-loader *ngIf="this.loader"></app-loader>
+    <div class="wrapper" *ngIf="!this.loader">
         <form action="" [formGroup]="address" #ngForm="ngForm" class="form" (ngSubmit)="addNewItem()">
             <div class="split">
 

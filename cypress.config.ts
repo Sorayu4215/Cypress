@@ -29,7 +29,8 @@ export default defineConfig({
 
     baseUrl: 'http://localhost:3000',
     supportFile: 'tests/cypress/support/commands.ts',
-    specPattern: 'tests/cypress/integration/*.spec.{js,jsx,ts,tsx}'
+    specPattern: 'tests/cypress/integration/*.spec.{js,jsx,ts,tsx}',
+    defaultCommandTimeout: 8000
   },  
   video:false,
   videosFolder:"tests/cypress/video",
