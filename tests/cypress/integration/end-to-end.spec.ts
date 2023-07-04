@@ -4,6 +4,7 @@ import '../support/commands'
 before(() => {
     cy.testuserDatabaseRegistration('test_user', '12345678', 'johnSmilga@test.com', 'John Smilga', 'Main 32', 'Bratislava', 'Slovakia', '0258471698', '14 759', 'true')
     cy.testuserDatabaseRegistration('test_change_credentials', '12345678', 'johnSmilga@test.com', 'John Smilga', 'Main 32', 'Bratislava', 'Slovakia', '0258471698', '14 759', 'true')
+    Cypress.session.clearAllSavedSessions()
 })
 
 describe('Purchase flow',()=>{
@@ -243,6 +244,7 @@ describe('User profile',()=>{
     specify('Change Username and password',()=>{
         //log in 
         cy.quickLogIn('test_change_credentials', '12345678')
+        cy.setCookie('Cookie', JSON.stringify({ needed: true, preferecies: false, stats: false }))
         cy.visit('/user-profile')
         //change username 
         personalData.changeUsernameButton.click()
@@ -267,6 +269,7 @@ describe('User profile',()=>{
     specify('Change Perosnal data',()=>{
         //log in 
         cy.quickLogIn('test_user', '12345678')
+        cy.setCookie('Cookie', JSON.stringify({ needed: true, preferecies: false, stats: false }))
         cy.visit('/user-profile')
         //change data
         addressPage.pernalData('test@test.com', 'Junior Clark', 'Side 28', 'Italy','Milan', '92 698', '0123456789')
@@ -288,10 +291,9 @@ describe('User profile',()=>{
     specify('Change Business data',()=>{
         //log in 
         cy.quickLogIn('test_user', '12345678')
-        cy.intercept('**/user').as('getUser')
+        cy.setCookie('Cookie', JSON.stringify({ needed: true, preferecies: false, stats: false }))
         cy.visit('/user-profile')
         //change data
-        cy.wait('@getUser')
         addressPage.businessData('KIPRT123456', 'TR999 9999 73', 'KBSPSKBTRGJ', 'SK0809000000000123456789', 'Test User')
         personalData.saveButton.click()
         //success message

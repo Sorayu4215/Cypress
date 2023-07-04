@@ -65,13 +65,15 @@ Cypress.Commands.add('logIn',(username:string, password:string)=>{
 })
 
 Cypress.Commands.add('quickLogIn',(username:string, password:string)=>{
-    cy.request({
-        method: 'POST',
-        url: `${Cypress.config().baseUrl}/api/v1/login`,
-        body: { username: username, password: password }
-    }).then((result: any) => {
-        window.localStorage.setItem('User', JSON.stringify({ token: result.body.token }))
-        cy.wrap({ token: result.body.token }).as('token')
+    cy.session(username,()=>{
+        cy.request({
+            method: 'POST',
+            url: `${Cypress.config().baseUrl}/api/v1/login`,
+            body: { username: username, password: password }
+        }).then((result: any) => {
+            window.localStorage.setItem('User', JSON.stringify({ token: result.body.token }))
+            cy.wrap({ token: result.body.token }).as('token')
+        })
     })
 })
 
@@ -108,12 +110,11 @@ Cypress.Commands.add('APIInvalidtToken', (APImethod: "GET" | "POST" | "DELETE" |
 })
 
 Cypress.Commands.add('APIRequest', (APImethod: "GET" | "POST" | "DELETE" | "PUT", endpoint: string,APIbody:any, APIstatus: number) =>{
-    cy.get('@token').then((result: any) => {
         cy.request({
             method: APImethod,
             url: `${Cypress.config('baseUrl')}/${endpoint}`,
             headers: {
-                "Authorization": `Bearer ${result.token}`,
+                "Authorization": `Bearer ${JSON.parse(localStorage.getItem('User')!).token}`,
                 'content-type': 'application/json'
             },
             body: APIbody,
@@ -122,5 +123,4 @@ Cypress.Commands.add('APIRequest', (APImethod: "GET" | "POST" | "DELETE" | "PUT"
             expect(response.status).to.eq(APIstatus)
             cy.wrap(response.body).as('response')
         })
-    })
 })

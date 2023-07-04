@@ -43,10 +43,10 @@ const logIn = async (request, response,next) => {
 const user =  (request, response, next) => {
     const token = request.headers.authorization.split(' ')[1]
     const user = jwt.decode(token, process.env.JWT_SECRET)
-
+    
     let query = `SELECT * FROM users WHERE idUsers = '${user.idUsers}'`
     database.query(query, (err, data) => {
-        if (data) {
+        if (data.length > 0) {
             data[0].newsletter = data[0].newsletter === 'true';
             data[0].terms_and_condition = data[0].terms_and_condition === 'true';
             data[0].bussiness_account = data[0].bussiness_account === 'true';
