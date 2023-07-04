@@ -71,5 +71,54 @@ Cypress.Commands.add('quickLogIn',(username:string, password:string)=>{
         body: { username: username, password: password }
     }).then((result: any) => {
         window.localStorage.setItem('User', JSON.stringify({ token: result.body.token }))
+        cy.wrap({ token: result.body.token }).as('token')
+    })
+})
+
+Cypress.Commands.add('APIWithoutToken',(APImethod: "GET"| "POST"| "DELETE"| "PUT", endpoint: string, APIstatus:number)=>{
+    cy.request({
+        method: APImethod,
+        url: `${Cypress.config().baseUrl}/${endpoint}`,
+        headers: {
+            "Authorization": null,
+            'content-type': 'application/json'
+        },
+        body: {},
+        failOnStatusCode: false
+    }).then((result: any) => {
+        expect(result.status).to.eq(APIstatus)
+    })
+})
+
+Cypress.Commands.add('APIInvalidtToken', (APImethod: "GET" | "POST" | "DELETE" | "PUT", endpoint: string, APIstatus: number) =>{
+    cy.request({
+        method: APImethod,
+        url: `${Cypress.config().baseUrl}/${endpoint}`,
+        headers: {
+            "Authorization": "Bearer LoremIpsum",
+            'content-type': 'application/json'
+        },
+        body: {},
+        failOnStatusCode: false
+    }).then((result: any) => {
+        expect(result.status).to.eq(APIstatus)
+    })
+})
+
+Cypress.Commands.add('APIRequest', (APImethod: "GET" | "POST" | "DELETE" | "PUT", endpoint: string,APIbody:any, APIstatus: number) =>{
+    cy.get('@token').then((result: any) => {
+        cy.request({
+            method: APImethod,
+            url: `${Cypress.config('baseUrl')}/${endpoint}`,
+            headers: {
+                "Authorization": `Bearer ${result.token}`,
+                'content-type': 'application/json'
+            },
+            body: APIbody,
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.eq(APIstatus)
+            cy.wrap(response.body).as('response')
+        })
     })
 })
