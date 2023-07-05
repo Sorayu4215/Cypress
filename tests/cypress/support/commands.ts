@@ -72,7 +72,6 @@ Cypress.Commands.add('quickLogIn',(username:string, password:string)=>{
             body: { username: username, password: password }
         }).then((result: any) => {
             window.localStorage.setItem('User', JSON.stringify({ token: result.body.token }))
-            cy.wrap({ token: result.body.token }).as('token')
         })
     })
 })
@@ -118,7 +117,6 @@ Cypress.Commands.add('APIRequest', (APImethod: "GET" | "POST" | "DELETE" | "PUT"
                 'content-type': 'application/json'
             },
             body: APIbody,
-            failOnStatusCode: false
         }).then((response) => {
             expect(response.status).to.eq(APIstatus)
             cy.wrap(response.body).as('response')

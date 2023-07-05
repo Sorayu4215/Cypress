@@ -237,10 +237,6 @@ describe('Authorisation flow',()=>{
 })
 
 describe('User profile',()=>{
-    beforeEach(() => {
-        cy.setCookie('Cookie', JSON.stringify({ needed: true, preferecies: false, stats: false }))
-    })
-
     specify('Change Username and password',()=>{
         //log in 
         cy.quickLogIn('test_change_credentials', '12345678')

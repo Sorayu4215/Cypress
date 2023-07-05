@@ -15,7 +15,7 @@
     <div class="section" [attr.data-type]="attr.filterPriceSection">
         <h6 class="subfilter-title" [attr.data-type]="attr.filterPriceTitle">{{this.resources.filterPrice}}</h6>
         <input type="range" min="1" max="{{this.maximumNumber}}" value="{{this.maximumNumber}}" class="" id="myRange" 
-        [attr.data-type]="attr.filterPriceInput" (input)="applyFilter()" #priceInput>
+        [attr.data-type]="attr.filterPriceInput" (change)="applyFilter()" (input)="applyFilter()" #priceInput>
         <div class="slier-values">
             <label for="">0</label>
             <label for="" *ngIf="this.currentValue !== this.maximumNumber">{{this.currentValue}}</label>

@@ -20,8 +20,20 @@ export class ProductPage{
     get filterSearchInput(){
         return cy.get('[data-type="filter-search-input"]')
     }
+    get filterAllButton(){
+        return cy.get('[data-type="filter-category-button-All"]')
+    }
     get filterClothingButton(){
         return cy.get('[data-type="filter-category-button-Clothing"]')
+    }
+    get filterElectronicButton(){
+        return cy.get('[data-type="filter-category-button-Electronics"]')
+    }
+    get filterPriceSlider(){
+        return cy.get('[data-type="filter-price-input"]')
+    }
+    get filterExpensiveOrderButton(){
+        return cy.get('[data-type="filter-order-expensive"]')
     }
 
     //items
@@ -36,6 +48,9 @@ export class ProductPage{
     }
     get productBackpack(){
         return cy.contains('Backpack')
+    }
+    product(name:string){
+        return cy.contains(name)
     }
 
     //navigation modal
