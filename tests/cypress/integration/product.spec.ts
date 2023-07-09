@@ -1,4 +1,4 @@
-import { productPage } from "../support/main"
+import { productPage,productDetailsPage } from "../support/main"
 
 
 context('Filter',()=>{
@@ -81,6 +81,32 @@ context('Filter',()=>{
         })
         productPage.product('Smart Watch').should('be.visible')
     })
+})
 
+context('Product', ()=>{
+    beforeEach(() => {
+        cy.setCookie('Cookie', JSON.stringify({ needed: true, preferecies: false, stats: false }))
+        cy.visit('/')
+    })
+    it('Item attributes and add to cart check',()=>{
+        //product attributes check
+        productPage.productImage.should('be.visible')
+        productPage.productTitleLabel.should('be.visible')
+        productPage.productDescriptionParagraph.should('be.visible')
+        productPage.productPricenLabel.should('be.visible')
+        productPage.productInfoButton.should('be.visible')
+        productPage.productCartButton.should('be.visible')
 
+        //add product to cart
+        productPage.firstItem.find('[data-type^="product-cart-button"]').click()
+        productPage.modalShoppingButton.click()
+        productPage.modalDiv.should('not.exist')
+        productPage.headerCartBadgeButton.should('be.visible').should('have.text','1')
+    })
+
+    it('Info button chcek',()=>{
+        //add product to cart
+        productPage.firstItem.find('[data-type^="product-info-button"]').click()
+        productDetailsPage.title.should('be.visible').should('have.text','T-Shirt')
+    })
 })

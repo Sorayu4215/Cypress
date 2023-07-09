@@ -52,8 +52,29 @@ export class ProductPage{
     product(name:string){
         return cy.contains(name)
     }
+    get productImage(){
+        return cy.get('[data-type^="product-image-"]')
+    }
+    get productTitleLabel(){
+        return cy.get('[data-type^="product-title-"]')
+    }
+    get productDescriptionParagraph(){
+        return cy.get('[data-type^="product-description-"]')
+    }
+    get productPricenLabel(){
+        return cy.get('[data-type^="product-price-"]')
+    }
+    get productInfoButton(){
+        return cy.get('[data-type^="product-info-button-"]')
+    }
+    get productCartButton(){
+        return cy.get('[data-type^="product-cart-button-"]')
+    }
 
     //navigation modal
+    get modalDiv(){
+        return cy.get('[data-type="info-modal"]')
+    }
     get modalCartNavigationButton(){
         return cy.get('[data-type="navigate-to-cart"]')
     }
