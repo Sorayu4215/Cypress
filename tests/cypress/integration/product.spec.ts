@@ -88,7 +88,7 @@ context('Product', ()=>{
         cy.setCookie('Cookie', JSON.stringify({ needed: true, preferecies: false, stats: false }))
         cy.visit('/')
     })
-    it('Item attributes and add to cart check',()=>{
+    it.only('Item attributes and add to cart check',()=>{
         //product attributes check
         productPage.productImage.should('be.visible')
         productPage.productTitleLabel.should('be.visible')
@@ -101,6 +101,9 @@ context('Product', ()=>{
         productPage.firstItem.find('[data-type^="product-cart-button"]').click()
         productPage.modalShoppingButton.click()
         productPage.modalDiv.should('not.exist')
+        cy.getAllLocalStorage().then(result=>{
+            expect(result[Cypress.config().baseUrl!]).to.haveOwnProperty("Items").to.eq(JSON.stringify([{ "idItems": 1, "amount": 1 }]))
+        })
         productPage.headerCartBadgeButton.should('be.visible').should('have.text','1')
     })
 
