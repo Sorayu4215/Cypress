@@ -1,4 +1,5 @@
 export enum itemDetails{
+    detailsWrapper = 'details-warpper',
     detailsImage = 'details-image',
     detailsTitle = 'details-title',
     detailsDescription = 'details-descrption',

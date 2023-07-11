@@ -16,6 +16,13 @@ export class ItemDetailsComponent implements OnInit {
     const id = this.router.url.slice(1)
     this.data.getItem(id).subscribe((data)=>{
       this.item = data
+      if (this.item.length == 0){
+        this.error = true
+        this.errorMessage = "Item doesn't exist!"
+      }
+    }, err => {
+      this.error = true
+      this.errorMessage = err.message
     })    
   }
 

@@ -29,6 +29,10 @@ export class MainPageComponent implements OnDestroy,OnInit {
   ngOnInit(): void {
     this.data.getItems().subscribe((data) => {
         this.items = data
+        if(this.items.length == 0){
+          this.error = true
+          this.errorMessage = "We are sorry! Currently are no products available!"
+        }
     }, err => {
         this.error = true
         this.errorMessage = err.message

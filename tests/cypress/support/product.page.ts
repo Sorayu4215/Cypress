@@ -71,7 +71,15 @@ export class ProductPage{
         return cy.get('[data-type^="product-cart-button-"]')
     }
 
+    //error
+    get errorBox(){
+        return cy.get('[data-type="error-div"]')
+    }
+
     //navigation modal
+    get modalCloseButton(){
+        return cy.get('[data-type="close-button"]')
+    }
     get modalDiv(){
         return cy.get('[data-type="info-modal"]')
     }

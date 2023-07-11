@@ -113,3 +113,31 @@ context('Product', ()=>{
         productDetailsPage.title.should('be.visible').should('have.text','T-Shirt')
     })
 })
+
+describe('Error cases',()=>{
+    beforeEach(() => {
+        cy.setCookie('Cookie', JSON.stringify({ needed: true, preferecies: false, stats: false }))
+    })
+    it('No data loaded', () => {
+        //intercept call and return empty array
+        cy.intercept('GET', '**/api/v1/items**', {
+            statusCode: 200,
+            body: []
+        }).as('emptyItems')
+        cy.reload()
+        //verify case with no products avalable
+        productPage.productsWrapper.should('not.exist')
+        productPage.errorBox.should('be.visible').should('contain', 'We are sorry! Currently are no products available!')
+    })
+    it('Error message', () => {
+        //intercept call and return error status
+        cy.intercept('GET', '**/api/v1/items**', {
+            statusCode: 404,
+            body: []
+        }).as('emptyItems')
+        cy.reload()
+        //verify case with no products avalable
+        productPage.productsWrapper.should('not.exist')
+        productPage.errorBox.should('be.visible').should('contain', '404 Not Found')
+    })
+})
