@@ -124,7 +124,7 @@ describe('Error cases',()=>{
             statusCode: 200,
             body: []
         }).as('emptyItems')
-        cy.reload()
+        cy.visit('/')
         //verify case with no products avalable
         productPage.productsWrapper.should('not.exist')
         productPage.errorBox.should('be.visible').should('contain', 'We are sorry! Currently are no products available!')
@@ -135,7 +135,7 @@ describe('Error cases',()=>{
             statusCode: 404,
             body: []
         }).as('emptyItems')
-        cy.reload()
+        cy.visit('/')
         //verify case with no products avalable
         productPage.productsWrapper.should('not.exist')
         productPage.errorBox.should('be.visible').should('contain', '404 Not Found')
