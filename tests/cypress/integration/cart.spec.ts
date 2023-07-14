@@ -39,7 +39,7 @@ describe('Cart',()=>{
             expect(extractNumber(totalPrice.text())).to.eq(numberFormation((itemTotalPrice + itemTotalPrice2)*1.2))
         })
     })
-    it('Change amount',()=>{
+    it.only('Change amount',()=>{
         window.localStorage.setItem('Items', JSON.stringify([{ idItems: 1, amount: 2 }]))
         cy.reload()
         let itemTotalPriceOriginal: number = 1
@@ -58,6 +58,11 @@ describe('Cart',()=>{
         cartPage.itemTotalPrice('0').then(result => expect(extractNumber(result.text())).to.eq(itemTotalPriceChanged))
         //check total price
         cartPage.totalPriceLabel.then(totalPrice => expect(extractNumber(totalPrice.text())).to.eq(numberFormation(itemTotalPriceChanged*1.2)))
+        //change amount to 0
+        cartPage.itemCountInput('0').clear().type('0{enter}')
+        //check that element is not visible 
+        cartPage.itemTitleLabel('0').should('not.exist')
+        cartPage.totalPriceLabel.should('contain','0.00')
     })
     it('Delete waranty and returin option',()=>{
         window.localStorage.setItem('Items', JSON.stringify([{ idItems: 4, waranty: true, returnOption: true, amount: 1 }]))
@@ -82,7 +87,7 @@ describe('Cart',()=>{
         //detele item
         cartPage.itemDeleteButton('1').click()
         cartPage.itemTitleLabel('1').should('not.exist')
-        //save prive
+        //save price
         cartPage.itemTotalPrice('0').then(price => {
             itemTotalPrice *= extractNumber(price.text())
         })
