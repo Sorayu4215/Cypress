@@ -39,7 +39,7 @@ describe('Cart',()=>{
             expect(extractNumber(totalPrice.text())).to.eq(numberFormation((itemTotalPrice + itemTotalPrice2)*1.2))
         })
     })
-    it.only('Change amount',()=>{
+    it('Change amount',()=>{
         window.localStorage.setItem('Items', JSON.stringify([{ idItems: 1, amount: 2 }]))
         cy.reload()
         let itemTotalPriceOriginal: number = 1
