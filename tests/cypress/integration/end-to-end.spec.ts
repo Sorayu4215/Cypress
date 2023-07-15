@@ -40,7 +40,7 @@ describe('Purchase flow',()=>{
         cartPage.shippingButton.click()
         //choose delivery, payment type and navigate into adress
         shippingPage.personalPickupOption.click()
-        shippingPage.CreditCardOption.click()
+        shippingPage.creditCardOption.click()
         shippingPage.addressButton.click()
         //fill address data and navigate to summary page
         addressPage.pernalData('johnSmilga@test.com','John Smilga','Main 32','Slovakia','Bratislava','14 759','0258471698')
@@ -124,7 +124,7 @@ describe('Purchase flow',()=>{
         cartPage.shippingButton.click()
         //choose delivery, payment type and navigate into adress
         shippingPage.personalPickupOption.click()
-        shippingPage.CreditCardOption.click()
+        shippingPage.creditCardOption.click()
         shippingPage.addressButton.click()
         //address page
         cy.wait("@getUser")

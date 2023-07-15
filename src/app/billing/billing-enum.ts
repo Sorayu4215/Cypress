@@ -20,6 +20,8 @@ export enum billing{
     deliveryCurierFee = 'shippig-curier-fee',
     deliveryCurierDelivery = 'shippig-curier-delivery',
 
+    deliveryError='delivery-error-message',
+
     paymentMethod = 'shipping-delivery-method',
     paymentTable = 'shipping-delivery-table',
     
@@ -53,7 +55,7 @@ export enum billing{
     paymentCashOption = 'shippig-cash-option',
     paymentCashFee = 'shippig-cash-fee',
 
-
+    paymentError = 'payment-error-message',
 
     backToCartNavigation = 'shipping-back-to-cart-navigation',
     addressNavigation = 'shipping-address-navigation'

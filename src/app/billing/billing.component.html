@@ -11,7 +11,7 @@
                 <td><label for="{{shipping.title}}" [attr.data-type]="shipping.deliveryData">{{shipping.delivery}}</label></td>
             </tr>
         </table>
-        <p *ngIf="!this.shippingfee && this.showErrorMessage" class="billing-error-message" >{{this.resources.billingErrorMessage}}</p>
+        <p *ngIf="!this.shippingfee && this.showErrorMessage" class="billing-error-message" [attr.data-type]="attr.deliveryError">{{this.resources.billingErrorMessage}}</p>
     </div>
     <h3 class="billing-payment  billing-title" [attr.data-type]="attr.paymentMethod">{{this.resources.billintChoosePaymentType}}</h3>
     <div class="billing-table">
@@ -22,7 +22,7 @@
                 <td><label for="{{payment.title}}" [attr.data-type]="payment.feeData">{{payment.fee}}</label></td>
             </tr>
         </table>
-        <p *ngIf="!this.paymentMethodfee && this.showErrorMessage"  class="billing-error-message">{{this.resources.billingErrorMessage}}</p>
+        <p *ngIf="!this.paymentMethodfee && this.showErrorMessage"  class="billing-error-message" [attr.data-type]="attr.paymentError">{{this.resources.billingErrorMessage}}</p>
     </div>
 </div>
 

@@ -1,4 +1,8 @@
 export class AddressPage{
+    //top navigation 
+    get topNavigationAddressLabel(){
+        return cy.get('[data-type="navigation-address"]')
+    }
     //personal data
     get emailInput(){
         return cy.get('[data-type="email-input"]')

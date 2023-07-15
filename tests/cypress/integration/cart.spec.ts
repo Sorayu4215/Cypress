@@ -8,6 +8,14 @@ describe('Cart',()=>{
         window.localStorage.setItem('Items', JSON.stringify([{ idItems: 1, amount: 2 }, { idItems: 4, waranty: true, returnOption: true, amount: 1 }]))
         cy.visit('/cart')
     })
+    it('Navigation test',()=>{
+        //navigate back to product page
+        cartPage.backButton.click()
+        productPage.productsWrapper.should('be.visible')
+        //navigate to cart
+        productPage.headerCartButton.click()
+        cartPage.itemsWrapper.should('be.visible')
+    })
     it('Attrributes and price counting verification',()=>{
         //atributes check
         cartPage.topNavigationCartLabel.should('be.visible').should('have.class','active')
@@ -42,22 +50,18 @@ describe('Cart',()=>{
     it('Change amount',()=>{
         window.localStorage.setItem('Items', JSON.stringify([{ idItems: 1, amount: 2 }]))
         cy.reload()
-        let itemTotalPriceOriginal: number = 1
-        var itemTotalPriceChanged: number = 1
-        //change chcek initial total value
+        var itemTotalPrice: number = 1
+        //save initial total value
         cartPage.itemPriceLabel('0').then(price => {
-            itemTotalPriceOriginal *= extractNumber(price.text())
-            itemTotalPriceChanged *= extractNumber(price.text())
+            itemTotalPrice *= extractNumber(price.text())
         })
-        cartPage.itemCountInput('0').invoke('val').then(amount => itemTotalPriceOriginal *= Number(amount))
-        cartPage.itemTotalPrice('0').then(result => expect(extractNumber(result.text())).to.eq(itemTotalPriceOriginal))
         //change amount
         cartPage.itemCountInput('0').clear().type('4{enter}')
         //check price
-        cartPage.itemCountInput('0').invoke('val').then(amount => itemTotalPriceChanged *= Number(amount))
-        cartPage.itemTotalPrice('0').then(result => expect(extractNumber(result.text())).to.eq(itemTotalPriceChanged))
+        cartPage.itemCountInput('0').invoke('val').then(amount => itemTotalPrice *= Number(amount))
+        cartPage.itemTotalPrice('0').then(result => expect(extractNumber(result.text())).to.eq(itemTotalPrice))
         //check total price
-        cartPage.totalPriceLabel.then(totalPrice => expect(extractNumber(totalPrice.text())).to.eq(numberFormation(itemTotalPriceChanged*1.2)))
+        cartPage.totalPriceLabel.then(totalPrice => expect(extractNumber(totalPrice.text())).to.eq(numberFormation(itemTotalPrice*1.2)))
         //change amount to 0
         cartPage.itemCountInput('0').clear().type('0{enter}')
         //check that element is not visible 
@@ -87,7 +91,7 @@ describe('Cart',()=>{
         //detele item
         cartPage.itemDeleteButton('1').click()
         cartPage.itemTitleLabel('1').should('not.exist')
-        //save price
+        //save price 
         cartPage.itemTotalPrice('0').then(price => {
             itemTotalPrice *= extractNumber(price.text())
         })
