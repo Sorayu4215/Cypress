@@ -1,7 +1,6 @@
-<h4 class="summary-title">{{this.resources.summarryPageTitle}}</h4>
+<h4 class="summary-title" [attr.data-type]="attr.summaryTitleHeading">{{this.resources.summarryPageTitle}}</h4>
 
 <app-loader *ngIf="loader"></app-loader>
-<app-error *ngIf="error" [errorText]="errorMessage"></app-error>
 
 <div *ngIf="!loader">
     <div class="summary-wrapper">
@@ -71,7 +70,7 @@
         </div>
     </div>
     
-    <div class="cart-wrapper">
+    <div class="cart-wrapper" *ngIf="!loader && !error">
     
         <div class="cart-single-element" [attr.data-type]="attr.summarySingleItem +i" *ngFor="let item of this.items; let i = index">
             <!-- treba sem pridat k data-type cislo iteracie, teda index i  -->
@@ -96,7 +95,7 @@
     
     </div>
     
-    <div class="cart-wrapper total-wrapper">
+    <div class="cart-wrapper total-wrapper" *ngIf="!loader && !error">
         <div class="total" [attr.data-type]="attr.summaryTotalPriceDiv">
             <h4 [attr.data-type]="attr.summaryTotalPriceTitle">{{this.resources.cartTotalPrice}}</h4>
             <h4 class="cart-total-price" [attr.data-type]="attr.summaryTotalPricePrice">{{this.common.amountWithDPH(this.common.allItemsPrice(this.items))}} €</h4>
@@ -109,7 +108,7 @@
         <button class="cart-navigation-btn back" [routerLink]="'/'+this.resources.adresstitle" [attr.data-type]="attr.backToAddress">
             <fa-icon [icon]="this.resources.arrowLeft" class="cart-navigation-icon"></fa-icon> Back to {{this.resources.adresstitle}}
         </button>
-        <button class="cart-navigation-btn order" [attr.data-type]="attr.order" (click)="makeOrder()">
+        <button class="cart-navigation-btn order" [attr.data-type]="attr.order" (click)="makeOrder()" *ngIf="!error">
             {{this.resources.orderTitle}}
             <fa-icon [icon]="this.resources.arrowRight" class="cart-navigation-icon"></fa-icon>
         </button>

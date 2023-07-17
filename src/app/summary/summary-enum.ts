@@ -1,4 +1,6 @@
 export enum summary{
+    summaryTitleHeading = 'summary-title-heading',
+
     emailDiv = 'summary-email-div',
     emailDataLabel = 'summary-email-DataLabel',
     emailLabel = 'summary-email-label',

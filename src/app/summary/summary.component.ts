@@ -21,7 +21,7 @@ export class SummaryComponent implements OnInit{
     },err =>{
       this.loader = false
       this.error = true
-      this.errorMessage = 'Something went wrong'
+      this.errorMessage = "Something went wrong! Currenly isn't possible make order."
     })
     if (this.items == null) this.items = []
   }

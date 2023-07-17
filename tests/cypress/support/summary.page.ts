@@ -1,4 +1,9 @@
 export class SummaryPage{
+    //title
+    get titleHeading() {
+        return cy.get('[data-type="summary-title-heading"]')
+    }
+
     //personal data
     get emailDataLabel() {
         return cy.get('[data-type="summary-email-DataLabel"]')
@@ -21,6 +26,21 @@ export class SummaryPage{
     get phoneNumberDataLabel() {
         return cy.get('[data-type="summary-phone-number-DataLabel"]')
     }
+    get companyRegistrationNumber(){
+        return cy.get('[data-type="summary-company-registration-number-DataLabel"]')
+    }
+    get VATNumber(){
+        return cy.get('[data-type="summary-VAT-DataLabel"]')
+    }
+    get BICNumber(){
+        return cy.get('[data-type="summary-BIC-DataLabel"]')
+    }
+    get IBAN(){
+        return cy.get('[data-type="summary-IBAN-DataLabel"]')
+    }
+    get accountHolder(){
+        return cy.get('[data-type="summary-name-of-bank-account-DataLabel"]')
+    }
 
     //delivery
     get deliveryDataLabel() {
@@ -41,6 +61,9 @@ export class SummaryPage{
     }
 
     //navigation
+    get backButton(){
+        return cy.get('[data-type="summary-back-to-address"]', { timeout: 15000 })
+    }
     get orderButton(){
         return cy.get('[data-type="summary-order"]', { timeout: 15000 })
     }
@@ -54,6 +77,13 @@ export class SummaryPage{
         this.cityDataLabel.should('have.text',city)
         this.postCodelDataLabel.should('have.text',postCode)
         this.phoneNumberDataLabel.should('have.text',phoneNumber)
+    }
+    verifyBusinessData(companyRegNumber: string, VAT: string, BIC: string, IBAN: string, accountHolderName: string) {
+        this.companyRegistrationNumber.should('have.text', companyRegNumber)
+        this.VATNumber.should('have.text', VAT)
+        this.BICNumber.should('have.text', BIC)
+        this.IBAN.should('have.text', IBAN)
+        this.accountHolder.should('have.text', accountHolderName)
     }
     verifyDeliveryAndPayment(deliveryDataLabel: string, paymentTypeDataLabel: string) {
         this.deliveryDataLabel.should('have.text', deliveryDataLabel)

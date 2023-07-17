@@ -30,23 +30,6 @@ describe('Address page',()=>{
         addressPage.phoneNumberInput.should('be.visible')
         //fill data
         addressPage.personalData('johnSmilga@test.sk','John Smilga','Test 21','Slovakia','Bratislava','987 45', '+421 987 654 321')
-        //navigate to summary page and verify address
-        addressPage.summaryButton.click()
-        cy.getAllLocalStorage().then(result => {
-            expect(result[Cypress.config().baseUrl!]).to.haveOwnProperty("Address").to.eq(JSON.stringify({ "email": "johnSmilga@test.sk", "name": "John Smilga", "address": "Test 21", "country": "Slovakia", "city": "Bratislava", "post_code": "987 45", "phone_number": "+421 987 654 321", "newsletter": false, "terms_and_condition": true, "bussiness_account": false, "compaty_reg_number": "", "VAT": "", "BIC": "", "IBAN": "", "bank_account_holder": "", "idUsers": "" }))
-        })
-    })
-    it('Business account flow',()=>{
-        //fill personal data
-        addressPage.personalData('johnSmilga@test.sk', 'John Smilga', 'Test 21', 'Slovakia', 'Bratislava', '987 45', '+421 987 654 321')
-        //attributes check 
-        addressPage.businessAccountInput.check({force:true})
-        addressPage.companyRegistrationNoInput.should('be.visible')
-        addressPage.VATNoInput.should('be.visible')
-        addressPage.BICInput.should('be.visible')
-        addressPage.IBANInput.should('be.visible')
-        addressPage.NameOfBankAccountIban.should('be.visible')
-        //fill bisiness data 
         addressPage.businessData('NI123456', 'GB999 9999 73', 'KBSPSKBXXXX', 'SK0809000000000123123123', 'John Smilga')
         //navigate to summary page and verify address
         addressPage.summaryButton.click()
@@ -64,9 +47,8 @@ describe('Address page',()=>{
     it('User is logged in',()=>{
         //log in 
         cy.quickLogIn('test_address','12345678')
-        cy.setCookie('Cookie', JSON.stringify({ needed: true, preferecies: false, stats: false }))
         cy.visit('/Address')
-        // //check user data are filled in 
+        //check user data are filled in 
         addressPage.checkPersonalData('test@test.com', 'Test Name', 'Test 32', 'Slovakia', 'Trnava', '14 759', '+421 987 654 321')
     })
 })
@@ -107,8 +89,8 @@ describe('Error cases',()=>{
         addressPage.businessData('NI123456', 'GB999 9999 73', 'KBSPSKBXXXX', 'SK0809000000000123123123', 'John Smilga')
         //error cases are not visible
         addressPage.errorStatuses.should('not.exist')
-
     })
+
     it('Error status API repsonse.', () => {
         //precondition 
         window.localStorage.setItem('Items', JSON.stringify([{ idItems: 1, amount: 2 }, { idItems: 4, waranty: true, returnOption: true, amount: 1 }]))
