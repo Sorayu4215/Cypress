@@ -109,7 +109,7 @@ describe('Error cases',()=>{
         addressPage.errorStatuses.should('not.exist')
 
     })
-    it.only('Error status API repsonse.', () => {
+    it('Error status API repsonse.', () => {
         //precondition 
         window.localStorage.setItem('Items', JSON.stringify([{ idItems: 1, amount: 2 }, { idItems: 4, waranty: true, returnOption: true, amount: 1 }]))
         window.localStorage.setItem('Shipping', JSON.stringify({ "shipping": "Post", "payment": "Paypal" }))
