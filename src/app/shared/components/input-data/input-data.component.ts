@@ -20,6 +20,8 @@ export class InputDataComponent implements OnInit {
         this.loader = false
         this.address.setValue(data)
         this.companyUser = data.bussiness_account
+      },error =>{
+        this.loader = false
       })
     }else{
       this.loader = false

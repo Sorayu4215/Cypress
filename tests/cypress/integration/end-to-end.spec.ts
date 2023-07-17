@@ -43,7 +43,7 @@ describe('Purchase flow',()=>{
         shippingPage.creditCardOption.click()
         shippingPage.addressButton.click()
         //fill address data and navigate to summary page
-        addressPage.pernalData('johnSmilga@test.com','John Smilga','Main 32','Slovakia','Bratislava','14 759','0258471698')
+        addressPage.personalData('johnSmilga@test.com','John Smilga','Main 32','Slovakia','Bratislava','14 759','0258471698')
         addressPage.summaryButton.click()
         //summary page check and make order 
         summaryPage.verifyUserlData('johnSmilga@test.com', 'John Smilga', 'Main 32', 'Slovakia', 'Bratislava', '14 759', '0258471698')
@@ -194,7 +194,7 @@ describe('Authorisation flow',()=>{
         registrationPage.passwordInput.type('12345678')
         registrationPage.confirmPasswordInput.type('12345678')
         //fill user data
-        addressPage.pernalData('johnSmilga@test.com', 'John Smilga', 'Main 32', 'Slovakia', 'Bratislava', '14 759', '0258471698')
+        addressPage.personalData('johnSmilga@test.com', 'John Smilga', 'Main 32', 'Slovakia', 'Bratislava', '14 759', '0258471698')
         registrationPage.registerButon.click()
         //verify header elements
         registrationPage.successMessage.should('be.visible')
@@ -216,7 +216,7 @@ describe('Authorisation flow',()=>{
         registrationPage.passwordInput.type('12345678')
         registrationPage.confirmPasswordInput.type('12345678')
         //fill user data
-        addressPage.pernalData('johnSmilga@test.com', 'John Smilga', 'Main 32', 'Slovakia', 'Bratislava', '14 759', '0258471698')
+        addressPage.personalData('johnSmilga@test.com', 'John Smilga', 'Main 32', 'Slovakia', 'Bratislava', '14 759', '0258471698')
         addressPage.businessData('NI123456', 'GB999 9999 73', 'KBSPSKBXXXX','SK0809000000000123123123','John Smilga')
         //register
         registrationPage.registerButon.click()
@@ -268,7 +268,7 @@ describe('User profile',()=>{
         cy.setCookie('Cookie', JSON.stringify({ needed: true, preferecies: false, stats: false }))
         cy.visit('/user-profile')
         //change data
-        addressPage.pernalData('test@test.com', 'Junior Clark', 'Side 28', 'Italy','Milan', '92 698', '0123456789')
+        addressPage.personalData('test@test.com', 'Junior Clark', 'Side 28', 'Italy','Milan', '92 698', '0123456789')
         personalData.saveButton.click()
         //success message
         personalData.successBox.should('be.visible')

@@ -14,7 +14,7 @@ describe('Shipping page',()=>{
         cartPage.shippingButton.click()
         shippingPage.topNavigationShippingLabel.should('be.visible')
     })
-    it('Attributes and basic check',()=>{
+    it('Attributes and happy flow check',()=>{
         //basic attribute check
         shippingPage.deliveryTitleLabel.should('be.visible')
         shippingPage.deliveryTable.should('be.visible')
@@ -34,7 +34,7 @@ describe('Shipping page',()=>{
         })
         addressPage.topNavigationAddressLabel.should('be.visible')
     })
-    it('Check already selected elements',()=>{
+    it('Pre selected items',()=>{
         window.localStorage.setItem('Shipping', JSON.stringify({ "shipping": "Post", "payment": "Paypal" }))
         cy.reload()
         //check if element are checked
@@ -65,6 +65,11 @@ describe('Error case',()=>{
         //check of error messages
         shippingPage.deliveryErrorMessage.should('be.visible').should('have.text','Choose option!')
         shippingPage.paymentErrorMessage.should('be.visible').should('have.text','Choose option!')
+        //choose option and verify visibility of errors
+        shippingPage.personalPickupOption.check()
+        shippingPage.deliveryErrorMessage.should('not.exist')
+        shippingPage.paypalOption.check()
+        shippingPage.paymentErrorMessage.should('not.exist')
     })
 })
 

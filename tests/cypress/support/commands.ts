@@ -65,6 +65,17 @@ Cypress.Commands.add('logIn',(username:string, password:string)=>{
 })
 
 Cypress.Commands.add('quickLogIn',(username:string, password:string)=>{
+    //get localsotrage items
+    let storage:any
+    cy.getAllLocalStorage().then(result => {
+        storage = result[Cypress.config().baseUrl!]
+    })
+    //get cookie items
+    let cookieStorage: any
+    cy.getAllCookies().then(result => {
+        cookieStorage = result
+    })
+    
     cy.session(username,()=>{
         cy.request({
             method: 'POST',
@@ -72,6 +83,20 @@ Cypress.Commands.add('quickLogIn',(username:string, password:string)=>{
             body: { username: username, password: password }
         }).then((result: any) => {
             window.localStorage.setItem('User', JSON.stringify({ token: result.body.token }))
+            //apply local storage items
+            if(storage !== undefined){
+                for (const [key, value] of Object.entries(storage)) {
+                    cy.log(key, value)
+                    window.localStorage.setItem(key, value as string)
+                }
+            }
+            //apply cookie items
+            if (cookieStorage !== undefined){
+                for(const cookie of cookieStorage){
+                    cy.setCookie(cookie.name,cookie.value)
+                }
+            }
+
         })
     })
 })
@@ -122,3 +147,4 @@ Cypress.Commands.add('APIRequest', (APImethod: "GET" | "POST" | "DELETE" | "PUT"
             cy.wrap(response.body).as('response')
         })
 })
+

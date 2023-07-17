@@ -25,6 +25,9 @@ export class AddressPage{
     get phoneNumberInput(){
         return cy.get('[data-type="phone-number-input"]')
     }
+    get newsletterInput(){
+        return cy.get('[data-type="newsletter-input"]')
+    }
     get termsAndConditionInput(){
         return cy.get('[data-type="terms-and-conditions-input"]')
     }
@@ -52,13 +55,27 @@ export class AddressPage{
         return cy.get('[data-type="name-of-bank-account-input"]')
     }
 
+    //error status
+    get errorStatuses(){
+        return cy.get('[data-type*="-error"]')
+    }
+    get errorStatusEmail(){
+        return cy.get('[data-type*="email-error"]')
+    }
+    get errorStatusIBAN(){
+        return cy.get('[data-type="IBAN-error"]')
+    }
+
     //navigation
+    get backButton(){
+        return cy.get('[data-type="address-back-to-shipping"]')
+    }
     get summaryButton(){
         return cy.get('[data-type="save-values-btn"]', { timeout: 15000 })
     }
 
     //basic fnuctions
-    pernalData(email:string,name:string,address:string,country:string,city:string,postCode:string,phoneNumber:string){
+    personalData(email:string,name:string,address:string,country:string,city:string,postCode:string,phoneNumber:string){
         this.emailInput.clear().type(email)
         this.nameInput.clear().type(name)
         this.addressInput.clear().type(address)
@@ -72,10 +89,28 @@ export class AddressPage{
     businessData(companyRegistrationNumber: string, VATNumber: string, BICNumber: string, IBAN: string, NameOfBankAccountIbanInput:string){
         this.businessAccountDiv.should('be.visible')
         this.businessAccountInput.check({force:true})
-        this.companyRegistrationNoInput.type(companyRegistrationNumber, { timeout: 15000 })
-        this.VATNoInput.type(VATNumber)
-        this.BICInput.type(BICNumber)
-        this.IBANInput.type(IBAN)
-        this.NameOfBankAccountIban.type(NameOfBankAccountIbanInput)
+        this.companyRegistrationNoInput.clear().type(companyRegistrationNumber, { timeout: 15000 })
+        this.VATNoInput.clear().type(VATNumber)
+        this.BICInput.clear().type(BICNumber)
+        this.IBANInput.clear().type(IBAN)
+        this.NameOfBankAccountIban.clear().type(NameOfBankAccountIbanInput)
+    }
+
+    checkPersonalData(email: string, name: string, address: string, country: string, city: string, postCode: string, phoneNumber: string) {
+        // this.emailInput.should('have.text',email)
+        this.emailInput.invoke('val').then(val => expect(val).to.equal(email))
+        this.nameInput.invoke('val').then(val => expect(val).to.equal(name))
+        this.addressInput.invoke('val').then(val => expect(val).to.equal(address))
+        this.countrySelect.invoke('val').then(val => expect(val).to.equal(country))
+        this.cityInput.invoke('val').then(val => expect(val).to.equal(city))
+        this.postCodelInput.invoke('val').then(val => expect(val).to.equal(postCode))
+        this.phoneNumberInput.invoke('val').then(val => expect(val).to.equal(phoneNumber))
+    }
+    checkBusinessData(companyRegistrationNumber: string, VATNumber: string, BICNumber: string, IBAN: string, nameOfBankAccountIbanInput: string) {
+        this.companyRegistrationNoInput.invoke('val').then(val => expect(val).to.equal(companyRegistrationNumber))
+        this.VATNoInput.invoke('val').then(val => expect(val).to.equal(VATNumber))
+        this.BICInput.invoke('val').then(val => expect(val).to.equal(BICNumber))
+        this.IBANInput.invoke('val').then(val => expect(val).to.equal(IBAN))
+        this.NameOfBankAccountIban.invoke('val').then(val => expect(val).to.equal(nameOfBankAccountIbanInput))
     }
 }
