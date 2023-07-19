@@ -15,6 +15,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ShippingGuardService } from './shared/service/shipping-guard.service';
 import { AddressGuardService } from './shared/service/address-guard.service';
 import { OrderGuardService } from './shared/service/order-guard.service';
+import { SummaryGuardService } from './shared/service/summary-guard.service';
 import { UserGuardService } from './shared/service/user-guard.service';
 import { AuthorisationService } from './shared/service/authorisation-guard.service';
 
@@ -27,7 +28,7 @@ const routes: Routes = [
   { path: resources.cartURL, component: CartComponent },
   { path: resources.billingPageURL, component: BillingComponent, canActivate: [ShippingGuardService]},
   { path: resources.adressURL, component: AddressComponent, canActivate: [AddressGuardService]},
-  { path: resources.summarryPageURL, component: SummaryComponent },
+  { path: resources.summarryPageURL, component: SummaryComponent, canActivate: [SummaryGuardService] },
   { path: resources.orderURL, component: OrderComponent, canActivate: [OrderGuardService]},
   { path: resources.myOrdersURL, component: MyOrderComponent, canActivate: [UserGuardService] },
   { path: resources.userProfileURL, component: UserProfileComponent, canActivate: [UserGuardService] },

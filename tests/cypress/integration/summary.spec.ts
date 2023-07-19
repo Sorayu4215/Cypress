@@ -16,7 +16,7 @@ describe('Summary page',()=>{
         addressPage.summaryButton.click()
         summaryPage.titleHeading.should('be.visible')
     })
-    it('Basic check flow', () => {
+    it('Basic check ', () => {
         //basic check 
         summaryPage.titleHeading.should('be.visible')
         summaryPage.verifyUserlData("test2@test.sk", "Test Testov2", "Hlavna 56", "Slovakia","Tatralandia", "84 475", "9999 999 999")
@@ -27,8 +27,20 @@ describe('Summary page',()=>{
     })
 })
 describe('Error cases',()=>{
+    it.only('Navigation with no items', () => {
+        //precondition
+        window.localStorage.removeItem('Address')
+        cy.visit('/Summary')
+        //check
+        summaryPage.titleHeading.should('not.exist')
+        //verify URL
+        cy.location().should((location) => {
+            expect(location.href).to.contain('shop')
+        })
+    })
+
     it('Error status API repsonse.', () => {
-               //block user response
+        //block user response
         cy.intercept('GET', '**/api/v1/items**', {
             statusCode: 404,
             body: []
