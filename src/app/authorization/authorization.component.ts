@@ -49,7 +49,7 @@ export class AuthorizationComponent implements OnInit {
         this.error = false   
       },err =>{
         this.error = true        
-        this.errorMessage = err.error.msg
+        this.errorMessage = 'Something went wrong!'
         this.loader = false
       })
     }
