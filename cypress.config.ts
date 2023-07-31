@@ -1,11 +1,15 @@
 import { defineConfig } from "cypress";
+import { tagify } from 'cypress-tags';
 // import { mysql } from "mysql"
 const mysql = require("mysql")
 
 export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      //cypress tags 
+      on('file:preprocessor', tagify(config));
+
+      // cypress database
       on("task",{
         queryDb: (query)=>{
           return queryTestDb(query, config, config.env['envName'])

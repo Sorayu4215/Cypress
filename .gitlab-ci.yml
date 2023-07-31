@@ -21,14 +21,28 @@ deploy:
   script:
     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
 
+end-to-end_tests:
+  image: cypress/browsers:node16.13.2-chrome100-ff98
+  stage: test
+  script: 
+    - npm ci
+    - npm run cy:run:prod:e2e
+  artifacts:
+    when: always
+    paths:
+      - cypress/videos/**/*.mp4
+      - cypress/screenshots/**/*.png
+      - tests/cypress/screenshots/**/**.png
+    expire_in: 1 day
+
 integration_tests:
   image: cypress/browsers:node16.13.2-chrome100-ff98
   stage: test
   script: 
     - npm ci
-    - npm run cy:run:prod
+    - npm run cy:run:prod:integration
+  when: manual
   artifacts:
-    when: always
     paths:
       - cypress/videos/**/*.mp4
       - cypress/screenshots/**/*.png

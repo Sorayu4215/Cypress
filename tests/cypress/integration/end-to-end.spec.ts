@@ -7,7 +7,7 @@ before(() => {
     Cypress.session.clearAllSavedSessions()
 })
 
-describe('Purchase flow',()=>{
+describe(['Smoke'],'Purchase flow',()=>{
 
     beforeEach(()=>{
         cy.visit('/')
@@ -158,7 +158,7 @@ describe('Purchase flow',()=>{
 })
 
 
-describe('Authorisation flow',()=>{
+describe(['Smoke'], 'Authorisation flow',()=>{
 
     beforeEach(()=>{
         cy.setCookie('Cookie',JSON.stringify({needed:true, preferecies:false, stats:false}))
@@ -236,7 +236,7 @@ describe('Authorisation flow',()=>{
 
 })
 
-describe('User profile',()=>{
+describe(['Smoke'], 'User profile',()=>{
     specify('Change Username and password',()=>{
         //log in 
         cy.quickLogIn('test_change_credentials', '12345678')
