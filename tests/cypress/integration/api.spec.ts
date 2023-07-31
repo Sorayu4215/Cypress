@@ -3,7 +3,7 @@ before(() => {
     Cypress.session.clearAllSavedSessions()
 })
 
-describe('API security tests',()=>{
+describe(['Smoke'], 'API security tests',()=>{
     context('/order',()=>{
         it('Without authorisation token',()=>{
             cy.APIWithoutToken("GET", 'api/v1/order',403)
