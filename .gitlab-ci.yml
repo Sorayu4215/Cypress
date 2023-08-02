@@ -4,10 +4,8 @@ stages:
   - test
 
 cache:
-files:
-    - package-lock.json
   paths:
-    - node_modules
+    - node_modules/
     
 
 build:
