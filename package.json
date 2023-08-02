@@ -17,8 +17,8 @@
     "cy:open": "npx cypress open --env envName=local",
     "cy:open:prod": "npx cypress open --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
     "cy:run:prod": "npx cypress run --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
-    "cy:run:prod:e2e":"CYPRESS_INCLUDE_TAGS=Smoke npx cypress run --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
-    "cy:run:prod:integration":"CYPRESS_EXCLUDE_TAGS=Smoke npx cypress run --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production"
+    "cy:run:prod:e2e":"CYPRESS_INCLUDE_TAGS=Smoke npx cypress run --record --key b7d1a631-ad22-4078-8523-0d6788e64a45 --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
+    "cy:run:prod:integration":"CYPRESS_EXCLUDE_TAGS=Smoke npx cypress run --record --key b7d1a631-ad22-4078-8523-0d6788e64a45 --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production"
   },
   "private": true,
   "dependencies": {

@@ -4,6 +4,7 @@ import { tagify } from 'cypress-tags';
 const mysql = require("mysql")
 
 export default defineConfig({
+  projectId: "yxr4p6",
   e2e: {
     setupNodeEvents(on, config) {
       //cypress tags 
