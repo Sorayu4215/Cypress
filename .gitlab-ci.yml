@@ -4,8 +4,13 @@ stages:
   - test
 
 cache:
+ key:
+    files:
+      - package-lock.json
+      - node_modules
   paths:
-    - node_modules/
+    - .npm
+
     
 
 build:
