@@ -3,6 +3,13 @@ stages:
   - deploy
   - test
 
+cache:
+files:
+    - package-lock.json
+  paths:
+    - node_modules
+    
+
 build:
   image: node:latest
   stage: build
