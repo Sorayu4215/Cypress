@@ -3,14 +3,6 @@ stages:
   - deploy
   - test
 
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - node_modules
-
-
-    
-
 build:
   image: node:latest
   stage: build
@@ -33,7 +25,7 @@ end-to-end_tests:
   image: cypress/browsers:node16.13.2-chrome100-ff98
   stage: test
   script: 
-    - npm i
+    - npm ci
     - npm run cy:run:prod:e2e
   artifacts:
     when: always
@@ -47,7 +39,7 @@ integration_tests:
   image: cypress/browsers:node16.13.2-chrome100-ff98
   stage: test
   script: 
-    - npm i
+    - npm ci
     - npm run cy:run:prod:integration
   when: manual
   artifacts:
