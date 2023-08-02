@@ -4,12 +4,10 @@ stages:
   - test
 
 cache:
- key:
-    files:
-      - package-lock.json
-      - node_modules
+  key: ${CI_COMMIT_REF_SLUG}
   paths:
-    - .npm
+    - node_modules
+
 
     
 
@@ -35,7 +33,7 @@ end-to-end_tests:
   image: cypress/browsers:node16.13.2-chrome100-ff98
   stage: test
   script: 
-    - npm ci
+    - npm i
     - npm run cy:run:prod:e2e
   artifacts:
     when: always
@@ -49,7 +47,7 @@ integration_tests:
   image: cypress/browsers:node16.13.2-chrome100-ff98
   stage: test
   script: 
-    - npm ci
+    - npm i
     - npm run cy:run:prod:integration
   when: manual
   artifacts:
