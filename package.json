@@ -14,11 +14,17 @@
     "build:ssr": "ng build && ng run testing-app:server",
     "prerender": "ng run testing-app:prerender",
     "prerenderDev": "ng run testing-app:prerender:development",
+    
     "cy:open": "npx cypress open --env envName=local",
     "cy:open:prod": "npx cypress open --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
     "cy:run:prod": "npx cypress run --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
-    "cy:run:prod:e2e":"CYPRESS_INCLUDE_TAGS=Smoke npx cypress run --record --key b7d1a631-ad22-4078-8523-0d6788e64a45 --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
-    "cy:run:prod:integration":"CYPRESS_EXCLUDE_TAGS=Smoke npx cypress run --record --key b7d1a631-ad22-4078-8523-0d6788e64a45 --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production"
+    "cy:run:prod:e2e:record": "CYPRESS_INCLUDE_TAGS=Smoke npx cypress run --record --key b7d1a631-ad22-4078-8523-0d6788e64a45 --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
+    "cy:run:prod:integration:record": "CYPRESS_EXCLUDE_TAGS=Smoke npx cypress run --record --key b7d1a631-ad22-4078-8523-0d6788e64a45 --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
+    "cy:run:prod:e2e": "CYPRESS_INCLUDE_TAGS=Smoke npx cypress run --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
+    "cy:run:prod:integration": "CYPRESS_EXCLUDE_TAGS=Smoke npx cypress run --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
+
+    "pw:open": "npx playwright test --ui",
+    "pw:run:prod": "URL=https://eshop-testing-app.herokuapp.co npx playwright test"
   },
   "private": true,
   "dependencies": {
@@ -52,6 +58,7 @@
     "mysql": "^2.18.1",
     "ngx-cookie-service": "^15.0.0",
     "ngx-meta": "^0.0.1",
+    "playwright": "^1.36.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
@@ -61,6 +68,7 @@
     "@angular/cli": "~15.1.2",
     "@angular/compiler-cli": "^15.1.0",
     "@nguniversal/builders": "^15.2.1",
+    "@playwright/test": "^1.36.2",
     "@types/express": "^4.17.0",
     "@types/jasmine": "~4.3.0",
     "@types/node": "^14.15.0",

@@ -21,31 +21,40 @@ deploy:
   script:
     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
 
-end-to-end_tests:
-  image: cypress/browsers:node16.13.2-chrome100-ff98
-  stage: test
-  script: 
-    - npm ci
-    - npm run cy:run:prod:e2e
-  artifacts:
-    when: always
-    paths:
-      - cypress/videos/**/*.mp4
-      - cypress/screenshots/**/*.png
-      - tests/cypress/screenshots/**/**.png
-    expire_in: 1 day
+# cypress_end-to-end_tests:
+#   image: cypress/browsers:node16.13.2-chrome100-ff98
+#   stage: test
+#   script: 
+#     - npm ci
+#     - npm run cy:run:prod:e2e
+#   artifacts:
+#     when: always
+#     paths:
+#       - cypress/videos/**/*.mp4
+#       - cypress/screenshots/**/*.png
+#       - tests/cypress/screenshots/**/**.png
+#     expire_in: 1 day
 
-integration_tests:
-  image: cypress/browsers:node16.13.2-chrome100-ff98
-  stage: test
-  script: 
+# cypress_integration_tests:
+#   image: cypress/browsers:node16.13.2-chrome100-ff98
+#   stage: test
+#   script: 
+#     - npm ci
+#     - npm run cy:run:prod:integration
+#   when: manual
+#   artifacts:
+#     paths:
+#       - cypress/videos/**/*.mp4
+#       - cypress/screenshots/**/*.png
+#       - tests/cypress/screenshots/**/**.png
+#     expire_in: 1 day
+
+playwright_end-to-end_tests:
+  image: mcr.microsoft.com/playwright:v1.35.0-jammy
+    stage: test
+script:
     - npm ci
-    - npm run cy:run:prod:integration
-  when: manual
-  artifacts:
-    paths:
-      - cypress/videos/**/*.mp4
-      - cypress/screenshots/**/*.png
-      - tests/cypress/screenshots/**/**.png
-    expire_in: 1 day
+    - npm install -D @playwright/test
+    - npm run pw:run:prod
+
 
