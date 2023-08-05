@@ -51,8 +51,8 @@ deploy:
 
 playwright_end-to-end_tests:
   image: mcr.microsoft.com/playwright:v1.35.0-jammy
-    stage: test
-script:
+  stage: test
+  script:
     - npm ci
     - npm install -D @playwright/test
     - npm run pw:run:prod
