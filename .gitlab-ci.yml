@@ -7,7 +7,7 @@ build:
   image: node:latest
   stage: build
   script:
-    - npm install
+    - PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true npm install
     - npm run prerender
   artifacts:
     paths:
@@ -55,6 +55,8 @@ playwright_end-to-end_tests:
   script:
     - npm ci
     - npm install -D @playwright/test
+    - npx playwright install chrome
+    - npx playwright install webkit
     - npm run pw:run:prod
 
 
