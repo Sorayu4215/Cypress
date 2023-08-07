@@ -5,7 +5,7 @@ import { AddressPage } from "./address.page";
 import { SummaryPage } from "./summary.page";
 import { OrderPage } from "./order.page";
 
-export class MainPages{
+export class PageObjectManager{
     constructor(page:any){
         this.page = page
         this.productPage = new ProductPage(this.page)

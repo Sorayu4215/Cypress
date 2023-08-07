@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { ProductPage } from '../support/product.page';
-import { PageObjectManager } from '../support/main.page'; 
+import { PageObjectManager } from '../support/POManager.page'; 
 
 test.beforeEach(async({browser, page,context})=>{
   await page.goto('/')
