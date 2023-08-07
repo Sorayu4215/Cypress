@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { ProductPage } from '../support/product.page';
-import { MainPages } from '../support/main.page'; 
+import { PageObjectManager } from '../support/main.page'; 
 
 test.beforeEach(async({browser, page,context})=>{
   await page.goto('/')
@@ -8,7 +8,7 @@ test.beforeEach(async({browser, page,context})=>{
 
 test.describe("Purchase flow",()=>{
   test('User is not logged in',async ({page})=>{
-    const mainPages = new MainPages(page)
+    const mainPages = new PageObjectManager(page)
     //cookiebanner accept
     await expect(mainPages.productPage.cookieBanner).toBeVisible()
     await mainPages.productPage.cookieBannerAllowButton.click()
