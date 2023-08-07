@@ -7,15 +7,13 @@ import { OrderPage } from "./order.page";
 
 export class PageObjectManager{
     constructor(page:any){
-        this.page = page
-        this.productPage = new ProductPage(this.page)
-        this.cartPage = new CartPage(this.page)
-        this.shippingPage = new ShippingPage(this.page)
-        this.addressPage = new AddressPage(this.page)
-        this.summaryPage = new SummaryPage(this.page)
-        this.orderPage = new OrderPage(this.page)
+        this.productPage = new ProductPage(page)
+        this.cartPage = new CartPage(page)
+        this.shippingPage = new ShippingPage(page)
+        this.addressPage = new AddressPage(page)
+        this.summaryPage = new SummaryPage(page)
+        this.orderPage = new OrderPage(page)
     }
-    page
     productPage
     cartPage
     shippingPage
