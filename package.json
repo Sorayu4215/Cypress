@@ -24,7 +24,8 @@
     "cy:run:prod:integration": "CYPRESS_EXCLUDE_TAGS=Smoke npx cypress run --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
 
     "pw:open": "npx playwright test --ui",
-    "pw:run:prod": "URL=https://eshop-testing-app.herokuapp.co npx playwright test"
+    "pw:run": "npx playwright test",
+    "pw:run:prod": "URL=https://eshop-testing-app.herokuapp.com npx playwright test"
   },
   "private": true,
   "dependencies": {
