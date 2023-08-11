@@ -4,6 +4,10 @@ import { ShippingPage } from "./shipping.page";
 import { AddressPage } from "./address.page";
 import { SummaryPage } from "./summary.page";
 import { OrderPage } from "./order.page";
+import { AuthorisationPage } from "./authorisation.page";
+import { ProductDetails } from "./productDetails.page";
+import { MyOrdersPage } from "./myOrders.page";
+import { RegistrationPage } from "./registration.page";
 
 export class PageObjectManager{
     constructor(page:any){
@@ -13,6 +17,10 @@ export class PageObjectManager{
         this.addressPage = new AddressPage(page)
         this.summaryPage = new SummaryPage(page)
         this.orderPage = new OrderPage(page)
+        this.authorisationPage = new AuthorisationPage(page)
+        this.productDetailsPage = new ProductDetails(page)
+        this.myOrderPage = new MyOrdersPage(page)
+        this.registrationPage = new RegistrationPage(page)
     }
     productPage
     cartPage
@@ -20,4 +28,8 @@ export class PageObjectManager{
     addressPage
     summaryPage
     orderPage
+    authorisationPage
+    productDetailsPage
+    myOrderPage
+    registrationPage
 }

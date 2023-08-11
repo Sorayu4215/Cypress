@@ -1,3 +1,5 @@
+import { expect } from "@playwright/test"
+
 export class AddressPage{
     constructor(page: any) {
         this.page = page
@@ -42,7 +44,7 @@ export class AddressPage{
 
     //business data
     get businessAccountInput(){
-        return this.page.locator('[data-type="business-account-input"]', { timeout: 15000 })
+        return this.page.locator('[data-type="business-account-div"] label:nth-child(1)')
     }
     get businessAccountDiv(){
         return this.page.locator('[data-type="business-account-div"]', { timeout: 15000 })
@@ -94,15 +96,15 @@ export class AddressPage{
         await this.termsAndCondition.click()
     }
 
-    // businessData(companyRegistrationNumber: string, VATNumber: string, BICNumber: string, IBAN: string, NameOfBankAccountIbanInput:string){
-    //     this.businessAccountDiv.should('be.visible')
-    //     this.businessAccountInput.check({force:true})
-    //     this.companyRegistrationNoInput.clear().type(companyRegistrationNumber, { timeout: 15000 })
-    //     this.VATNoInput.clear().type(VATNumber)
-    //     this.BICInput.clear().type(BICNumber)
-    //     this.IBANInput.clear().type(IBAN)
-    //     this.NameOfBankAccountIban.clear().type(NameOfBankAccountIbanInput)
-    // }
+    async businessData(companyRegistrationNumber: string, VATNumber: string, BICNumber: string, IBAN: string, NameOfBankAccountIbanInput:string){
+        await expect(this.businessAccountDiv).toBeVisible()
+        await this.businessAccountInput.click({force:true})
+        await this.companyRegistrationNoInput.fill(companyRegistrationNumber)
+        await this.VATNoInput.fill(VATNumber)
+        await this.BICInput.fill(BICNumber)
+        await this.IBANInput.fill(IBAN)
+        await this.NameOfBankAccountIban.fill(NameOfBankAccountIbanInput)
+    }
 
     // checkPersonalData(email: string, name: string, address: string, country: string, city: string, postCode: string, phoneNumber: string) {
     //     // this.emailInput.should('have.text',email)

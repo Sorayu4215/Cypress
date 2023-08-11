@@ -14,7 +14,6 @@
     "build:ssr": "ng build && ng run testing-app:server",
     "prerender": "ng run testing-app:prerender",
     "prerenderDev": "ng run testing-app:prerender:development",
-    
     "cy:open": "npx cypress open --env envName=local",
     "cy:open:prod": "npx cypress open --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
     "cy:run:prod": "npx cypress run --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
@@ -22,7 +21,6 @@
     "cy:run:prod:integration:record": "CYPRESS_EXCLUDE_TAGS=Smoke npx cypress run --record --key b7d1a631-ad22-4078-8523-0d6788e64a45 --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
     "cy:run:prod:e2e": "CYPRESS_INCLUDE_TAGS=Smoke npx cypress run --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
     "cy:run:prod:integration": "CYPRESS_EXCLUDE_TAGS=Smoke npx cypress run --config baseUrl='https://eshop-testing-app.herokuapp.com' --env envName=production",
-
     "pw:open": "npx playwright test --ui",
     "pw:run": "npx playwright test",
     "pw:run:prod": "URL=https://eshop-testing-app.herokuapp.com npx playwright test"
@@ -43,6 +41,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@nguniversal/express-engine": "^15.2.1",
+    "@types/mysql": "^2.15.21",
     "body-parse": "^0.1.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
@@ -62,6 +61,7 @@
     "playwright": "^1.36.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "typeorm": "^0.3.17",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {

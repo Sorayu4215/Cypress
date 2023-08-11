@@ -1,12 +1,31 @@
 import { defineConfig, devices } from '@playwright/test';
-
+import { createPool } from "mysql";
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
 // require('dotenv').config();
-
 process.env.default_URL = 'http://localhost:3000'
+
+export function DBconnection() {
+  const dbConfig = process.env.URL
+    ? {
+      host: 'c8u4r7fp8i8qaniw.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
+      database: 'jn58grsf3pg8ipjh',
+      user: 'nmbo9azzsx5iwasg',
+      password: 'k6wok7dtn3w0f3kp'
+    }
+    : {
+      host: 'localhost',
+      database: 'test-app-dev',
+      user: 'devuser',
+      password: '12345678'
+    };
+
+  const connection = createPool(dbConfig);
+  return connection;
+}
+
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -70,9 +89,9 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run server_start_development',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
+  webServer: {
+    command: 'npm run server_start_development',
+    url: 'http://localhost:3000',
+    reuseExistingServer: !process.env.CI,
+  },
 });

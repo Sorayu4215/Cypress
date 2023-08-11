@@ -52,10 +52,10 @@ export class ProductPage{
         return this.page.locator('[data-type="product-cart-button-0"]')
     }
     get productBackpack(){
-        return cy.contains('Backpack')
+        return this.page.getByText('Backpack').first()
     }
     product(name:string){
-        return cy.contains(name)
+        return this.page.locator(name)
     }
     get productImage(){
         return this.page.locator('[data-type^="product-image-"]')
