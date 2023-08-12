@@ -55,8 +55,7 @@ playwright_end-to-end_tests:
   script:
     - npm ci
     - npm install -D @playwright/test
-    - npx playwright install chrome
-    - npx playwright install webkit
+    - npx playwright install    
     - npm run pw:run:prod
 
 
