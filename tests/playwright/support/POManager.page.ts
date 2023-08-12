@@ -8,6 +8,7 @@ import { AuthorisationPage } from "./authorisation.page";
 import { ProductDetails } from "./productDetails.page";
 import { MyOrdersPage } from "./myOrders.page";
 import { RegistrationPage } from "./registration.page";
+import { PersonalDataPage } from "./personalData.page";
 
 export class PageObjectManager{
     constructor(page:any){
@@ -21,6 +22,7 @@ export class PageObjectManager{
         this.productDetailsPage = new ProductDetails(page)
         this.myOrderPage = new MyOrdersPage(page)
         this.registrationPage = new RegistrationPage(page)
+        this.perosnalDataPage = new PersonalDataPage(page)
     }
     productPage
     cartPage
@@ -32,4 +34,5 @@ export class PageObjectManager{
     productDetailsPage
     myOrderPage
     registrationPage
+    perosnalDataPage
 }

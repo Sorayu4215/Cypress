@@ -1,10 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { PageObjectManager } from '../support/POManager.page'; 
 import { DBconnection } from 'playwright.config';
-import { createTestUser, removeTestUser, logIn } from '../support/init';
+import { createTestUser, removeTestUser, logIn,quickLogIn } from '../support/init';
 
 test.beforeAll(async ()=>{
   await createTestUser('test_user', '12345678', 'johnSmilga@test.com', 'John Smilga', 'Main 32', 'Bratislava', 'Slovakia', '0258471698', '14 759', 'true')
+  await createTestUser('test_change_credentials', '12345678', 'johnSmilga@test.com', 'John Smilga', 'Main 32', 'Bratislava', 'Slovakia', '0258471698', '14 759', 'true')
 })
 const connection = DBconnection()
 
@@ -201,12 +202,100 @@ test.describe("Authorisation flow",()=>{
     await page.goto('/logIn')
     logIn(page, "test_user3", "12345678")
   })  
-
 })
 
+test.describe("User profile",()=>{
+  test('Change username and password',async ({page,request,baseURL,context})=>{
+    const mainPages = new PageObjectManager(page)
+
+    //log in 
+    await quickLogIn(context,request,baseURL,'test_change_credentials', '12345678')
+    await page.addInitScript(()=>{
+      window.document.cookie = `Cookie = ${JSON.stringify({ needed: true, preferecies: false, stats: false})}`
+    })
+    await page.goto('/user-profile')
+    //change username 
+    await mainPages.perosnalDataPage.changeUsernameButton.click({force:true})
+    await mainPages.perosnalDataPage.usernameInput.type('test_change_credentials2')
+    await mainPages.perosnalDataPage.saveUsernameButton.click({ force: true })
+    //success message
+    await expect(mainPages.perosnalDataPage.successBox).toBeVisible()
+    //change password
+    await page.reload()
+    await mainPages.perosnalDataPage.changePasswordButton.click({ force: true })
+    await mainPages.perosnalDataPage.passwordInput.fill('123456789')
+    await mainPages.perosnalDataPage.confirmPasswordInput.type('123456789')
+    await mainPages.perosnalDataPage.savePasswordButton.click({ force: true })
+    //success message
+    await expect(mainPages. perosnalDataPage.successBox).toBeVisible()
+    //log out and log in with new credentials
+    await mainPages.productPage.headerLogOutButton.click({force: true})
+    await context.addInitScript((context) => {
+      window.localStorage.clear()
+    },context)
+    await page.goto('/logIn')
+    await logIn(page,"test_change_credentials2", "123456789")
+  })
+
+  test('Change Perosnal data', async ({page,context,request,baseURL}) => {
+    const mainPages = new PageObjectManager(page)
+
+    //log in 
+    await quickLogIn(context,request,baseURL,'test_user', '12345678')
+    await page.addInitScript(() => {
+      window.document.cookie = `Cookie = ${JSON.stringify({ needed: true, preferecies: false, stats: false })}`
+    })
+    await page.goto('/user-profile')
+    //change data
+    await mainPages.addressPage.personalData('test@test.com', 'Junior Clark', 'Side 28', 'Italy', 'Milan', '92 698', '0123456789')
+    await mainPages.perosnalDataPage.saveButton.click({force:true})
+    //success message
+    await expect(mainPages.perosnalDataPage.successBox).toBeVisible
+    //check if data cahnged in database
+    await new Promise((resolve,reject)=>{
+      connection.query(`SELECT * FROM users WHERE (username = 'test_user')`, async (err,res)=>{
+      await expect(res[0].email).toEqual('test@test.com')
+      await expect(res[0].name).toEqual('Junior Clark')
+      await expect(res[0].address).toEqual('Side 28')
+      await expect(res[0].country).toEqual('Italy')
+      await expect(res[0].city).toEqual('Milan')
+      await expect(res[0].post_code).toEqual('92 698')
+      await expect(res[0].phone_number).toEqual('0123456789')
+      await resolve(res)
+      })
+    })
+  })
+  test('Change Business data', async ({page, baseURL,context,request}) => {
+    const mainPages = new PageObjectManager(page)
+
+    //log in 
+    await quickLogIn(context,request,baseURL,'test_user', '12345678')
+    await page.addInitScript(()=>{
+      window.document.cookie =`Cookie = ${JSON.stringify({ needed: true, preferecies: false, stats: false })}`
+    }) 
+    await page.goto('/user-profile')
+    //change data
+    await mainPages.addressPage.businessData('KIPRT123456', 'TR999 9999 73', 'KBSPSKBTRGJ', 'SK0809000000000123456789', 'Test User')
+    await mainPages.perosnalDataPage.saveButton.click({force:true})
+    //success message
+    await expect(mainPages.perosnalDataPage.successBox).toBeVisible()
+    //check if data cahnged in database
+    await new Promise((resolve, reject)=>{
+      connection.query(`SELECT * FROM users WHERE (username = 'test_user')`,async (err,res)=>{
+        expect(res[0].compaty_reg_number).toEqual('KIPRT123456')
+        expect(res[0].VAT).toEqual('TR999 9999 73')
+        expect(res[0].BIC).toEqual('KBSPSKBTRGJ')
+        expect(res[0].IBAN).toEqual('SK0809000000000123456789')
+        expect(res[0].bank_account_holder).toEqual('Test User')
+        resolve(res)
+      })
+    })
+  })
+})
 
 test.afterAll(async ()=>{
   await removeTestUser('test_user')
   await removeTestUser('test_user2')
   await removeTestUser('test_user3')
+  await removeTestUser('test_change_credentials2')
 })

@@ -93,7 +93,7 @@ export class AddressPage{
         await this.cityInput.fill(city)
         await this.postCodelInput.fill(postCode)
         await this.phoneNumberInput.fill(phoneNumber)
-        await this.termsAndCondition.click()
+        await this.termsAndCondition.check({force:true})
     }
 
     async businessData(companyRegistrationNumber: string, VATNumber: string, BICNumber: string, IBAN: string, NameOfBankAccountIbanInput:string){
