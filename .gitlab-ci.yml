@@ -50,7 +50,7 @@ deploy:
 #     expire_in: 1 day
 
 playwright_end-to-end_tests:
-  image: mcr.microsoft.com/playwright:v1.35.0-jammy
+  image: mcr.microsoft.com/playwright:v1.37.0-jammy
   stage: test
   script:
     - npm ci
