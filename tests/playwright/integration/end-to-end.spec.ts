@@ -46,7 +46,7 @@ test.describe("Purchase flow",()=>{
     await mainPages.summaryPage.verifyDeliveryAndPayment('Personal pickup', 'Credit / Debit Card')
     await expect(mainPages.summaryPage.firstItem).toBeVisible()
     await expect(mainPages.summaryPage.totalPrice).toHaveText(totalPrice)
-    await mainPages.summaryPage.orderButton.click()
+    await mainPages.summaryPage.orderButton.click({force:true})
     //verify order and save ID 
     await expect(mainPages.orderPage.successIcon).toBeVisible()
     ID = await mainPages.orderPage.ID.textContent()
@@ -56,7 +56,7 @@ test.describe("Purchase flow",()=>{
     await expect(mainPages.productPage.productsWrapper).toBeVisible()
   })
 
-  test("User is loggied in",async ({page,context})=>{
+  test("User is logged in",async ({page,context})=>{
     const mainPages = new PageObjectManager(page)
 
     //accept only technical cookies
@@ -100,7 +100,7 @@ test.describe("Purchase flow",()=>{
     await expect(mainPages.addressPage.summaryButton).toBeVisible()
     await mainPages.addressPage.summaryButton.click()
     // //summary page check and make order 
-    await mainPages.summaryPage.orderButton.click()
+    await mainPages.summaryPage.orderButton.click({force:true})
     //verify order and save ID 
     await expect(mainPages.orderPage.successIcon).toBeVisible()
     ID = await mainPages.orderPage.ID.textContent()
@@ -200,7 +200,7 @@ test.describe("Authorisation flow",()=>{
     await mainPages.productPage.headerLogOutButton.click()
     //verify login
     await page.goto('/logIn')
-    logIn(page, "test_user3", "12345678")
+    await logIn(page, "test_user3", "12345678")
   })  
 })
 
