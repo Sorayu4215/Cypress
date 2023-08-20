@@ -6,8 +6,8 @@ export async function createTestUser(username: string, password: string, email: 
     const connection = DBconnection()
     await new Promise((resolve, reject) => {
         connection.query(`INSERT INTO users (username, password, email, name, address, city , post_code, phone_number, country, newsletter , terms_and_condition, bussiness_account , compaty_reg_number, BIC, VAT, IBAN, bank_account_holder) VALUES ('${username}','${password}','${email}', '${name}','${address}','${city}','${post_code}','${phone_number}','${country}','${newsletter}','${terms_and_condition}','${bussiness_account}','${compaty_reg_number}','${BIC}','${VAT}','${IBAN}' ,'${bank_account_holder}')`,
-        (err,res)=>{
-            resolve(res)
+        async (err,res)=>{
+            await resolve(res)
         })
     })
 }
@@ -15,8 +15,8 @@ export async function createTestUser(username: string, password: string, email: 
 export async function removeTestUser(username: string){
     const connection = DBconnection()
     await new Promise((resolve,reject)=>{
-        connection.query(`DELETE FROM users WHERE (username = '${username}');`,(err,res)=>{
-            resolve(res)
+        connection.query(`DELETE FROM users WHERE (username = '${username}');`,async (err,res)=>{
+            await resolve(res)
         })
     })
 }
