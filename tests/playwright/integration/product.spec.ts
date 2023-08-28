@@ -43,6 +43,7 @@ test.describe('Filter',()=>{
     test('Price filter', async({page}) => {
         const mainPage = new PageObjectManager(page)
         //use price filter and verify output
+        await page.waitForSelector('[data-type="filter-price-input"]')
         await page.$eval('[data-type="filter-price-input"]', (e,value)=>{
             (e as HTMLInputElement).value = value
             e.dispatchEvent(new Event('input', { 'bubbles': true }));
