@@ -45,6 +45,9 @@ export class ProductPage{
     get productsWrapper(){
         return this.page.locator('[data-type="product-wrapper"]')
     }
+    get allSingleProducts(){
+        return this.page.locator('[data-type*="single-product-"]')
+    }
     get firstItem(){
         return this.page.locator('[data-type="single-product-0"]')
     }
@@ -55,25 +58,25 @@ export class ProductPage{
         return this.page.getByText('Backpack').first()
     }
     product(name:string){
-        return this.page.locator(name)
+        return this.page.getByText(name).first()
     }
     get productImage(){
-        return this.page.locator('[data-type^="product-image-"]')
+        return this.page.locator('[data-type^="product-image-0"]')
     }
     get productTitleLabel(){
-        return this.page.locator('[data-type^="product-title-"]')
+        return this.page.locator('[data-type^="product-title-0"]')
     }
     get productDescriptionParagraph(){
-        return this.page.locator('[data-type^="product-description-"]')
+        return this.page.locator('[data-type^="product-description-0"]')
     }
     get productPricenLabel(){
-        return this.page.locator('[data-type^="product-price-"]')
+        return this.page.locator('[data-type^="product-price-0"]')
     }
     get productInfoButton(){
-        return this.page.locator('[data-type^="product-info-button-"]')
+        return this.page.locator('[data-type^="product-info-button-0"]')
     }
     get productCartButton(){
-        return this.page.locator('[data-type^="product-cart-button-"]')
+        return this.page.locator('[data-type^="product-cart-button-0"]')
     }
 
     //error
