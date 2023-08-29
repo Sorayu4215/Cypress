@@ -1,5 +1,6 @@
 import { DBconnection } from "playwright.config"
 import { PageObjectManager } from "./POManager.page"
+import { expect } from '@playwright/test';
 
 
 export async function createTestUser(username: string, password: string, email: string, name: string, address: string, city: string, country: string, phone_number: string, post_code: string, terms_and_condition: string, newsletter?: string, bussiness_account?: string, compaty_reg_number?: string, BIC?: string, VAT?: string, IBAN?: string, bank_account_holder?: string){
@@ -37,7 +38,52 @@ export async function quickLogIn(context:any, request:any, baseURL:any, username
     })
     await response.ok()
     const responseBody = await response.json()
+    await context.addCookies([{ name: "User", value: responseBody.token, url: baseURL}])
     await context.addInitScript((responseBody:any)=>{
         window.localStorage.setItem("User", JSON.stringify({ token: responseBody.token }))
     }, responseBody)
+}
+
+export async function APIWithoutToken(request: any, baseURL: any, APImethod: "GET" | "POST" | "DELETE" | "PUT", endpoint: string, APIstatus: number){
+    const response = await request.fetch(`${baseURL}/${endpoint}`,{
+        method: APImethod,
+        data: {}
+    })
+    await response.ok()
+    const responseBody = await response.json()
+    const responseStatus = await response.status()
+    expect(responseBody).toMatchObject({ msg:'Not authorized!'})
+    expect(responseStatus).toEqual(APIstatus)
+}
+
+export async function APIInvalidtToken(request: any, baseURL: any, APImethod: "GET" | "POST" | "DELETE" | "PUT", endpoint: string, APIstatus: number){
+    const response = await request.fetch(`${baseURL}/${endpoint}`,{
+        method: APImethod,
+        headers:{
+            "Authorization": 'lorem ipsum',
+            'content-type': 'application/json'
+        },
+        data: {}
+    })
+    await response.ok()
+    const responseBody = await response.json()
+    const responseStatus = await response.status()
+    expect(responseBody).toMatchObject({ msg:'Not authorized!'})
+    expect(responseStatus).toEqual(APIstatus)
+}
+
+export async function APIrequest(page:any,request: any, baseURL: any, APImethod: "GET" | "POST" | "DELETE" | "PUT", endpoint: string, APIbody:any,APIstatus: number) {
+    let token: any = await page.context().cookies()
+
+    const response = await request.fetch(`${baseURL}/${endpoint}`, {
+        method: APImethod,
+        headers: {
+            "Authorization": `Bearer ${token[0].value}`,
+            'content-type': 'application/json'
+        },
+        data: APIbody
+    })
+    await response.ok()
+    const responseStatus = await response.status()
+    expect(responseStatus).toEqual(APIstatus)
 }
