@@ -1,0 +1,22 @@
+[
+  {
+    "idUsers": 1,
+    "email": "testUser@test.sk",
+    "password": "123456789",
+    "name": "Janko Mrkvicka",
+    "address": "Hlavna 56",
+    "city": "Tatralandia",
+    "post_code": "84 475",
+    "country": "Slovakia",
+    "phone_number": "0909 959 959",
+    "newsletter": false,
+    "terms_and_condition": true,
+    "bussiness_account": false,
+    "compaty_reg_number": null,
+    "BIC": null,
+    "VAT": null,
+    "IBAN": null,
+    "bank_account_holder": null,
+    "username": "test1"
+  }
+]

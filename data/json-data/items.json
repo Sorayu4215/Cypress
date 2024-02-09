@@ -1,0 +1,82 @@
+[
+  {
+    "idItems": 1,
+    "title": "T-Shirt",
+    "price": 15.99,
+    "description": "A comfortable and stylish cotton T-shirt, available in various sizes and colors.",
+    "category": "Clothing",
+    "image": "T-Shirt.jpeg"
+  },
+  {
+    "idItems": 2,
+    "title": "Sneakers",
+    "price": 79.99,
+    "description": "High-quality sneakers with excellent grip and support, available in various sizes and colors.",
+    "category": "Footwear",
+    "image": "Sneakers.jpeg"
+  },
+  {
+    "idItems": 3,
+    "title": "Backpack",
+    "price": 49.99,
+    "description": "A durable and spacious backpack with multiple compartments, perfect for everyday use or hiking trips.",
+    "category": "Bags",
+    "image": "Backpack.png"
+  },
+  {
+    "idItems": 4,
+    "title": "Smartphone",
+    "price": 699.99,
+    "description": "The latest smartphone with a high-resolution display, powerful processor, and advanced camera system.",
+    "category": "Electronics",
+    "image": "Smartphone.png"
+  },
+  {
+    "idItems": 5,
+    "title": "Headphones",
+    "price": 129.99,
+    "description": "Premium noise-cancelling headphones with exceptional sound quality and comfortable fit.",
+    "category": "Electronics",
+    "image": "Headphones.jpeg"
+  },
+  {
+    "idItems": 6,
+    "title": "Dress",
+    "price": 69.99,
+    "description": "A beautiful and elegant dress for formal occasions, available in various colors and sizes.",
+    "category": "Clothing",
+    "image": "Dress.jpeg"
+  },
+  {
+    "idItems": 7,
+    "title": "Running Shoes",
+    "price": 99.99,
+    "description": "Lightweight and breathable running shoes, designed for comfort and performance.",
+    "category": "Footwear",
+    "image": "Running shoes.jpeg"
+  },
+  {
+    "idItems": 8,
+    "title": "Smart Watch",
+    "price": 199.99,
+    "description": "A stylish and functional smart watch, with a variety of health and fitness features.",
+    "category": "Electronics",
+    "image": "Smart Watch.jpeg"
+  },
+  {
+    "idItems": 9,
+    "title": "Sunglasses",
+    "price": 39.99,
+    "description": "Fashionable sunglasses with UV protection, perfect for sunny days.",
+    "category": "Accessories",
+    "image": "Sunglasses.jpeg"
+  },
+  {
+    "idItems": 10,
+    "title": "Hiking Boots",
+    "price": 129.99,
+    "description": "Sturdy and waterproof hiking boots, designed for rugged terrain and all weather conditions.",
+    "category": "Footwear",
+    "image": "Hikking Boots.jpeg"
+  }
+]

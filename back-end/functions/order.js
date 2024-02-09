@@ -1,70 +1,70 @@
-let database = require('../database/mysql')
 const jwt = require('jsonwebtoken');
+const fs = require('fs')
+const { join } = require('path');
+let items = require('../../data/json-data/items.json')
+const orders = require('../../data/json-data/orders.json')
+const { getbase64Images } = require('./getItem');
 
-const createPost = (request, response) =>{
-    const { id, item, address, shipping, date} = request.body
+
+const createPost = (request, response) => {
+    const { id, item, address, shipping, date } = request.body
 
     let userID = undefined
-    if (request.headers.authorization){
+    if (request.headers.authorization) {
         const token = request.headers.authorization.split(' ')[1]
-        if (token !== 'undefined'){
+        if (token !== 'undefined') {
             const user = jwt.decode(token, process.env.JWT_SECRET)
             userID = user.idUsers
         }
     }
 
-    if (id == null | undefined || item == null | undefined || address == null | undefined || shipping == null | undefined || date == null | undefined){
+    if (id == null | undefined || item == null | undefined || address == null | undefined || shipping == null | undefined || date == null | undefined) {
         return response.status(400).json({ msg: 'Wrong request!' })
     }
 
-    let query = `INSERT INTO Orders (orderId, item, address,shipping, userID, date) VALUES ('${id}','${JSON.stringify(item)}','${JSON.stringify(address)}','${JSON.stringify(shipping)}','${JSON.stringify(userID)}', '${JSON.stringify(date)}');`
-  
-    database.query(query, (err, data) => {
-        if (data) {
-            return response.status(201).json(data)
-        } else {
-            return response.status(400).json({ msg: 'Something went wrong' })
+    let originalJson = orders
+
+    originalJson.push({
+        orderID: Number(id),
+        item: JSON.stringify(item),
+        address: JSON.stringify(address),
+        shipping: JSON.stringify(shipping),
+        userID: JSON.stringify(userID) || undefined,
+        date: JSON.stringify(date),
+    })
+
+    fs.writeFile(join(process.cwd(), 'data', 'json-data', 'orders.json'), JSON.stringify(originalJson), error => {
+        if (error) {
+            return response.status(500).json({ msg: 'Something went wrong' });
         }
+        // If file write is successful, send the response
+        response.status(201).json("Order was done successfully!");
     })
 }
 
-const getOrders = async(request, response) =>{
+const getOrders = async (request, response) => {
     const token = request.headers.authorization.split(' ')[1]
     let userID = null
-    let orders
+    let userOrders
     if (token !== 'undefined') {
         const user = jwt.decode(token, process.env.JWT_SECRET)
         userID = user.idUsers
     }
-    
-    //get your orders accordgin userID
-    let queryOrders = `SELECT * FROM Orders WHERE userID = '${userID}'`
-    await new Promise((resolve, reject) => {
-        database.query(queryOrders, (err, data) => {
-            if (data) {
-                orders = data
-                resolve(orders)
-            } else {
-                reject(response.status(500).json({ msg: 'Something went wrong' }))
-            }
-        })
+
+    let originalJson = orders
+    userOrders = originalJson.filter((item) => item.userID == userID)
+
+    //get all items
+    let allItems = getbase64Images(items)
+
+    const totalItems = userOrders.map(element => {
+        const item = JSON.parse(element.item)
+        //replace original item with new  
+        element.item = createArrayWithMatchingIDs(item, allItems)
+        return element
     })
-//get all items
-    let queryItems = `SELECT * FROM Items`
-    database.query(queryItems, (err, data) => {
-        if (data) {
-            //get all orders for user
-            const items = orders.map(element =>{
-                const item = JSON.parse(element.item)              
-                //replace original item with new  
-                element.item = createArrayWithMatchingIDs(item, data)
-                return element
-            })
-            return response.status(200).json(items)
-        } else {
-            return response.status(500).json({ msg: 'Something went wrong!' })
-        }
-    })
+
+    return response.status(200).json(totalItems)
 }
 
 function createArrayWithMatchingIDs(elements, orders) {
