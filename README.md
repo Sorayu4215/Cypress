@@ -1,28 +1,16 @@
-# TestingApp
+E-shop sample project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
+Project intended for testing, learning and mentoring purposes. In this project you get first overview how real test development process looks like. 
+Project consis from Front-end part maded in angular and Back-end part maded in node.js, database are json files where you can see data righ away. 
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# test-app
+Our goal is to lean you how real web testing works. How we will achieve it? 
+On project we will learn basics of web delop development, including processes and structures of pages. 
+Also beginings of HTML, css to have comprehensive informations to upcoming lections.
+Learn what is package.json, basic terminal commands, also basic work with git.
+We will start with instalation of cypress and go over cypress configuration. 
+Go over cypress structure. 
+Start basic commands as cy.visit, get, should, click, select, contain, clear, wait, reload
+Start with OOP and how to set it up. 
+Made database connection. 
+Advanced cypress commands like intercept, use cy.task ,cookies, local storage, session
+Will automate case about cookie banner how to avaoid him, also case about log in and save session. adapt timeout 
