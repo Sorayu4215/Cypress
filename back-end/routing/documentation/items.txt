@@ -1,0 +1,51 @@
+Documentation of item
+
+! = mandatory field
+? = optional
+
+===================
+Get all items what are visible on page 
+
+Endpoint: /api/v1/items
+Method: GET 
+Header: none
+Body: 
+
+RESPONSE: 
+[
+    {
+        "idItems": "<data-number>",
+        "title": "<data-string>",
+        "price": "<data-number>",
+        "description": "<data-string>",
+        "category": "<data-string>",
+        "image": "<data-base64>"
+    },
+    ...
+]
+
+
+===================
+
+===================
+Get one specific item
+
+Endpoint: /api/v1/items/:id
+Method: GET 
+Header: none
+Body: 
+
+RESPONSE: 
+[
+    {
+        "idItems": "<data-number>",
+        "title": "<data-string>",
+        "price": "<data-number>",
+        "description": "<data-string>",
+        "category": "<data-string>",
+        "image": "<data-base64>"
+    }
+]
+
+
+===================

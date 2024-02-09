@@ -1,0 +1,63 @@
+Documentation of order
+
+! = mandatory field
+? = optional
+=================
+Order give to a vendor infomation that there is new order 
+
+Endpoint: /api/v1/order
+Method: POST 
+Header: none
+Authorisation: optional
+Body: 
+{
+!"item" : "<data-array>",  
+!"address":"<data-object>"
+!"shipping":"<data-object>"
+!"id":"<data-number>"
+!"date":"<data-date>"
+}
+
+RESPONSE: 
+
+Order was done successfully!
+
+Fail:
+ 400 - when no all items provided
+
+===================
+
+===================
+In case user is logged in and make order, be getOrder endpoint user can see his orders
+
+Endpoint: /api/v1/getOrders
+Method: GET 
+Header: 
+    authorization: "Bearer <token>"
+Body: 
+
+RESPONSE: 
+{
+        "orderID": "<data-number>",
+        "item": [
+            {
+                "idItems": "<data-number>",
+                "amount": "<data-number>",
+                "title": "<data-string>",
+                "price": "<data-number>",
+                "description": "<data-string>",
+                "category": "<data-string>",
+                "image": "<data-base64>"
+            }
+        ],
+        "address": "<data-object>",
+        "shipping": "<data-object>",
+        "userID": "<data-number>",
+        "date": "<data-date>"
+}
+
+Fail:
+ 403 - invalid (expired) token
+ 403 - empty token
+
+===================

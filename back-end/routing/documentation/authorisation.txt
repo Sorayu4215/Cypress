@@ -1,21 +1,25 @@
 Documentation of authorisation 
 
+! = mandatory field
+? = optional
 =================
+Login fucntion to get berare token usernaem and email, in case user have token, can see user data and also change them + see al orders. 
+
 Endpoint: /api/v1/login
 Method: POST 
 Header: none
 Authorisation: none
 Body: 
 {
-!"username" : "<data>", 
-!"password":"<data>"
+!"username" : "<data-string>",  
+!"password":"<data-string>"
 }
 
 RESPONSE: 
 {
-"token":"data",
-"username":"<data>",
-"email":"<data>"
+"token":">data-string>",
+"username":"<data-string>",
+"email":"<data-string>"
 }
 
 Fail:
@@ -23,4 +27,166 @@ Fail:
  401 - when username not prodiveded
  401 - when wrong credentials
 
+===================
+
+===================
+Once user is logged in, user endpoint return data about user like name, adress etc..
+
+Endpoint: /api/v1/user
+Method: GET 
+Header: 
+    authorization: "Bearer <token>"
+Body: 
+
+RESPONSE: 
+{
+    !"idUsers": "<data-number>",
+    !"email": "<data-string>",
+    !"name": "<data-string>",
+    !"address": "<data-string>",
+    !"city": "<data-string>",
+    !"post_code": "<data-string>",
+    !"country": "<data-string>",
+    !"phone_number": "<data-string>",
+    !"newsletter": "<data-bool>",
+    !"terms_and_condition": "<data-bool>",
+    !"bussiness_account": "<data-bool>",
+    ?"compaty_reg_number": "<data-null/string>",
+    ?"BIC": "<data-null/string>",
+    ?"VAT": "<data-null/string>",
+    ?"IBAN": "<data-null/string>",
+    ?"bank_account_holder": "<data-null/string>"
+}
+
+Fail:
+ 403 - invalid (expired) token
+ 403 - empty token
+ 401 - when wrong credentials
+
+===================
+
+===================
+In case user want so change his data he will use this endpoint, however endpoint doesn't change username and password
+
+Endpoint: /api/v1/change-user-data
+Method: POST 
+Header: 
+    authorization: "Bearer <token>"
+Body: 
+
+{
+    !"email": "<data-string>",
+    !"name": "<data-string>",
+    !"address": "<data-string>",
+    !"city": "<data-string>",
+    !"post_code": "<data-string>",
+    !"country": "<data-string>",
+    !"phone_number": "<data-string>",
+    !"newsletter": "<data-bool>",
+    !"terms_and_condition": "<data-bool>",
+    ?"bussiness_account": "<data-bool>",
+    ?"compaty_reg_number": "<data-null/string>",
+    ?"BIC": "<data-null/string>",
+    ?"VAT": "<data-null/string>",
+    ?"IBAN": "<data-null/string>",
+    ?"bank_account_holder": "<data-null/string>"
+}
+
+RESPONSE: 
+
+    User data successfully changed!
+
+Fail:
+ 403 - invalid (expired) token
+ 403 - empty token
+ 400 - missing email| name | address | country | city | post_code| phone_number | terms_and_condition
+ 400 - bussiness_account == true and missing compaty_reg_number | VAT | BIC | IBAN | bank_account_holder
+===================
+
+===================
+This endpoint change username of logged in user
+
+Endpoint: /api/v1/change-username
+Method: POST 
+Header: 
+    authorization: "Bearer <token>"
+Body: 
+
+{
+    !"username": "<data-string>",
+}
+
+RESPONSE: 
+
+    User data successfully changed!
+
+Fail:
+ 403 - invalid (expired) token
+ 403 - empty token
+ 400 - missing data
+ 400 - username already exist
+===================
+
+===================
+This endpoint change password of logged in user
+
+Endpoint: /api/v1/change-password
+Method: POST 
+Header: 
+    authorization: "Bearer <token>"
+Body: 
+
+{
+    !"newPassword": "<data-string>",
+}
+
+RESPONSE: 
+
+    User data successfully changed!
+
+Fail:
+ 403 - invalid (expired) token
+ 403 - empty token
+ 400 - missing data
+===================
+
+===================
+Registration endpoint is used for registration of new user
+
+Endpoint: /api/v1/registration
+Method: POST 
+Header: none
+Body: 
+
+{
+    !"email": "<data-string>",
+    !"name": "<data-string>",
+    !"address": "<data-string>",
+    !"city": "<data-string>",
+    !"post_code": "<data-string>",
+    !"country": "<data-string>",
+    !"phone_number": "<data-string>",
+    !"newsletter": "<data-bool>",
+    !"terms_and_condition": "<data-bool>",
+    ?"bussiness_account": "<data-bool>",
+    ?"compaty_reg_number": "<data-null/string>",
+    ?"BIC": "<data-null/string>",
+    ?"VAT": "<data-null/string>",
+    ?"IBAN": "<data-null/string>",
+    ?"bank_account_holder": "<data-null/string>"
+}
+
+RESPONSE: 
+
+  { 
+    token: "<data-string>", 
+    username: "<data-string>", 
+    email: "<data-string>"
+  }
+  
+
+Fail:
+400 - missing email| name | address | country | city | post_code| phone_number | terms_and_condition
+400 - bussiness_account == true and missing compaty_reg_number | VAT | BIC | IBAN | bank_account_holder
+400 - username already used
 ===================
