@@ -1,0 +1,503 @@
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[5].rules[0].oneOf[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[5].rules[0].oneOf[0].use[2]!./src/styles.css?ngGlobalStyle ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/* You can add global styles to this file, and also import other style files */
+
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[5].rules[0].oneOf[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[5].rules[0].oneOf[0].use[2]!./src/app/shared/variables.css?ngGlobalStyle ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/* @import url('https://fonts.googleapis.com/css2?family=Maitree:wght@200;300;400;500;600;700&family=Noto+Serif+Display:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600&display=swap'); */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var( --font-Nunito);
+    font-weight: 400;
+}
+
+body{
+    height: 100%;
+    margin: 0 auto;
+}
+
+:root {
+    
+    /* primary1 */
+    --lighter-primary1-color: #42b1bd;
+    --light-primary1-color: #42a9bd;
+    --primary-primary1-color: #4298BD;
+    --dark-primary1-color: #428cbd;
+    --darker-primary1-color: #4261bd;
+
+
+    /* primary2 primary */
+    --lighter-primary2-color: #323232;
+    --light-primary2-color: #282828;
+    --primary-primary2-color: #1E1E1E;
+    --dark-primary2-color: #141414;
+    --darker-primary2-color: #0A0A0A;
+
+
+    /* primary2 */
+    --primary2-color: #000000;
+    
+    /* white */
+    --white-color: #fff;
+
+    /* fonts */
+    --font-Maitree: 'Maitree', serif;
+    --font-Noto: 'Noto Sans JP', sans-serif;
+    --font-Verdana: 'Verdana,Helvetica,Helvetica CE,Arial,Arial Regular,Arial CE,sans-serif;';
+    --font-Comme:  'Comme', sans-serif;
+    --font-Nunito: 'Nunito', sans-serif;
+
+    /* error color */
+    --error-background-color: #f65454;
+
+    /* success color  */
+    --success-color: #4BB543;
+}
+
+.background-white{
+background-color: var(--white-color);
+}
+/* .linar-background{
+    background-image: linear-gradient(var(--white-color), var(--kontakt-dashboard-background) 85%, var(--white-color));
+} */
+.background-transparent{
+    background-color: transparent;
+}
+
+.color-primary{
+    color: var(--primary-primary1-color)
+}
+
+.color-white{
+    color: var(--white-color)
+}
+
+.zindex{
+    z-index: 20;
+}
+
+.color-primary2{
+    color: var(--primary-primary2-color)
+}
+
+.display-not{
+    display: none;
+}
+.font-weight300{
+    font-weight: 300;
+}
+.font-weight400{
+    font-weight: 400;
+}
+.font-weight500{
+    font-weight: 500;
+}
+.font-weight600{
+    font-weight: 600;
+}
+.margin{
+    margin: 1rem;
+}
+
+.padding-right{
+    padding-right: 0.7rem ;
+}
+
+.transition{
+   transition: all 0.2s linear;
+}
+
+h1{
+    font-size: 3.3rem;
+   
+}
+h2{
+    font-size: 2.7rem;
+    font-family: var( --font-Comme);
+}
+h3{
+    font-size: 2.2rem;
+    font-family: var( --font-Comme);
+}
+h4{
+    font-size: 1.7rem;
+}
+h5{
+    font-size: 1.2rem;
+}
+h6{
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+p{
+    font-weight: 300;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+.flex{
+    display: flex;
+}
+.block{
+    display: block;
+}
+
+.invalid{
+    font-size: 0.8rem;
+    color: rgba(255,0,0, 0.8);
+    }
+
+
+    @media screen and (max-width:850px) {
+    .items {
+    margin-left: 15%;
+}
+}
+
+@media screen and (min-width:1300px) {
+    
+    h1{
+        font-size: 5rem;
+        
+    }
+    h2{
+        font-size: 3rem;
+        font-family: var( --font-Comme);
+    }
+    h3{
+        font-size: 2.5rem;
+        font-family: var( --font-Comme);
+    }
+    h4{
+        font-size: 1.8rem;
+    }
+    h5{
+        font-size: 1.3rem;
+    }
+    h6{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+    p{
+        font-weight: 300;
+        font-size: 1rem;
+            display: inline-block;
+    }
+}
+
+@media screen and (max-width:700px) {
+h1{
+    font-size: 4rem;
+   
+}
+h2{
+    font-size: 3rem;
+
+}
+h3{
+    font-size: 2rem;
+
+}
+h6{
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+} 
+
+.title{
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+.btn{
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem ;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+}
+
+.padding{
+    padding: 1rem;
+}
+.margin{
+    margin: 1rem;
+}
+
+.width-100{
+    width: 100%;
+}
+
+.aligh 
+
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 5px solid #000;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+
+.loader-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.center-text{
+    text-align: center;
+}
+.description{
+    display: block;
+    text-align: center;
+    margin: 2rem auto;
+    max-width: 800px;
+    padding: 0 1.5rem;
+}
+
+.loader {
+    width: 25px;
+    height: 25px;
+    border: 5px solid #000;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+
+
+.loader-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.edit-button{
+    width: 35%;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    padding: 0.35rem 0.5rem;
+    background-color: var(--lighter-primary1-color);
+    border: 1px solid var(--darker-primary1-color);
+    color: var(--white-color);
+    font-weight: 500;
+    outline-offset: 5px;
+    outline: 1px solid var(--darker-primary1-color);
+    margin: 2rem auto;
+    display: block;
+}
+
+.input-wrapper{
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+
+.input-name{
+ font-size: 70%;
+ color: var(--lighter-primary2-color);
+}
+
+.alighn{
+  text-align: center;
+  margin: 0 auto;
+}
+
+.input{
+    width: 100%;
+    max-width: 500px;
+    padding: 0.5rem 0.5rem 0.5rem 0.2rem;
+    border: 1.2px solid var(--darker-primary1-color);
+    border-radius: 3px;
+    /* padding-bottom: 0.5rem;
+    padding-right: 0.5rem; */
+}
+.input-width{
+    width: 65%;
+}
+
+@media screen and (max-width:950px) {
+.input{ 
+  width: 80%;
+}
+}
+
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 1px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+.line-vertical{
+    width: 1px;
+    min-height: 100%;
+    background-color: #d2d2d2;
+}
+.line-horizontal{
+    margin: 0.3rem 0;
+    height: 1px;
+    width: 100%;
+    background-color: #d2d2d2;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+.shadow{
+    box-shadow: 0 0 5px;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+/* header */
+.background-header{
+    background-color: var(--primary-primary2-color);
+}
+
+.dropdown{
+    background-color: var(--white-color);
+}
+
+
+
+/* kontakt */
+:root{
+    --kontakt-dashboard-background: rgba(255, 140, 0, 0.2);
+    --price-list-dashoard: #FFD7A2;
+    --price-list-dark-color: var(--lighter-primary2-color);
+    --kalendar-text:#434345
+}
+.icon{
+    color: var(--primary-primary2-color);
+}
+.icon:hover{
+    color: var(--primary-primary1-color);
+}
+.icon-white{
+    color: var(--whitecolor);
+}
+.icon-white:hover{
+    transition: all linear 0.2s;
+    color: var(--primary-primary1-color);
+}
+.color-primary2:hover{
+    color: var(--primary-primary1-color);
+}
+
+.darker{
+     background-color: var(--lighter-primar2-color);
+}
+
+
+/* kontakt form */
+.input-box{
+    background-color: var(--price-list-dark-color);
+}
+.input-box2{
+    background-color: var(--price-list-dark-color);
+}
+.input-name{
+    color: var(--primary-primary2-color);
+}
+.input-description-box{
+    background-color: var(--price-list-dark-color);
+}
+.btn-submit{
+    background-color:var(--primary-primary1-color);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--darker-primary2-color); 
+}
+::-webkit-scrollbar-track {
+  background: var(--primary-primary2-color); 
+}
+
+
+
+/*# sourceMappingURL=styles.css.map*/
