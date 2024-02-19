@@ -24,9 +24,14 @@ const createPost = (request, response) => {
 
     let originalJson = orders
 
+    const allItems = item.map((element) => {
+        return { idItems: element.idItems, amount: element.amount }
+    })
+
+
     originalJson.push({
         orderID: Number(id),
-        item: JSON.stringify(item),
+        item: JSON.stringify(allItems),
         address: JSON.stringify(address),
         shipping: JSON.stringify(shipping),
         userID: JSON.stringify(userID) || undefined,
