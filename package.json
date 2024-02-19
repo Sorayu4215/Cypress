@@ -2,7 +2,7 @@
   "name": "testing-app",
   "version": "0.0.0",
   "scripts": {
-    "start_server": "nodemon server.js",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
