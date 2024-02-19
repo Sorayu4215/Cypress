@@ -56,8 +56,8 @@ const getOrders = async (request, response) => {
         userID = user.idUsers
     }
 
-    let originalJson = orders
-    userOrders = originalJson.filter((item) => item.userID == userID)
+    let originalJson = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'orders.json'), 'utf8');
+    userOrders = JSON.parse(originalJson).filter((item) => item.userID == userID)
 
     //get all items
     let allItems = getbase64Images(items)
@@ -68,7 +68,6 @@ const getOrders = async (request, response) => {
         element.item = createArrayWithMatchingIDs(item, allItems)
         return element
     })
-
     return response.status(200).json(totalItems)
 }
 
