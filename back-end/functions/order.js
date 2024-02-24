@@ -30,7 +30,7 @@ const createPost = (request, response) => {
 
 
     originalJson.push({
-        orderID: Number(id),
+        orderId: Number(id),
         item: JSON.stringify(allItems),
         address: JSON.stringify(address),
         shipping: JSON.stringify(shipping),
