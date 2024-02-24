@@ -1,7 +1,6 @@
 require('dotenv').config();
 const { CustomAPIError } = require('../middleware/error/customError')
 const jwt = require('jsonwebtoken');
-const users = require('../../data/json-data/users.json')
 const fs = require('fs')
 const { join } = require('path');
 
@@ -14,7 +13,12 @@ const logIn = async (request, response, next) => {
     }
 
     //get data
-    const data = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'users.json'), 'utf8');
+    let data = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'users.json'), 'utf8');
+
+    if(!data){
+        return response.status(401).json({ msg: 'Wrong username or password!' })
+    }
+
     const originalData = JSON.parse(data);
 
     originalData.forEach(element => {
@@ -37,7 +41,12 @@ const user = (request, response, next) => {
     const token = request.headers.authorization.split(' ')[1]
     const user = jwt.decode(token, process.env.JWT_SECRET)
     //get data
-    const data = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'users.json'), 'utf8');
+    let data = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'users.json'), 'utf8');
+
+    if (!data) {
+        return response.status(401).json({ msg: 'Wrong username or password!' })
+    }
+
     const originalData = JSON.parse(data);
 
     const signleUser = originalData.filter(element => element.idUsers == user.idUsers)
@@ -77,7 +86,12 @@ const changeUserData = (request, response) => {
     }
 
     //get data
-    const data = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'users.json'), 'utf8');
+    let data = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'users.json'), 'utf8');
+
+    if (!data) {
+        return response.status(401).json({ msg: 'Wrong username or password!' })
+    }
+
     const originalData = JSON.parse(data);    
 
     //change data
@@ -126,7 +140,10 @@ const changeUsername = async (request, response) => {
     }
 
     //get data
-    const data = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'users.json'), 'utf8');
+    let data = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'users.json'), 'utf8');
+    if (!data) {
+        return response.status(401).json({ msg: 'Wrong username or password!' })
+    }
     const originalData = JSON.parse(data);
 
     //verify wheter useraname is already used 
@@ -172,7 +189,10 @@ const changePassword = (request, response) => {
     }    
 
     //get data
-    const data = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'users.json'), 'utf8');
+    let data = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'users.json'), 'utf8');
+    if (!data) {
+        return response.status(401).json({ msg: 'Wrong username or password!' })
+    }
     const originalData = JSON.parse(data);
 
     //change password
@@ -213,8 +233,11 @@ const registration = async (request, response) => {
 
     let usernameUsed = false
     //verify us username is not used
-    const data = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'users.json'), 'utf8');
-    const originalData = JSON.parse(data);
+    let originalData = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'users.json'), 'utf8');
+    if (!originalData) {
+        originalData = []
+    }
+    // const originalData = JSON.parse(data);
 
     originalData.forEach(element => {
         if (element.username == username) {

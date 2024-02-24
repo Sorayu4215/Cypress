@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs')
 const { join } = require('path');
 let items = require('../../data/json-data/items.json')
-const orders = require('../../data/json-data/orders.json')
 const { getbase64Images } = require('./getItem');
 
 
@@ -22,7 +21,11 @@ const createPost = (request, response) => {
         return response.status(400).json({ msg: 'Wrong request!' })
     }
 
-    let originalJson = orders
+    let originalJson =fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'orders.json'), 'utf8');
+
+    if(!originalJson){
+        originalJson = []
+    }
 
     const allItems = item.map((element) => {
         return { idItems: element.idItems, amount: element.amount }
@@ -57,6 +60,11 @@ const getOrders = async (request, response) => {
     }
 
     let originalJson = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'orders.json'), 'utf8');
+
+    if(!originalJson){
+        return response.status(200).json([])
+    }
+
     userOrders = JSON.parse(originalJson).filter((item) => item.userID == userID)
 
     //get all items
