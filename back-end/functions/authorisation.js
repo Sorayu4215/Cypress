@@ -236,6 +236,8 @@ const registration = async (request, response) => {
     let originalData = fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'users.json'), 'utf8');
     if (!originalData) {
         originalData = []
+    }else{
+        originalData = JSON.parse(originalData)
     }
     // const originalData = JSON.parse(data);
 

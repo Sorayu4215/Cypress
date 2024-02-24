@@ -21,16 +21,18 @@ const createPost = (request, response) => {
         return response.status(400).json({ msg: 'Wrong request!' })
     }
 
-    let originalJson =fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'orders.json'), 'utf8');
-
-    if(!originalJson){
+    let data =fs.readFileSync(join(process.cwd(), 'data', 'json-data', 'orders.json'), 'utf8');
+    let originalJson
+    
+    if (!data){
         originalJson = []
+    }else{
+        originalJson = JSON.parse(data)
     }
 
     const allItems = item.map((element) => {
         return { idItems: element.idItems, amount: element.amount }
     })
-
 
     originalJson.push({
         orderId: Number(id),
