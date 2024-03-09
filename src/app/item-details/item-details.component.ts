@@ -16,6 +16,7 @@ export class ItemDetailsComponent implements OnInit {
     const id = this.router.url.slice(1)
     this.data.getItem(id).subscribe((data)=>{
       this.item = data
+      console.log(this.item) 
       if (this.item.length == 0){
         this.error = true
         this.errorMessage = "Item doesn't exist!"
@@ -23,7 +24,7 @@ export class ItemDetailsComponent implements OnInit {
     }, err => {
       this.error = true
       this.errorMessage = err.message
-    })    
+    })   
   }
 
   // waranty = window.document.querySelector('#Warranty')

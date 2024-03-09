@@ -5,7 +5,8 @@
     "price": 15.99,
     "description": "A comfortable and stylish cotton T-shirt, available in various sizes and colors.",
     "category": "Clothing",
-    "image": "T-Shirt.jpeg"
+    "image": "T-Shirt.jpeg",
+    "size": ["XS", "S", "M", "L", "XL"]
   },
   {
     "idItems": 2,
@@ -13,7 +14,8 @@
     "price": 79.99,
     "description": "High-quality sneakers with excellent grip and support, available in various sizes and colors.",
     "category": "Footwear",
-    "image": "Sneakers.jpeg"
+    "image": "Sneakers.jpeg",
+    "size": ["XS", "S", "M", "L", "XL"]
   },
   {
     "idItems": 3,
@@ -45,7 +47,8 @@
     "price": 69.99,
     "description": "A beautiful and elegant dress for formal occasions, available in various colors and sizes.",
     "category": "Clothing",
-    "image": "Dress.jpeg"
+    "image": "Dress.jpeg",
+    "size": ["XS", "S", "M", "L", "XL"]
   },
   {
     "idItems": 7,
@@ -53,7 +56,8 @@
     "price": 99.99,
     "description": "Lightweight and breathable running shoes, designed for comfort and performance.",
     "category": "Footwear",
-    "image": "Running shoes.jpeg"
+    "image": "Running shoes.jpeg",
+    "size": ["XS", "S", "M", "L", "XL"]
   },
   {
     "idItems": 8,
@@ -77,6 +81,7 @@
     "price": 129.99,
     "description": "Sturdy and waterproof hiking boots, designed for rugged terrain and all weather conditions.",
     "category": "Footwear",
-    "image": "Hikking Boots.jpeg"
+    "image": "Hikking Boots.jpeg",
+    "size": ["XS", "S", "M", "L", "XL"]
   }
 ]

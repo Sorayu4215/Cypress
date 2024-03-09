@@ -15,6 +15,12 @@
             <input type="checkbox" value="60-Day Return Option" id="return_option" [attr.data-type]="attr.detailsReturnOption">
             <label for="return_option"> {{this.resources.detailReturnOption}}</label>
         </div>
+        <div style="padding: 0.4rem 0;" *ngIf="this.item[0].size">
+            <p>Size:</p>
+            <select name="size" [attr.daat-type]="attr.detailSize">
+                <option *ngFor="let size of this.item[0].size" value="{{size}}">{{size}}</option>
+            </select>
+        </div>
         <button class="details-add-to-cart" [attr.data-type]="attr.detailsAddToCartBtn" (click)="warantyAndReturnOption()" (click)="this.common.addToCart($event, this.item[0].idItems,this.waranty, this.returnOption)">
             <fa-icon [icon]="this.resources.cart" style="font-size: 1.2rem;"></fa-icon>
             <p class="details-btn">{{this.resources.detailsAddToCartButton}}</p>

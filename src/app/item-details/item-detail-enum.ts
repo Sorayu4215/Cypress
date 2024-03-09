@@ -6,5 +6,6 @@ export enum itemDetails{
     detailsWarranty = 'details-waranty',
     detailsReturnOption = 'details-return-option',
     detailsAddToCartBtn = 'details-add-to-cart-btn',
-    detailsPrice = 'details-price'
+    detailsPrice = 'details-price',
+    detailSize = "detail-size-select"
 }
