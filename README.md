@@ -1,16 +1,5 @@
-E-shop sample project
+E-shop Sample Project
 
-Project intended for testing, learning and mentoring purposes. In this project you get first overview how real test development process looks like. 
-Project consis from Front-end part maded in angular and Back-end part maded in node.js, database are json files where you can see data righ away. 
+This project is designed for testing, learning, and mentoring purposes. It offers an initial glimpse into the real test development process. The project consists of a Front-end part developed in Angular and a Back-end part created in Node.js, with databases stored as JSON files where you can view data immediately.
 
-Our goal is to lean you how real web testing works. How we will achieve it? 
-On project we will learn basics of web delop development, including processes and structures of pages. 
-Also beginings of HTML, css to have comprehensive informations to upcoming lections.
-Learn what is package.json, basic terminal commands, also basic work with git.
-We will start with instalation of cypress and go over cypress configuration. 
-Go over cypress structure. 
-Start basic commands as cy.visit, get, should, click, select, contain, clear, wait, reload
-Start with OOP and how to set it up. 
-Made database connection. 
-Advanced cypress commands like intercept, use cy.task ,cookies, local storage, session
-Will automate case about cookie banner how to avaoid him, also case about log in and save session. adapt timeout 
+Our objective is to teach you how real web testing operates. How will we achieve this? Throughout the project, we will cover the basics of web development, including page processes and structures. We'll also delve into HTML and CSS fundamentals to provide comprehensive knowledge for upcoming lessons. You'll learn about package.json, basic terminal commands, and introductory Git usage. We'll begin by installing Cypress and configuring it, exploring its structure, and executing basic commands such as cy.visit, get, should, click, select, contain, clear, wait, and reload. We'll also cover Object-Oriented Programming (OOP) and its setup, establish database connections, and tackle advanced Cypress commands like intercept, using cy.task, cookies, local storage, and session handling. We'll automate scenarios such as handling cookie banners to avoid them, logging in, and saving sessions, as well as adjusting timeout settings.
